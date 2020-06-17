@@ -1,39 +1,70 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../layouts/default/layout"
-import SEO from "../components/seo"
+import PreviewProgram from "../components/programs/preview"
+import Filters from "../components/programs/filters"
 
+const DirectionsPage = (props) => {
 
-const IndexPage = (props) => {
-
-  const data = props.data.strapiCategories
+  const data = props.data
 
   return (
     <Layout>
-      <SEO
-        title={ data.meta.title }
-        description={data.meta.description}
-      />
-      <h1>{ data.meta.h1 }</h1>
-      <h1>{ data.name }</h1>
-      <Link to="/page-2/">Go to page 2</Link>
+      <h1>{ data.strapiDirections.name }</h1>
+      <div>Описание</div>
+      <hr/>
+      <h2>Фильтры:</h2>
+      <Filters types={props.pageContext.types} pagePath={props.pageContext.pagePath} />
+      <hr/>
+      { data.allStrapiTours.edges.map(({ node }) => (
+        <PreviewProgram key={ node.id } node={ node } pagePath={props.pageContext.pagePath} />
+      )) }
     </Layout>
   )
 }
 
 export const query = graphql`
-  query IndexPage($pagePath: String!) {
-    strapiCategories(url: {eq: $pagePath}) {
-      id
+  query($pagePath: String!, $typePath: String) {
+    strapiDirections(path: {eq: $pagePath}) {
       name
-      meta {
-        title
-        h1
-        description
+    }
+    allStrapiTours(
+      filter: {
+        direction: {
+          path: {
+            eq: $pagePath
+          }
+        }
+        types: {
+          elemMatch: {
+            path: {
+              eq: $typePath
+            }
+          }
+        }
+      }
+    ) {
+      edges {
+        node {
+          id
+          name
+          path
+          preview_text
+          types {
+            id
+            name
+            path
+          }
+          category {
+            id
+            name
+            path
+          }
+        }
       }
     }
   }
 `
 
-export default IndexPage
+export default DirectionsPage

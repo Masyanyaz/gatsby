@@ -1,34 +1,34 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
+import Layout from "../layouts/default/layout"
 import SEO from "../components/seo"
+
+
+
+const IndexPage = ({ data }) => (
+  <Layout>
+    <SEO title="Home" />
+    { data.allStrapiTypes.edges.map(({ node }) => (
+      <div key={node.id}>
+        <Link to={`/${node.path}/`}>{node.name}</Link>
+      </div>
+    )) }
+  </Layout>
+)
 
 export const query = graphql`
   query {
-    allMongodbGatsbyCities {
+    allStrapiTypes {
       edges {
         node {
-          title
+          id
+          name
+          path
         }
       }
     }
   }
 `
-
-
-const IndexPage = (props) => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>{ props.data.allMongodbGatsbyCities.edges.map(item => (
-      <div>{item.node.title}</div>
-    )) }</h1>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
 
 export default IndexPage
