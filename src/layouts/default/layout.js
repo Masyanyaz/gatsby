@@ -15,16 +15,24 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={'Voyage'} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <Footer />
+      <div className="content">
+          <div className="main-content"
+              // style={{
+              //     margin: `0 auto`,
+              //     maxWidth: 960,
+              //     padding: `0 1.0875rem 1.45rem`,
+              // }}
+          >
+              <main>{children}</main>
+          </div>
+          <div className="right-column">
+              я <br/>
+              есмь <br/>
+              боковая <br/>
+              колонка <br/>
+          </div>
       </div>
+        <Footer />
     </>
   )
 }

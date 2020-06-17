@@ -1,28 +1,45 @@
 import React from "react"
 import { Link } from "gatsby"
 
+import './preview.css'
+
 const PreviewProgram = ({ node, pagePath }) => {
 
+  console.log(node)
+
   return (
-    <div
-      style={ {
-        height: "200px",
-        width: "400px"
-      } }
-    >
-      <div>{ node.category ? node.category.name : 'Остальные' }</div>
-      <Link
-        to={ `/catalogue/programms/${ pagePath }/tours/${ node.category ? node.category.path : 'other' }/${ node.path }/` }
-      >
-        Название: { node.name }
+    <div className="preview__block">
+
+      <Link to={`/catalogue/programms/${ pagePath }/tours/${ node.category ? node.category.path : 'other' }/${ node.path }/`} className="preview__block-top">
+        <div className="preview__block-top-picture">
+          <img src="https://www.calliaweb.co.uk/wp-content/uploads/2015/10/600x400.jpg" alt=""/>
+            <Link to={`../${node.category.path}`} className="preview__block-top-type">
+              {node.category.name}
+            </Link>
+        </div>
       </Link>
-      <div>
-        Пиктограммы:
-        { node.types.map(type => (
-        <span key={type.id} style={ { marginRight: "10px" } }>{ type.name }</span>
-      )) }
+
+      <div className="preview__block-center">
+        <div className="preview__block-name">
+          {node.name}
+        </div>
+        <div className="preview__block-center-row">
+          <div className="preview__block-center-row-element">количество дней</div>
+          <div className="preview__block-center-row-element">города</div>
+        </div>
+        <div className="preview__block-center-row">
+          <div className="preview__block-center-row-element">{node.types.map(type => (
+              <Link to={`/catalogue/filters/${ pagePath }/tours/${ type.path }/`}>{type.name}</Link>
+          ))}</div>
+          <div className="preview__block-center-row-element">цена</div>
+        </div>
       </div>
-      <div dangerouslySetInnerHTML={{__html: '**asdasdas**'}} />
+
+
+      <Link to={`/catalogue/programms/${ pagePath }/tours/${ node.category ? node.category.path : 'other' }/${ node.path }/`} className="preview__block-button">
+        ПОДРОБНЕЕ
+      </Link>
+
     </div>
   )
 }

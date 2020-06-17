@@ -5,6 +5,8 @@ import Layout from "../layouts/default/layout"
 import PreviewProgram from "../components/programs/preview"
 import Filters from "../components/programs/filters"
 
+import './directions.css'
+
 const DirectionsPage = (props) => {
 
   const data = props.data
@@ -17,9 +19,11 @@ const DirectionsPage = (props) => {
       <h2>Фильтры:</h2>
       <Filters types={props.pageContext.types} pagePath={props.pageContext.pagePath} />
       <hr/>
-      { data.allStrapiTours.edges.map(({ node }) => (
-        <PreviewProgram key={ node.id } node={ node } pagePath={props.pageContext.pagePath} />
-      )) }
+      <div className="preview__grid">
+          { data.allStrapiTours.edges.map(({ node }) => (
+              <PreviewProgram key={ node.id } node={ node } pagePath={props.pageContext.pagePath} />
+          )) }
+      </div>
     </Layout>
   )
 }

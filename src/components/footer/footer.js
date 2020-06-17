@@ -1,7 +1,10 @@
 import React from "react"
 
 const Footer = () => (
-  <footer>
+  <footer style={{
+      margin: `0 auto`,
+      textAlign: `center`
+  }}>
     © { new Date().getFullYear() }
   </footer>
 )
