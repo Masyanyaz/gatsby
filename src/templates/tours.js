@@ -46,24 +46,46 @@ const ToursPage = (props) => {
             <div className="programm__menu-item">Дополнительная информация</div>
         </div>
 
-        <div className="programm__days">
-            <div className="programm__days-left">
-                <div className="programm__days-left-count">
-                    <span>День 1</span> из 3
+        {data.days.map((day, i) => (
+            <div key={day.id} className="programm__days">
+                <div className="programm__days-left">
+                    <div className="programm__days-left-count">
+                        <span>День {i+1}</span> из {data.days.length}
+                    </div>
+                    <div className="programm__days-left-name">
+                        {day.name}
+                    </div>
+                    <div className="programm__days-left-description">
+                        {day.text}
+                    </div>
                 </div>
-                <div className="programm__days-left-name">
-                    Arivee a Moscou
-                </div>
-                <div className="programm__days-left-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed architecto veritatis dolorum corrupti
-                    quidem asperiores repellendus nostrum eos sint, ducimus quibusdam inventore, exercitationem vel nam
-                    iure odit maiores iste eaque!
+                <div className="programm__days-right">
+                    <img src={day.picture.publicURL} alt=""/>
                 </div>
             </div>
-            <div className="programm__days-right">
-                <img src="https://www.calliaweb.co.uk/wp-content/uploads/2015/10/600x400.jpg" alt=""/>
-            </div>
-        </div>
+        ))}
+
+
+
+
+        {/*<div className="programm__days">*/}
+        {/*    <div className="programm__days-left">*/}
+        {/*        <div className="programm__days-left-count">*/}
+        {/*            <span>День 1</span> из 3*/}
+        {/*        </div>*/}
+        {/*        <div className="programm__days-left-name">*/}
+        {/*            Arivee a Moscou*/}
+        {/*        </div>*/}
+        {/*        <div className="programm__days-left-description">*/}
+        {/*            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed architecto veritatis dolorum corrupti*/}
+        {/*            quidem asperiores repellendus nostrum eos sint, ducimus quibusdam inventore, exercitationem vel nam*/}
+        {/*            iure odit maiores iste eaque!*/}
+        {/*        </div>*/}
+        {/*    </div>*/}
+        {/*    <div className="programm__days-right">*/}
+        {/*        <img src="https://www.calliaweb.co.uk/wp-content/uploads/2015/10/600x400.jpg" alt=""/>*/}
+        {/*    </div>*/}
+        {/*</div>*/}
     </Layout>
   )
 }
@@ -76,6 +98,14 @@ export const query = graphql`
         }
       ) {
       name
+      days{
+        id
+        name
+        text
+        picture{
+          publicURL
+        }
+      }
     }
   }
 `

@@ -25,7 +25,7 @@ const PreviewProgram = ({ node, pagePath }) => {
           {node.name}
         </div>
         <div className="preview__block-center-row">
-          <div className="preview__block-center-row-element">{node.day_count} дней</div>
+          <div className="preview__block-center-row-element">{node.days.length} дней</div>
           <div className="preview__block-center-row-element">города</div>
         </div>
         <div className="preview__block-center-row">

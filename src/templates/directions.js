@@ -61,6 +61,9 @@ export const query = graphql`
           path
           preview_text
           day_count
+          days{
+            id
+          }
           types {
             id
             name
