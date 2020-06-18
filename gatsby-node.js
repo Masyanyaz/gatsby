@@ -50,6 +50,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        allStrapiCategories {
+          group(
+            field: tours___direction
+          ) {
+            fieldValue
+            edges {
+              node {
+                id
+                name
+                path
+              }
+            }
+          }
+        }
       }
     `
   )
@@ -64,6 +78,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     const path = node.path
     const filteredResult = result.data.allStrapiTypes.group.filter(item => +item.fieldValue === node.strapiId)
+    const filteredResultt = result.data.allStrapiCategories.group.filter(item => +item.fieldValue === node.strapiId)
 
     filteredResult[0].edges.forEach(edge => {
       createPage({
@@ -78,6 +93,21 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       })
     })
+
+      filteredResultt[0].edges.forEach(edge => {
+          createPage({
+              path: `${filterPath}/${path}/tours/${edge.node.path}/`,
+              component: require.resolve(`./src/templates/directions`),
+              // In your blog post template's graphql query, you can use pagePath
+              // as a GraphQL variable to query for data from the markdown file.
+              context: {
+                  pagePath: path,
+                  catPath: edge.node.path,
+                  types: filteredResult[0].edges
+              }
+          })
+      })
+
     createPage({
       path: `${filterPath}/${path}/tours/all/`,
       component: require.resolve(`./src/templates/directions`),

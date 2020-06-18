@@ -29,7 +29,7 @@ const DirectionsPage = (props) => {
 }
 
 export const query = graphql`
-  query($pagePath: String!, $typePath: String) {
+  query($pagePath: String!, $typePath: String, $catPath: String) {
     strapiDirections(path: {eq: $pagePath}) {
       name
     }
@@ -47,6 +47,11 @@ export const query = graphql`
             }
           }
         }
+        category: {
+          path: {
+            eq : $catPath
+          }
+        }
       }
     ) {
       edges {
@@ -55,10 +60,14 @@ export const query = graphql`
           name
           path
           preview_text
+          day_count
           types {
             id
             name
             path
+            icon{
+              publicURL
+            }
           }
           category {
             id

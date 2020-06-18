@@ -1,4 +1,6 @@
 .preview__grid{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    width: 1000px;
 }

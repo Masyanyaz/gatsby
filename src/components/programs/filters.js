@@ -51,16 +51,16 @@ const Filters = ({ types, pagePath }) => {
           Все
         </Link>
         {
-          types.map(({ node }) => (
-            <Link
-              to={ `/catalogue/filters/${ pagePath }/tours/${ node.path }/` }
-              key={ node.id }
-              activeClassName={'active'}
-              style={ { marginRight: "10px" } }
-            >
-              { node.name }
-            </Link>
-          ))
+          // types.map(({ node }) => (
+          //   <Link
+          //     to={ `/catalogue/filters/${ pagePath }/tours/${ node.path }/` }
+          //     key={ node.id }
+          //     activeClassName={'active'}
+          //     style={ { marginRight: "10px" } }
+          //   >
+          //     { node.name }
+          //   </Link>
+          // ))
         }
       </div>
     </div>

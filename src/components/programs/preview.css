@@ -1,12 +1,15 @@
 .preview__block{
-    width: 500px;
+    width: 400px;
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 20px 10px;
+    border: 1px solid;
 }
 
 
-.preview__block-top-picture{
+
+
+.preview__block-top{
     position: relative;
 }
 
@@ -45,6 +48,17 @@
     border: 1px solid;
     flex-grow: 1;
     flex-basis: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.preview__block-center-row-element a{
+    display: flex;
+}
+
+.preview__block-center-row-element > a >img{
+    width: 32px;
+    margin: 10px; /*убрать, вместе с margin-bottom: 1.45em из layout.css*/
 }
 
 .preview__block-button{
