@@ -22,21 +22,12 @@ const ToursPage = (props) => {
                 excepturi sunt enim dolore debitis molestiae!
             </div>
             <div className="programm__info-tags">
-                <div className="programm__info-tags-item"><img
-                    src="https://media1.tenor.com/images/0f094357ce654616a98ab3607f8ee290/tenor.gif?itemid=12266242"
-                    alt=""/></div>
-                <div className="programm__info-tags-item"><img
-                    src="https://media1.tenor.com/images/0f094357ce654616a98ab3607f8ee290/tenor.gif?itemid=12266242"
-                    alt=""/></div>
-                <div className="programm__info-tags-item"><img
-                    src="https://media1.tenor.com/images/0f094357ce654616a98ab3607f8ee290/tenor.gif?itemid=12266242"
-                    alt=""/></div>
-                <div className="programm__info-tags-item"><img
-                    src="https://media1.tenor.com/images/0f094357ce654616a98ab3607f8ee290/tenor.gif?itemid=12266242"
-                    alt=""/></div>
-                <div className="programm__info-tags-item"><img
-                    src="https://media1.tenor.com/images/0f094357ce654616a98ab3607f8ee290/tenor.gif?itemid=12266242"
-                    alt=""/></div>
+                {data.types.map(type => (
+                    <div className="programm__info-tags-item"><img
+                        src={type.icon.publicURL}
+                        title={type.name}
+                        alt=""/></div>
+                ))}
             </div>
         </div>
 
@@ -105,6 +96,12 @@ export const query = graphql`
         picture{
           publicURL
         }
+      }
+      types{
+        icon{
+        publicURL
+      }
+      name
       }
     }
   }

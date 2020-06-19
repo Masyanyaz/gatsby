@@ -6,7 +6,16 @@ import './preview.css'
 const PreviewProgram = ({ node, pagePath }) => {
 
   console.log(node)
-
+    node.types.length = 3
+const types = node.types.map((type, i) => {
+    if (i < 2){
+        return (
+            <Link key={type.id} to={`/catalogue/filters/${ pagePath }/tours/${ type.path }/`}>
+                <img src={type.icon.publicURL} title={type.name} alt=""/>
+            </Link>
+        )
+    }
+    })
   return (
     <div className="preview__block">
 
@@ -29,11 +38,12 @@ const PreviewProgram = ({ node, pagePath }) => {
           <div className="preview__block-center-row-element">города</div>
         </div>
         <div className="preview__block-center-row">
-          <div className="preview__block-center-row-element">{node.types.map(type => (
-              <Link key={type.id} to={`/catalogue/filters/${ pagePath }/tours/${ type.path }/`}>
-                  {type.icon ? <img src={type.icon.publicURL} title={type.name} alt=""/> : type.name}
+          <div className="preview__block-center-row-element">
+              {types}
+              <Link to={`/catalogue/filters/${ pagePath }/tours/konserj/`}>
+                  <img src="http://localhost:8000/static/2c56b025f02b3b5e781809830ccf172e/edcca08cbe9e34a0ed89f62867a93bb4.png" />
               </Link>
-          ))}</div>
+          </div>
           <div className="preview__block-center-row-element">цена</div>
         </div>
       </div>
