@@ -2,27 +2,28 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../layouts/default/layout"
-import PreviewProgram from "../components/programs/preview"
+import ProgramCards from "../components/programs/cards/cards"
 import Filters from "../components/programs/filters"
 
-import './directions.css'
+import "./directions.css"
 
 const DirectionsPage = (props) => {
 
   const data = props.data
+  const context = props.pageContext
 
   return (
     <Layout>
       <h1>{ data.strapiDirections.name }</h1>
       <div>Описание</div>
-      <hr/>
+      <hr />
       <h2>Фильтры:</h2>
-      <Filters types={props.pageContext.types} pagePath={props.pageContext.pagePath} />
-      <hr/>
+      <Filters types={ context.types } pagePath={ context.pagePath } />
+      <hr />
       <div className="preview__grid">
-          { data.allStrapiTours.edges.map(({ node }) => (
-              <PreviewProgram key={ node.id } node={ node } pagePath={props.pageContext.pagePath} />
-          )) }
+        { data.allStrapiTours.edges.map(({ node }) => (
+          <ProgramCards key={ node.id } node={ node } pagePath={ context.pagePath } />
+        )) }
       </div>
     </Layout>
   )
@@ -68,7 +69,7 @@ export const query = graphql`
             id
             name
             path
-            icon{
+            img {
               publicURL
             }
           }

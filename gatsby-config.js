@@ -20,27 +20,6 @@ module.exports = {
         queryLimit: 1000,
       },
     },
-    /*{
-      resolve: `gatsby-source-mongodb`,
-      options: {
-        dbName: `gatsby`,
-        collection: [`cities`],
-        server: {
-          address: 'gatsby-shard-00-01-hdvma.mongodb.net',
-          port: 27017
-        },
-        auth: {
-          user: 'Masyanyaz',
-          password: '1996zydfhm11'
-        },
-        extraParams: {
-          replicaSet: 'gatsby-shard-0',
-          ssl: true,
-          authSource: `admin`,
-          retryWrites: true
-        }
-      },
-    },*/
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
