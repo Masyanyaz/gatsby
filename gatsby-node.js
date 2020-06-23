@@ -86,12 +86,25 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   })
 
+  const categories = result.data.allStrapiCategories.group.map(group => {
+    const unique = []
+    return {
+      fieldValue: group.fieldValue,
+      edges: group.edges.filter((type) => {
+        if (!unique.includes(type.node.id)) {
+          unique.push(type.node.id)
+          return type
+        }
+      })
+    }
+  })
+
   // Create pages for each markdown file.
   result.data.allStrapiDirections.edges.forEach(({ node }) => {
 
     const path = node.path
     const typesInDirection = types.find(({ fieldValue }) => +fieldValue === node.strapiId)
-    const categories = result.data.allStrapiCategories.group.find(({ fieldValue }) => +fieldValue === node.strapiId)
+    const categoriesInDirection = categories.find(({ fieldValue }) => +fieldValue === node.strapiId)
 
     typesInDirection.edges.forEach(edge => {
       createPage({
@@ -102,12 +115,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         context: {
           pagePath: path,
           typePath: edge.node.path,
-          types: typesInDirection.edges
+          types: typesInDirection.edges,
+          categories: categoriesInDirection.edges
         }
       })
     })
 
-    categories.edges.forEach(edge => {
+    categoriesInDirection.edges.forEach(edge => {
       createPage({
         path: `${ filterPath }/${ path }/tours/${ edge.node.path }/`,
         component: require.resolve(`./src/templates/directions`),
@@ -116,7 +130,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         context: {
           pagePath: path,
           catPath: edge.node.path,
-          types: typesInDirection.edges
+          types: typesInDirection.edges,
+          categories: categoriesInDirection.edges
         }
       })
     })
@@ -128,7 +143,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       // as a GraphQL variable to query for data from the markdown file.
       context: {
         pagePath: path,
-        types: typesInDirection.edges
+        types: typesInDirection.edges,
+        categories: categoriesInDirection.edges
       }
     })
   })

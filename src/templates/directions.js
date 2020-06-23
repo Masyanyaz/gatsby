@@ -18,7 +18,7 @@ const DirectionsPage = (props) => {
       <div>Описание</div>
       <hr />
       <h2>Фильтры:</h2>
-      <Filters types={ context.types } pagePath={ context.pagePath } />
+      <Filters types={ context.types } pagePath={ context.pagePath }  categories={context.categories}/>
       <hr />
       <div className="preview__grid">
         { data.allStrapiTours.edges.map(({ node }) => (
