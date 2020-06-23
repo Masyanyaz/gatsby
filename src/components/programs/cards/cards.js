@@ -33,7 +33,11 @@ const ProgramCards = ({ node, pagePath }) => {
         to={ `/catalogue/programms/${ pagePath }/tours/${ node.category ? node.category.path : "other" }/${ node.path }/` }
         className="preview__block-button"
       >
+<<<<<<< HEAD
         ПОДРОБНЕЕzx
+=======
+        ПОДРОБНЕЕa
+>>>>>>> 72e5c43e81cde1239425742146ee8c2c2682c147
       </Link>
 
     </div>
