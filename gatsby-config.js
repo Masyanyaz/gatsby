@@ -16,6 +16,7 @@ module.exports = {
           "tours",
           "types",
           "directions",
+          "excursions",
         ],
         queryLimit: 1000,
       },
