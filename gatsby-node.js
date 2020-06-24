@@ -109,7 +109,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     typesInDirection.edges.forEach(edge => {
       createPage({
         path: `${ filterPath }/${ path }/tours/${ edge.node.path }/`,
-        component: require.resolve(`./src/templates/directions`),
+        component: require.resolve(`./src/templates/programs/filters/filters`),
         // In your blog post template's graphql query, you can use pagePath
         // as a GraphQL variable to query for data from the markdown file.
         context: {
@@ -124,7 +124,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     categoriesInDirection.edges.forEach(edge => {
       createPage({
         path: `${ filterPath }/${ path }/tours/${ edge.node.path }/`,
-        component: require.resolve(`./src/templates/directions`),
+        component: require.resolve(`./src/templates/programs/filters/filters`),
         // In your blog post template's graphql query, you can use pagePath
         // as a GraphQL variable to query for data from the markdown file.
         context: {
@@ -138,7 +138,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     createPage({
       path: `${ filterPath }/${ path }/tours/all/`,
-      component: require.resolve(`./src/templates/directions`),
+      component: require.resolve(`./src/templates/programs/filters/filters`),
       // In your blog post template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the markdown file.
       context: {
@@ -154,7 +154,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     createPage({
       path: `${ programmsPath }/${ node.direction.path }/tours/${ category }/${ path }`,
-      component: require.resolve(`./src/templates/tours`),
+      component: require.resolve(`./src/templates/programs/pages/pages`),
       // In your blog post template's graphql query, you can use pagePath
       // as a GraphQL variable to query for data from the markdown file.
       context: {

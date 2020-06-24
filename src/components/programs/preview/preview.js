@@ -1,18 +1,16 @@
 import React from "react"
-import { Link } from "gatsby"
-/*изменения*/
-import "./cards.css"
+import "./preview.css"
 
-import CardImage from "./image"
-import CardTypes from "./types"
-import Link from "../../link"
+import PreviewImage from "./image"
+import PreviewTypes from "./types"
+import Link from "../../global/link"
 
 
-const ProgramCards = ({ node, pagePath }) => {
+const PreviewProgram = ({ node, pagePath }) => {
   return (
     <div className="preview__block">
 
-      <CardImage pagePath={ pagePath } path={ node.path } category={ node.category } />
+      <PreviewImage pagePath={ pagePath } path={ node.path } category={ node.category } prices={node.prices}/>
 
       <div className="preview__block-center">
         <div className="preview__block-name">
@@ -21,12 +19,9 @@ const ProgramCards = ({ node, pagePath }) => {
         <div className="preview__block-center-row">
           <div className="preview__block-center-row-element">{ node.days.length } дней</div>
           <div className="preview__block-center-row-element">города</div>
-        </div>
-        <div className="preview__block-center-row">
-          <div className="preview__block-center-row-element">
-            <CardTypes pagePath={ pagePath } types={ node.types } />
-          </div>
-          <div className="preview__block-center-row-element">цена</div>
+            <div className="preview__block-center-row-element">
+                <PreviewTypes pagePath={ pagePath } types={ node.types } />
+            </div>
         </div>
       </div>
 
@@ -41,4 +36,4 @@ const ProgramCards = ({ node, pagePath }) => {
   )
 }
 
-export default ProgramCards
+export default PreviewProgram

@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../layouts/default/layout"
-import SEO from "../components/seo"
+import SEO from "../components/global/seo"
 
 
 const IndexPage = (props) => (

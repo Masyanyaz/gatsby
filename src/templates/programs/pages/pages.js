@@ -1,14 +1,16 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../layouts/default/layout"
-import "./tours.css"
+import Layout from "../../../layouts/default/layout"
+import "./pages.css"
+import Days from "../../../components/programs/pages/days/days";
+import Prices from "../../../components/programs/pages/prices/prices";
 
 
 const ToursPage = (props) => {
 
   const data = props.data.strapiTours
-
+console.log(data.prices)
   return (
     <Layout>
       {/*<h1>{data.name}</h1>*/ }
@@ -38,27 +40,8 @@ const ToursPage = (props) => {
         <div className="programm__menu-item">Цена и условия</div>
         <div className="programm__menu-item">Дополнительная информация</div>
       </div>
-
-      {
-        data.days.map((day, i) => (
-          <div key={ day.id } className="programm__days">
-            <div className="programm__days-left">
-              <div className="programm__days-left-count">
-                <span>День { i + 1 }</span> из { data.days.length }
-              </div>
-              <div className="programm__days-left-name">
-                { day.name }
-              </div>
-              <div className="programm__days-left-description">
-                { day.text }
-              </div>
-            </div>
-            <div className="programm__days-right">
-              <img src={ day.picture.publicURL } alt="" />
-            </div>
-          </div>
-        ))
-      }
+        <Days days={data.days}/>
+        <Prices prices={data.prices} />
     </Layout>
   )
 }
@@ -84,7 +67,13 @@ export const query = graphql`
         img {
           publicURL
         }
-      name
+        name
+      }
+      prices{
+        count
+        type
+        value
+        id
       }
     }
   }

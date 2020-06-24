@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-const CardTypes = ({ pagePath, types }) => {
+const PreviewTypes = ({ pagePath, types }) => {
 
   const { strapiTypes } = useStaticQuery(graphql`
     query {
@@ -31,4 +31,4 @@ const CardTypes = ({ pagePath, types }) => {
   )
 }
 
-export default CardTypes
+export default PreviewTypes
