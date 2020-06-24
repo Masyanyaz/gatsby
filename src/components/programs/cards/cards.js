@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-
+/*изменения*/
 import "./cards.css"
 
 import CardImage from "./image"
