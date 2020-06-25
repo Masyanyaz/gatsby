@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
 const PreviewImage = ({ pagePath, category, path, prices }) => {
-console.log(prices)
+
   // TODO: Убрать запрос и картинку из запроса в filters
   const data = useStaticQuery(graphql`
     query {

@@ -11,6 +11,17 @@ const FiltersPage = (props) => {
 
   const data = props.data
   const context = props.pageContext
+  const types = context.pathPage.type.split('/')
+
+  let filtered
+
+  if(types[0] === 'all') {
+    filtered = data.allStrapiTours.edges
+  } else {
+    filtered = data.allStrapiTours.edges.filter(tour => {
+      return types.every(type => tour.node.types.map(({ path }) => path).includes(type))
+    })
+  }
 
   return (
     <Layout>
@@ -18,10 +29,13 @@ const FiltersPage = (props) => {
       <div>Описание</div>
       <hr />
       <h2>Фильтры:</h2>
-      <Filters types={ context.types } pagePath={ context.pagePath }  categories={context.categories}/>
+      <Filters
+        pathPage={context.pathPage}
+        { ...context }
+      />
       <hr />
       <div className="preview__grid">
-        { data.allStrapiTours.edges.map(({ node }) => (
+        { filtered.map(({ node }) => (
           <PreviewProgram key={ node.id } node={ node } pagePath={ context.pagePath } />
         )) }
       </div>

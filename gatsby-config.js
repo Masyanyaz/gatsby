@@ -17,6 +17,7 @@ module.exports = {
           "types",
           "directions",
           "excursions",
+          "seasons",
         ],
         queryLimit: 1000,
       },
