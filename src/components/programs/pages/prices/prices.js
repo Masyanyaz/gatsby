@@ -13,7 +13,7 @@ const Prices = ({ prices }) => {
   return (
     <>
       <div>
-        <select onChange={ handleSelect } value={ countSelected }>
+        <select onChange={ handleSelect } defaultValue={ countSelected }>
           {
             counts.map(count => (
               <option key={ count } value={ count }>{ count } человека</option>
