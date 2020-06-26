@@ -1,15 +1,24 @@
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
 import "./header-menu.css"
 
+const Header = () => {
+  const [scrollTop, setScrollTop] = useState(0);
 
+  useEffect(() => {
+    function onScroll() {
+      let currentPosition = window.pageYOffset;
+      setScrollTop(currentPosition <= 0 ? 0 : currentPosition);
+    }
 
-const Header = ({ siteTitle }) => {
-  const headerClass = (window.pageYOffset < 100) ? 'header__menu' : 'header__menu scrolled'
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [scrollTop]);
+
+  const headerClass = scrollTop === 0 ? 'header__menu' : 'header__menu scrolled'
+
   return(
       <header>
-
         <div className={headerClass}>
           <div className="header__menu-left-side">
             <Link to="#" className="header__menu-left-side-element" id="hmlse__left"> Destinations </Link>
@@ -43,12 +52,12 @@ const Header = ({ siteTitle }) => {
   )
 }
 
-Header.propTypes = {
+/*Header.propTypes = {
   siteTitle: PropTypes.string
 }
 
 Header.defaultProps = {
   siteTitle: ``
-}
+}*/
 
 export default Header

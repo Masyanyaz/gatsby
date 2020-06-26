@@ -19,6 +19,8 @@ const PreviewImage = ({ pagePath, category, path, prices }) => {
     }
   `)
 
+  const pricesArray = prices.map(price => price.value)
+
   return (
     <div className="preview__block-top">
       <Link
@@ -28,7 +30,11 @@ const PreviewImage = ({ pagePath, category, path, prices }) => {
         <Img fluid={ data.strapiTours.preview_image.childImageSharp.fluid } />
       </Link>
       <div className="preview__block-top-type">
-          {prices.length ? prices[0].value : `price`}
+        {
+          prices.length ?
+            `${ Math.min(...pricesArray) } - ${ Math.max(...pricesArray) }` :
+            `price`
+        }
       </div>
     </div>
   )

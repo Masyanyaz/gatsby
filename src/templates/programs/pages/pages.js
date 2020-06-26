@@ -3,14 +3,14 @@ import { graphql } from "gatsby"
 
 import Layout from "../../../layouts/default/layout"
 import "./pages.css"
-import Days from "../../../components/programs/pages/days/days";
-import Prices from "../../../components/programs/pages/prices/prices";
+import Days from "../../../components/programs/pages/days/days"
+import Prices from "../../../components/programs/pages/prices/prices"
 
 
 const ToursPage = (props) => {
 
   const data = props.data.strapiTours
-console.log(data.prices)
+
   return (
     <Layout>
       {/*<h1>{data.name}</h1>*/ }
@@ -24,7 +24,7 @@ console.log(data.prices)
         </div>
         <div className="programm__info-tags">
           { data.types.map(type => (
-            <div key={type.id} className="programm__info-tags-item">
+            <div key={ type.id } className="programm__info-tags-item">
               <img
                 src={ type.img.publicURL }
                 title={ type.name }
@@ -40,8 +40,8 @@ console.log(data.prices)
         <div className="programm__menu-item">Цена и условия</div>
         <div className="programm__menu-item">Дополнительная информация</div>
       </div>
-        <Days days={data.days}/>
-        <Prices prices={data.prices} />
+      <Days days={ data.days } />
+      { data.prices.length ? <Prices prices={ data.prices } /> : <h3>По запросу</h3>}
     </Layout>
   )
 }
@@ -69,7 +69,7 @@ export const query = graphql`
         }
         name
       }
-      prices{
+      prices {
         count
         type
         value
