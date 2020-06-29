@@ -7,38 +7,37 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import Header from "../../components/header/header"
-import Footer from "../../components/footer/footer"
 import "./layout.css"
+import Header from "../../components/header/header"
+import RightColumn from "../../components/column/column"
+import Footer from "../../components/footer/footer"
 
-const Layout = ({ children }) => {
+
+const Layout = ({children, rightColumn, directionName}) => {
   return (
     <>
-      <Header siteTitle={'Voyage'} />
+      <Header siteTitle={'Voyage'}/>
       <div className="content">
-          <div className="main-content"
-              // style={{
-              //     margin: `0 auto`,
-              //     maxWidth: 960,
-              //     padding: `0 1.0875rem 1.45rem`,
-              // }}
-          >
-              <main>{children}</main>
-          </div>
-          <div className="right-column">
-              я <br/>
-              есмь <br/>
-              боковая <br/>
-              колонка <br/>
-          </div>
+        <div className="main-content">
+          <main>{children}</main>
+        </div>
+        {
+          rightColumn && <RightColumn directionName={directionName}/>
+        }
       </div>
-        <Footer />
+      <Footer/>
     </>
   )
 }
 
+
+Layout.defaultProps = {
+  rightColumn: false
+}
+
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  rightColumn: PropTypes.bool
 }
 
 export default Layout

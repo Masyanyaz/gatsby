@@ -19,8 +19,8 @@ const PreviewImage = ({ pagePath, category, path, prices }) => {
     }
   `)
 
-  const pricesArray = prices.map(price => price.value)
-
+   const pricesArray = prices.map(price => price.types.map(type => type.value)).flat(1)
+  console.log(pricesArray)
   return (
     <div className="preview__block-top">
       <Link
@@ -32,7 +32,7 @@ const PreviewImage = ({ pagePath, category, path, prices }) => {
       <div className="preview__block-top-type">
         {
           prices.length ?
-            `${ Math.min(...pricesArray) } - ${ Math.max(...pricesArray) }` :
+            `a ${ Math.min(...pricesArray) } - de ${ Math.max(...pricesArray) }` :
             `price`
         }
       </div>

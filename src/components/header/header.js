@@ -18,10 +18,10 @@ const Header = () => {
   const headerClass = scrollTop === 0 ? 'header__menu' : 'header__menu scrolled'
 
   return(
-      <header>
+      <header style={scrollTop === 0 ? {paddingBottom: "0"} : {paddingBottom: "200px"}}> {/*TODO перенести scrolled из header__menu в header, убрать стили*/}
         <div className={headerClass}>
           <div className="header__menu-left-side">
-            <Link to="#" className="header__menu-left-side-element" id="hmlse__left"> Destinations </Link>
+            <Link to="#" className="header__menu-left-side-element" id="hmlse__left">Destinations </Link>
             <Link to="#" className="header__menu-left-side-element" id="hmlse__center" >Inspirations</Link>
             <Link to="#" className="header__menu-left-side-element" id="hmlse__right"> Services </Link>
           </div>

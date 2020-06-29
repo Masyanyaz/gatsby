@@ -24,7 +24,7 @@ const FiltersPage = (props) => {
   }
 
   return (
-    <Layout>
+    <Layout rightColumn={true} directionName={data.strapiDirections.name}>
       <h1>{ data.strapiDirections.name }</h1>
       <div>Описание</div>
       <hr />
@@ -75,8 +75,10 @@ export const query = graphql`
           name
           path
           preview_text
-          prices{
-            value
+          prices {
+            types {
+              value
+            }
           }
           days{
             id

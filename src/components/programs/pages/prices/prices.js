@@ -1,32 +1,25 @@
 import React, { useState } from "react"
 
 const Prices = ({ prices }) => {
-  const counts = [ ...new Set(prices.map(price => price.count)) ]
-  const [ countSelected, setCountSelected ] = useState(counts[0])
 
-  const handleSelect = (e) => {
-    setCountSelected(+e.target.value)
-  }
-
-  const filteredPrices = prices.filter(price => price.count === countSelected)
+  const [ countSelected, setCountSelected ] = useState(prices[0].count)
+  const types = prices.filter(price => price.count === countSelected).map(price => price.types).flat(1)
 
   return (
     <>
-      <div>
-        <select onChange={ handleSelect } defaultValue={ countSelected }>
+        <div className="vkladki" >
           {
-            counts.map(count => (
-              <option key={ count } value={ count }>{ count } человека</option>
+            prices.map(({count}) => (
+              <div className="vkladki__item" key={ count } onClick={() => setCountSelected(count)}> { count } человека</div>
             ))
           }
-        </select>
-      </div>
+        </div>
       <table>
         <thead>
         <tr>
           {
-            filteredPrices.map(price => (
-              <th key={ price.id }>{ price.type }</th>
+            types.map(type => (
+              <td key={type.id}>{type.name}</td>
             ))
           }
         </tr>
@@ -34,8 +27,8 @@ const Prices = ({ prices }) => {
         <tbody>
         <tr>
           {
-            filteredPrices.map(price => (
-              <td key={ price.id }>{ price.value } euro</td>
+            types.map(type => (
+              <td key={type.id}>{type.value}</td>
             ))
           }
         </tr>
