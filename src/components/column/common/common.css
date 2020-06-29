@@ -1,54 +1,55 @@
-.common{
-    margin-top: 100px;
+.common {
+  margin-top: 100px;
 }
 
-.common > p{
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
+.common > p {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-.common__element{
-    display: flex;
-    align-items: center;
-    margin: 20px;
+.common__element {
+  display: flex;
+  align-items: center;
+  margin: 20px;
 }
 
-.common__element-icon{
-    width: 100px;
-    height: 100px;
-    background: #bababa;
-    margin-right: 20px;
+.common__element-icon {
+  width: 100px;
+  height: 100px;
+  background: #bababa;
+  margin-right: 20px;
 }
 
-.common__element p{
-    font-size: 20px;
-    font-weight: bold;
+.common__element p {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.common__more{
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: darksalmon;
+.common__more {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: darksalmon;
 }
 
-.common__more p {
-    display: block;
-    position: relative;
+.common__more {
+  display: block;
+  width: 100%;
+  position: relative;
 }
 
-.common__more p:after{
-    position: absolute;
-    content: '';
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #f00;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-left: 3px;
+.common__more:after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #f00;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 3px;
 }

@@ -24,7 +24,7 @@ const FiltersPage = (props) => {
   }
 
   return (
-    <Layout rightColumn={true} directionName={data.strapiDirections.name}>
+    <Layout rightColumn={ true } directionName={ data.strapiDirections.name }>
       <h1>{ data.strapiDirections.name }</h1>
       <div>Описание</div>
       <hr />
@@ -36,7 +36,11 @@ const FiltersPage = (props) => {
       <hr />
       <div className="preview__grid">
         { filtered.map(({ node }) => (
-          <PreviewProgram key={ node.id } node={ node } pagePath={ context.pagePath } />
+          <PreviewProgram
+            key={ node.id }
+            node={ node }
+            pagePath={ context.pagePath }
+          />
         )) }
       </div>
     </Layout>
@@ -80,7 +84,7 @@ export const query = graphql`
               value
             }
           }
-          days{
+          days {
             id
           }
           types {

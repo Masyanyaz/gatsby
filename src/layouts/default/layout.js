@@ -7,7 +7,10 @@
 
 import React from "react"
 import PropTypes from "prop-types"
+
 import "./layout.css"
+import "./global.css"
+
 import Header from "../../components/header/header"
 import RightColumn from "../../components/column/column"
 import Footer from "../../components/footer/footer"

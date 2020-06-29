@@ -3,23 +3,30 @@ import React, { useState } from "react"
 const Prices = ({ prices }) => {
 
   const [ countSelected, setCountSelected ] = useState(prices[0].count)
-  const types = prices.filter(price => price.count === countSelected).map(price => price.types).flat(1)
+  const types = prices.find(({ count }) => count === countSelected).types
 
   return (
     <>
-        <div className="vkladki" >
-          {
-            prices.map(({count}) => (
-              <div className="vkladki__item" key={ count } onClick={() => setCountSelected(count)}> { count } человека</div>
-            ))
-          }
-        </div>
+      <div className="tabs">
+        {
+          prices.map(({ count }) => (
+            <button
+              className="tabs__item"
+              key={ count }
+              onClick={ () => setCountSelected(count) }
+              onKeyDown={ () => setCountSelected(count) }
+            >
+              { count } человека
+            </button>
+          ))
+        }
+      </div>
       <table>
         <thead>
         <tr>
           {
             types.map(type => (
-              <td key={type.id}>{type.name}</td>
+              <th key={ type.id }>{ type.name }</th>
             ))
           }
         </tr>
@@ -28,7 +35,7 @@ const Prices = ({ prices }) => {
         <tr>
           {
             types.map(type => (
-              <td key={type.id}>{type.value}</td>
+              <td key={ type.id }>{ type.value }</td>
             ))
           }
         </tr>
