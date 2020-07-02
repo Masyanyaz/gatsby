@@ -149,3 +149,34 @@
 .scrolled .header__menu-right-side {
   margin-left: auto;
 }
+
+.hover__menu{
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  background: #fff;
+  padding: 10px 20px;
+  /*display: flex;*/
+  width: 50%;
+  border: 1px solid;
+  /*flex-wrap: wrap;*/
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  z-index: 1;
+}
+
+.hover__menu-item{
+  display: flex;
+  margin: 10px;
+  /*flex-grow: 1;*/
+  /*flex-basis: 200px;*/
+  align-items: center;
+}
+
+.hover__menu-item-picture{
+  width: 100px;
+  height: 100px;
+  background: #bababa;
+  margin-right: 20px;
+}
