@@ -15,15 +15,7 @@ const Prices = ({ prices }) => {
           }
         </div>
       <table>
-        <thead>
-        <tr>
-          {
-            types.map(type => (
-              <td key={type.id}>{type.name}</td>
-            ))
-          }
-        </tr>
-        </thead>
+
         <tbody>
         <tr>
           {
