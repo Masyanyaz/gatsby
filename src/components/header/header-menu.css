@@ -28,18 +28,14 @@
   color: #6d6d6d;
 }
 
-.header__menu-left-side-element.center {
-  border-left: 1px solid;
+.header__menu-left-side-element {
   border-right: 1px solid;
-  padding: 0 45px;
+  padding: 0 30px;
 }
 
-.header__menu-left-side-element.left {
-  margin-right: 30px;
-}
-
-.header__menu-left-side-element.right {
-  margin-left: 30px;
+.header__menu-left-side-element:last-of-type {
+  border-right: none;
+  padding-right: 0;
 }
 
 .header__menu-center {
