@@ -28,17 +28,17 @@
   color: #6d6d6d;
 }
 
-#hmlse__center {
+.header__menu-left-side-element.center {
   border-left: 1px solid;
   border-right: 1px solid;
   padding: 0 45px;
 }
 
-#hmlse__left {
+.header__menu-left-side-element.left {
   margin-right: 30px;
 }
 
-#hmlse__right {
+.header__menu-left-side-element.right {
   margin-left: 30px;
 }
 
@@ -57,7 +57,7 @@
   margin: 10px auto 0;
 }
 
-.header__menu-center p {
+.header__menu-center span {
   letter-spacing: 0.1em;
 }
 
@@ -80,7 +80,7 @@
   margin: 0 20px;
 }
 
-#phone {
+.header__menu-right-side-top a img.phone {
   width: 35px;
 }
 
@@ -105,28 +105,25 @@
 
 /*свёрнутое меню, дописать header__menu scrolled*/
 
-main {
-  margin-top: 30px;
-}
-
 .scrolled {
   justify-content: start;
   position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 100;
+  top: 0;
   border-bottom: 1px solid;
 }
 
-.scrolled > div:nth-child(2) {
+.scrolled .header__menu-center {
   order: -1;
 }
 
-.scrolled.header__menu > div {
+.scrolled .header__menu > div {
   flex-grow: unset;
   border-bottom: none;
 }
 
-.scrolled > .header__menu-center > p {
+.scrolled .header__menu-center > span {
   display: none;
 }
 

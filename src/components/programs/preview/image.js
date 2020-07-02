@@ -19,8 +19,11 @@ const PreviewImage = ({ pagePath, category, path, prices }) => {
     }
   `)
 
-   const pricesArray = prices.map(price => price.types.map(type => type.value)).flat(1)
-  console.log(pricesArray)
+  const pricesArray = prices.reduce((res, price) => {
+    const prices = price.types.map(type => type.value)
+    return [...res, ...prices]
+  }, [])
+
   return (
     <div className="preview__block-top">
       <Link

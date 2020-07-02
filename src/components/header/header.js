@@ -15,40 +15,45 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [scrollTop]);
 
-  const headerClass = scrollTop === 0 ? 'header__menu' : 'header__menu scrolled'
+  const isScrolling = scrollTop > 0
 
-  return(
-      <header style={scrollTop === 0 ? {paddingBottom: "0"} : {paddingBottom: "200px"}}> {/*TODO перенести scrolled из header__menu в header, убрать стили*/}
-        <div className={headerClass}>
-          <div className="header__menu-left-side">
-            <Link to="#" className="header__menu-left-side-element" id="hmlse__left">Destinations </Link>
-            <Link to="#" className="header__menu-left-side-element" id="hmlse__center" >Inspirations</Link>
-            <Link to="#" className="header__menu-left-side-element" id="hmlse__right"> Services </Link>
-          </div>
-          <div className="header__menu-center">
-            <Link to="/">
-              <img src="https://cuisinedevoyage.com/img/logo-v2t.svg" alt="" />
-            </Link>
-            <p>Voyagez a votre gout!</p>
-          </div>
-          <div className="header__menu-right-side">
-            <div className="header__menu-right-side-top">
-              <Link to="#">
-                <img src="https://cuisinedevoyage.com/img/mail.svg" alt="" />
-              </Link>
-              <Link to="#">
-                <img src="https://cuisinedevoyage.com/img/phone.svg" id="phone" alt="" />
-              </Link>
-              <Link to="#" className="header__menu-right-side-top-button">envoyer une demande</Link>
+  return (
+      <>
+        {
+          isScrolling && <div style={{ height: '180px' }} />
+        }
+        <header className={ isScrolling ? 'scrolled' : '' }>
+          <div className="header__menu">
+            <div className="header__menu-left-side">
+              <Link to="#" className="header__menu-left-side-element left">Destinations</Link>
+              <Link to="#" className="header__menu-left-side-element center">Inspirations</Link>
+              <Link to="#" className="header__menu-left-side-element right">Services</Link>
             </div>
-            <div className="header__menu-right-side-bottom">
-              <Link to="#" className="header__menu-right-side-bottom-element">Qui sommes-nous</Link>
-              <Link to="#" className="header__menu-right-side-bottom-element">Nouvelles</Link>
-              <Link to="#" className="header__menu-right-side-bottom-element">Contacts</Link>
+            <div className="header__menu-center">
+              <Link to="/">
+                <img src="https://cuisinedevoyage.com/img/logo-v2t.svg" alt="" />
+              </Link>
+              <span>Voyagez a votre gout!</span>
+            </div>
+            <div className="header__menu-right-side">
+              <div className="header__menu-right-side-top">
+                <Link to="#">
+                  <img src="https://cuisinedevoyage.com/img/mail.svg" alt="" />
+                </Link>
+                <Link to="#">
+                  <img className="phone" src="https://cuisinedevoyage.com/img/phone.svg" alt="" />
+                </Link>
+                <Link to="#" className="header__menu-right-side-top-button">envoyer une demande</Link>
+              </div>
+              <div className="header__menu-right-side-bottom">
+                <Link to="#" className="header__menu-right-side-bottom-element">Qui sommes-nous</Link>
+                <Link to="#" className="header__menu-right-side-bottom-element">Nouvelles</Link>
+                <Link to="#" className="header__menu-right-side-bottom-element">Contacts</Link>
+              </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
+      </>
   )
 }
 

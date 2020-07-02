@@ -2,11 +2,11 @@ import React from "react"
 
 import "./direction.css"
 
-const DirectionBlock = ({directionName}) => {
-  console.log(directionName)
+const DirectionBlock = ({ directionName }) => {
+
   return (
     <div className="direction">
-      <p>aussi à {directionName}</p>
+      <p>aussi à { directionName }</p>
       <div className="direction__element">
         <div className="direction__element-icon"></div>
         <p>Excursions</p>
