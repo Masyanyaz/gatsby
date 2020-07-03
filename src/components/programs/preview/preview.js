@@ -25,7 +25,7 @@ const PreviewProgram = ({ node, pagePath }) => {
   const openTowns = () => {
     setHover(hover => !hover)
   }
-console.log(node.towns)
+
   return (
     <div className="preview__block">
 
