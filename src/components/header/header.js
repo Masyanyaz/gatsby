@@ -5,7 +5,7 @@ import "./header-menu.css"
 import DesktopMenu from "./desktopMenu"
 import PopupForm from "../forms/popup/popup";
 
-const Header = (props) => {
+const Header = () => {
   const data = useStaticQuery(graphql`
   {
     allStrapiDirections {
@@ -43,7 +43,8 @@ const Header = (props) => {
   const isScrolling = scrollTop > 0
 
   const [popupOpen, setPopupOpen] = useState(false)
-  const popupClick = () => {
+  const popupClick = (e) => {
+    e.preventDefault()
     setPopupOpen(popupOpen => !popupOpen)
   }
 
