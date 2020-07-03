@@ -2,19 +2,20 @@ import React from "react"
 
 import Link from "../global/link"
 
-const OpenMenu = ({ items }) => {
+const OpenMenu = ({items}) => {
 
   return (
-    <div style={ { position: "absolute", top: "100%", left: "20px", backgroundColor: "#fff", padding: "10px 20px" } }>
-      <ul>
-        {
-          items.map(({ node }) => (
-            <li key={ node.id } >
-              { node.name }
-            </li>
-          ))
-        }
-      </ul>
+    <div className="hover__menu">
+      {
+        items.map(({node}) => (
+          <div className="hover__menu-item">
+            <div className="hover__menu-item-picture"/>
+            <div className="hover__menu-item-name" key={node.id}>
+              {node.name}
+            </div>
+          </div>
+        ))
+      }
     </div>
 
   )

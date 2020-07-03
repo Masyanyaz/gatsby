@@ -1,0 +1,9 @@
+.aboutTour{
+    background: #EDECE8;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.aboutTour__item span{
+    font-weight: bold;
+}

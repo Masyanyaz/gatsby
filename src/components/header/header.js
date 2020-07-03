@@ -3,6 +3,7 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 import "./header-menu.css"
 
 import DesktopMenu from "./desktopMenu"
+import PopupForm from "../forms/popup/popup";
 
 const Header = (props) => {
   const data = useStaticQuery(graphql`
@@ -41,6 +42,11 @@ const Header = (props) => {
 
   const isScrolling = scrollTop > 0
 
+  const [popupOpen, setPopupOpen] = useState(false)
+  const popupClick = () => {
+    setPopupOpen(popupOpen => !popupOpen)
+  }
+
   return (
     <>
       {
@@ -60,7 +66,8 @@ const Header = (props) => {
                 <img src="https://cuisinedevoyage.com/img/mail.svg" alt="" />
               </Link> <Link to="#">
               <img className="phone" src="https://cuisinedevoyage.com/img/phone.svg" alt="" />
-            </Link> <Link to="#" className="header__menu-right-side-top-button">envoyer une demande</Link>
+            </Link>
+              <Link to="#" className="header__menu-right-side-top-button" onClick={popupClick}>envoyer une demande</Link>
             </div>
             <div className="header__menu-right-side-bottom">
               <Link to="#" className="header__menu-right-side-bottom-element">Qui sommes-nous</Link>
@@ -70,6 +77,7 @@ const Header = (props) => {
           </div>
         </div>
       </header>
+      {popupOpen ? <PopupForm popupClick={popupClick}/> : ""}
     </>
   )
 }

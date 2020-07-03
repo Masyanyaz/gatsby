@@ -48,6 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: relative;
 }
 
 .preview__block-center-row-element a {
@@ -67,4 +68,12 @@
   text-decoration: none;
   font-size: 30px;
   border: 1px solid;
+}
+
+.town-list{
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  border: 1px solid;
+  background: #bababa;
 }

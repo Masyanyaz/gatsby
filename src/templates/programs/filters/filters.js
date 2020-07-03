@@ -100,6 +100,10 @@ export const query = graphql`
             name
             path
           }
+          towns{
+            id
+            name
+          }
         }
       }
     }

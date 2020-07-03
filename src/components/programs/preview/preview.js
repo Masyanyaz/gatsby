@@ -5,8 +5,27 @@ import PreviewImage from "./image"
 import PreviewTypes from "./types"
 import Link from "../../global/link"
 
+const TownsList = ({towns}) => {
+  return(
+    <div className="town-list">
+      <ul>
+        {
+          towns.map(town => (
+            <li key={town.id}>{town.name}</li>
+          ))
+        }
+      </ul>
+    </div>
+  )
+}
 
 const PreviewProgram = ({ node, directionPath }) => {
+  const [hover, setHover] = useState(false)
+
+  const openTowns = () => {
+    setHover(hover => !hover)
+  }
+
   return (
     <div className="preview__block">
 
@@ -18,7 +37,10 @@ const PreviewProgram = ({ node, directionPath }) => {
         </div>
         <div className="preview__block-center-row">
           <div className="preview__block-center-row-element">{ node.days.length } дней</div>
-          <div className="preview__block-center-row-element">города</div>
+          <div className="preview__block-center-row-element" onMouseEnter={openTowns} onMouseLeave={openTowns}>
+            { node.towns.length } города
+            { hover && <TownsList towns={ node.towns }/> }
+          </div>
           <div className="preview__block-center-row-element">
             <PreviewTypes directionPath={ directionPath } types={ node.types } />
           </div>

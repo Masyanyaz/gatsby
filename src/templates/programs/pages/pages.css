@@ -33,3 +33,6 @@
     box-sizing: border-box;
 }
 
+.tag-list-element{
+    margin-right: 20px;
+}
