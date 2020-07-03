@@ -1,0 +1,35 @@
+.programm__img, .programm__info, .programm__menu, .programm__days{
+    width: 1000px;
+    margin: 30px 0;
+}
+
+.programm__img img{
+    width:100%;
+}
+
+.programm__info-description{
+    padding: 30px 0;
+    background: #bababa;
+}
+
+.programm__info-tags{
+    display: flex;
+}
+
+.programm__info-tags-item{
+    margin:10px;
+}
+
+.programm__menu{
+    display: flex;
+}
+
+.programm__menu div{
+    flex-grow: 1;
+    flex-basis: 1px;
+    border: 1px solid;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+

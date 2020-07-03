@@ -3,7 +3,7 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 
 import "./filters.css"
 
-const Filters = ({ types, pagePath, categories, seasons, pathPage }) => {
+const Filters = ({ types, directionPath, categories, seasons, categoryPath, seasonPath, typePath }) => {
   const data = useStaticQuery(graphql`
     query {
       allStrapiDirections(filter: {
@@ -32,7 +32,7 @@ const Filters = ({ types, pagePath, categories, seasons, pathPage }) => {
         {
           data.allStrapiDirections.edges.map(({ node: { id, name, path } }) => (
             <Link
-              to={ `/catalogue/filters/${ path }/tours/${ pathPage.category }/${ pathPage.season }/${ pathPage.type }` }
+              to={ `/catalogue/filters/tours/${ path }/${ categoryPath || 'all' }/${ seasonPath || 'all' }/${ typePath || 'all' }` }
               key={ id } style={ { marginRight: "10px" } }
               activeClassName={ "active" }
             >
@@ -43,13 +43,13 @@ const Filters = ({ types, pagePath, categories, seasons, pathPage }) => {
       </div>
       <div>
         <Link
-          to={ `/catalogue/filters/${ pagePath }/tours/all/${ pathPage.season }/${ pathPage.type }` }
+          to={ `/catalogue/filters/tours/${ directionPath }/all/${ seasonPath || 'all' }/${ typePath || 'all' }` }
           style={ { marginRight: "10px" } }
           activeClassName={ "active" }
         > Все </Link> {
         categories.map(({ node: { id, name, path } }) => (
           <Link
-            to={ `/catalogue/filters/${ pagePath }/tours/${ path }/${ pathPage.season }/${ pathPage.type }` }
+            to={ `/catalogue/filters/tours/${ directionPath }/${ path }/${ seasonPath || 'all' }/${ typePath || 'all' }` }
             key={ id }
             activeClassName={ "active" }
             style={ { marginRight: "10px" } }
@@ -61,35 +61,14 @@ const Filters = ({ types, pagePath, categories, seasons, pathPage }) => {
       </div>
       <div>
         <Link
-          to={ `/catalogue/filters/${ pagePath }/tours/${ pathPage.category }/all/${ pathPage.type }` }
-          style={ { marginRight: "10px" } }
-          activeClassName={ "active" }
-        >
-          Все
-        </Link>
-        {
-          seasons.map(({ node: { id, name, path } }) => (
-            <Link
-              to={ `/catalogue/filters/${ pagePath }/tours/${ pathPage.category }/${ path }/${ pathPage.type }` }
-              key={ id }
-              activeClassName={ "active" }
-              style={ { marginRight: "10px" } }
-            >
-              { name }
-            </Link>
-          ))
-        }
-      </div>
-      <div>
-        <Link
-          to={ `/catalogue/filters/${ pagePath }/tours/${ pathPage.category }/${ pathPage.season }/all` }
+          to={ `/catalogue/filters/tours/${ directionPath }/${ categoryPath || 'all' }/all/${ typePath || 'all' }` }
           style={ { marginRight: "10px" } }
           activeClassName={ "active" }
         > Все </Link>
         {
-          types.map(({ node: { id, name, path } }) => (
+          seasons.map(({ node: { id, name, path } }) => (
             <Link
-              to={ `/catalogue/filters/${ pagePath }/tours/${ pathPage.category }/${ pathPage.season }/${ path }` }
+              to={ `/catalogue/filters/tours/${ directionPath }/${ categoryPath || 'all' }/${ path }/${ typePath || 'all' }` }
               key={ id }
               activeClassName={ "active" }
               style={ { marginRight: "10px" } }

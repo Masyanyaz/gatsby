@@ -2,7 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
-const PreviewImage = ({ pagePath, category, path, prices }) => {
+const PreviewImage = ({ directionPath, category, path, prices }) => {
 
   // TODO: Убрать запрос и картинку из запроса в filters
   const data = useStaticQuery(graphql`
@@ -27,7 +27,7 @@ const PreviewImage = ({ pagePath, category, path, prices }) => {
   return (
     <div className="preview__block-top">
       <Link
-        to={ `/catalogue/programms/${ pagePath }/tours/${ category.path }/${ path }/` }
+        to={ `/catalogue/programs/${ directionPath }/tours/${ category.path }/${ path }/` }
         className="preview__block-top-picture"
       >
         <Img fluid={ data.strapiTours.preview_image.childImageSharp.fluid } />

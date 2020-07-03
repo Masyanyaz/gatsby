@@ -54,34 +54,34 @@ export const query = graphql`
         eq: $pagePath
       }
     ) {
-    name
-    days {
-      id
       name
-      text
-      picture {
-        publicURL
-      }
-    }
-    direction {
-      name
-    }
-    types {
-      id
-      img {
-        publicURL
-      }
-      name
-    }
-    prices {
-      id
-      count
-      types {
+      days {
         id
         name
-        value
+        text
+        picture {
+          publicURL
+        }
       }
-    }
+      direction {
+        name
+      }
+      types {
+        id
+        img {
+          publicURL
+        }
+        name
+      }
+      prices {
+        id
+        count
+        types {
+          id
+          name
+          value
+        }
+      }
     }
   }
 `

@@ -6,11 +6,11 @@ import PreviewTypes from "./types"
 import Link from "../../global/link"
 
 
-const PreviewProgram = ({ node, pagePath }) => {
+const PreviewProgram = ({ node, directionPath }) => {
   return (
     <div className="preview__block">
 
-      <PreviewImage pagePath={ pagePath } path={ node.path } category={ node.category } prices={node.prices}/>
+      <PreviewImage directionPath={ directionPath } path={ node.path } category={ node.category } prices={ node.prices } />
 
       <div className="preview__block-center">
         <div className="preview__block-name">
@@ -19,18 +19,16 @@ const PreviewProgram = ({ node, pagePath }) => {
         <div className="preview__block-center-row">
           <div className="preview__block-center-row-element">{ node.days.length } дней</div>
           <div className="preview__block-center-row-element">города</div>
-            <div className="preview__block-center-row-element">
-                <PreviewTypes pagePath={ pagePath } types={ node.types } />
-            </div>
+          <div className="preview__block-center-row-element">
+            <PreviewTypes directionPath={ directionPath } types={ node.types } />
+          </div>
         </div>
       </div>
 
       <Link
-        to={ `/catalogue/programms/${ pagePath }/tours/${ node.category ? node.category.path : "other" }/${ node.path }/` }
+        to={ `/catalogue/programs/${ directionPath }/tours/${ node.category.path }/${ node.path }/` }
         className="preview__block-button"
-      >
-        ПОДРОБНЕЕ
-      </Link>
+      > ПОДРОБНЕЕ </Link>
 
     </div>
   )

@@ -11,6 +11,18 @@ const FiltersPage = (props) => {
 
   const data = props.data
   const context = props.pageContext
+  const types = context.typePath ? context.typePath.split('/') : []
+
+  console.log(context)
+  let filtered
+
+  if(!types.length) {
+    filtered = data.allStrapiTours.edges
+  } else {
+    filtered = data.allStrapiTours.edges.filter(tour => {
+      return types.every(type => tour.node.types.map(({ path }) => path).includes(type))
+    })
+  }
 
   return (
     <Layout rightColumn={ true } directionName={ data.strapiDirections.name }>
@@ -19,20 +31,20 @@ const FiltersPage = (props) => {
       <hr />
       <h2>Фильтры:</h2>
       <Filters
-        pathPage={ context.pathPage }{ ...context }
+        pathPage={context.pathPage}
+        { ...context }
       />
       <hr />
       <div className="preview__grid">
-        {
-          data.allStrapiTours.edges.length ?
-            data.allStrapiTours.edges.map(({ node }) => (
-              <PreviewProgram
-                key={ node.id }
-                node={ node }
-                directionPath={ context.directionPath }
-              />
-            )) :
-            "Туров с данными фильтрами не найдено"
+        { filtered.length ?
+          filtered.map(({ node }) => (
+            <PreviewProgram
+              key={ node.id }
+              node={ node }
+              directionPath={ context.directionPath }
+            />
+        )) :
+          'Туров с данными фильтрами не найдено'
         }
       </div>
     </Layout>

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-const PreviewTypes = ({ pagePath, types }) => {
+const PreviewTypes = ({ directionPath, types }) => {
 
   const { strapiTypes } = useStaticQuery(graphql`
     query {
@@ -22,7 +22,7 @@ const PreviewTypes = ({ pagePath, types }) => {
     <>
       {
         [...types, strapiTypes].map(type => (
-          <Link key={ type.id } to={ `/catalogue/filters/${ pagePath }/tours/${ type.path }/` }>
+          <Link key={ type.id } to={ `/catalogue/filters/${ directionPath }/tours/${ type.path }/` }>
             <img src={ type.img.publicURL } title={ type.name } alt="" />
           </Link>
         ))
