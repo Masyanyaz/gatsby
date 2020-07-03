@@ -3,7 +3,7 @@ import "./days.css"
 
 const Days = ({ days }) => {
   return (
-    <>
+    <div>
       {
         days.map((day, i) => (
           <div key={ day.id } className="programm__days">
@@ -24,7 +24,7 @@ const Days = ({ days }) => {
           </div>
         ))
       }
-    </>
+    </div>
   )
 
 }

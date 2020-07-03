@@ -1,7 +1,7 @@
 import React from "react"
 import "./about.css"
 
-const AboutTour = ({days, towns, groupCount, priceType, prices}) => {
+const AboutTour = ({ days, towns, groupCount, priceType, prices }) => {
 
   const pricesArray = prices.reduce((res, price) => {
     const prices = price.types.map(type => type.value)

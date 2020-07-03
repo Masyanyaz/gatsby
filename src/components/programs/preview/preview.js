@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import "./preview.css"
 
 import PreviewImage from "./image"

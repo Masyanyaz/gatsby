@@ -3,7 +3,7 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 
 import "./filters.css"
 
-const Filters = ({ types, directionPath, categories, seasons, categoryPath, seasonPath, typePath }) => {
+const Filters = ({ directionPath, categories, seasons, categoryPath, seasonPath, typePath }) => {
   const data = useStaticQuery(graphql`
     query {
       allStrapiDirections(filter: {

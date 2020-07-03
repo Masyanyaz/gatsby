@@ -1,8 +1,6 @@
 import React from "react"
 
-import Link from "../global/link"
-
-const OpenMenu = ({items}) => {
+const OpenMenu = ({ items }) => {
 
   return (
     <div className="hover__menu">

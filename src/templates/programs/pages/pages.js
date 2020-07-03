@@ -11,7 +11,7 @@ import Prices from "../../../components/programs/pages/prices/prices"
 import Link from "../../../components/global/link"
 
 
-const TagList = ({direction, category, seasons}) => {
+const TagList = ({ direction, category, seasons }) => {
   return(
     <div className="tag-list">
       <Link to={`/catalogue/filters/${direction.path}/tours/all/all/all`} className="tag-list-element">{direction.name}</Link>
