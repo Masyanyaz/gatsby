@@ -33,3 +33,7 @@
   width: 30px;
   text-align: center;
 }
+
+.popup__form-submit {
+  margin-top: 10px;
+}

@@ -6,6 +6,7 @@
   "author": "Masyanyaz and Nomel",
   "dependencies": {
     "@hot-loader/react-dom": "^16.13.0",
+    "formik": "^2.1.4",
     "gatsby": "^2.23.11",
     "gatsby-image": "^2.4.9",
     "gatsby-plugin-google-fonts": "^1.0.1",
@@ -21,7 +22,8 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
