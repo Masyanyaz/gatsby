@@ -11,7 +11,7 @@ const Prices = ({ prices }) => {
         {
           prices.map(({ count }) => (
             <button
-              className="tabs__item"
+              className="tabs__item button-reset"
               key={ count }
               onClick={ () => setCountSelected(count) }
               onKeyDown={ () => setCountSelected(count) }

@@ -1,25 +1,22 @@
 .popup {
   position: fixed;
-  width: 100%;
-  height: 100%;
   background: #e9e9e9e9;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-direction: column;
-  padding: 100px;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 999;
 }
 
 .popup__form {
   border: 1px solid;
-  position: relative;
+  position: fixed;
   padding: 10px;
+  z-index: 1000;
   background-color: #fff;
+  max-width: 400px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .popup__form form, .popup__form form label {

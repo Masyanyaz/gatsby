@@ -163,7 +163,7 @@
   display: grid;
   grid-gap: 25px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  z-index: 1;
+  z-index: 10;
 }
 
 .hover__menu-item{

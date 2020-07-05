@@ -44,6 +44,8 @@ const DesktopMenu = (props) => {
       {
         menuItems.map(menuItem => (
           <div
+            role="button"
+            tabIndex="0"
             key={ menuItem.id }
             data-item={ menuItem.data }
             className="header__menu-left-side-element"

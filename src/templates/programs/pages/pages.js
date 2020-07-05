@@ -1,14 +1,14 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../../../layouts/default/layout"
-
 import "./pages.css"
 
+import FiltersLayout from "../../../layouts/filters/filters"
 import AboutTour from "../../../components/programs/pages/about/about";
 import Days from "../../../components/programs/pages/days/days"
 import Prices from "../../../components/programs/pages/prices/prices"
 import Link from "../../../components/global/link"
+import ButtonOpenPopupForm from "../../../components/forms/popup/buttonOpenPopupForm"
 
 
 const TagList = ({ direction, category, seasons }) => {
@@ -26,7 +26,7 @@ const ToursPage = (props) => {
   const data = props.data.strapiTours
 
   return (
-    <Layout rightColumn={ true } directionName={ data.direction.name }>
+    <FiltersLayout directionName={ data.direction.name }>
       <div className="programm__img">
         <img src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg" alt="" />
       </div>
@@ -37,6 +37,9 @@ const ToursPage = (props) => {
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque provident quis excepturi sunt enim dolore debitis molestiae!
         </div>
         <AboutTour days={data.days} towns={data.towns} groupCount={data.groupCount} priceType={data.priceType} prices={data.prices}/>
+
+        <ButtonOpenPopupForm text="Вызов формы" className="asd" />
+
         <div className="programm__info-tags">
           { data.types.map(type => (
             <div key={ type.id } className="programm__info-tags-item">
@@ -57,7 +60,7 @@ const ToursPage = (props) => {
       </div>
       <Days days={ data.days } />
       { data.prices.length ? <Prices prices={ data.prices } /> : <h3>По запросу</h3> }
-    </Layout>
+    </FiltersLayout>
   )
 }
 

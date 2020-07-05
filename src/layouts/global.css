@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+  margin: 10px 5%;
+}
+
+main {
+  margin-top: 30px;
+}
+
+.button-reset {
+  border: none;
+  background-color: unset;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}

@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import Layout from "../../../layouts/default/layout"
+import FiltersLayout from "../../../layouts/filters/filters"
 import PreviewProgram from "../../../components/programs/preview/preview"
 import Filters from "../../../components/programs/filters/filters"
 
@@ -13,7 +13,7 @@ const FiltersPage = (props) => {
   const context = props.pageContext
 
   return (
-    <Layout rightColumn={ true } directionName={ data.strapiDirections.name }>
+    <FiltersLayout directionName={ data.strapiDirections.name }>
       <h1>{ data.strapiDirections.name }</h1>
       <div>Описание</div>
       <hr />
@@ -35,7 +35,7 @@ const FiltersPage = (props) => {
             "Туров с данными фильтрами не найдено"
         }
       </div>
-    </Layout>
+    </FiltersLayout>
   )
 }
 

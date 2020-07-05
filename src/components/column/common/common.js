@@ -25,7 +25,7 @@ const CommonBlock = (props) => {
       </div>
       {
         !open ?
-          <button className="common__more" onClick={ openContent }>
+          <button className="common__more button-reset" onClick={ openContent }>
             encore
           </button>
           :

@@ -37,7 +37,7 @@ const PreviewProgram = ({ node, directionPath }) => {
         </div>
         <div className="preview__block-center-row">
           <div className="preview__block-center-row-element">{ node.days.length } дней</div>
-          <div className="preview__block-center-row-element" onMouseEnter={openTowns} onMouseLeave={openTowns}>
+          <div role="button" tabIndex="0" className="preview__block-center-row-element" onMouseEnter={openTowns} onMouseLeave={openTowns}>
             { node.towns.length } города
             { hover && <TownsList towns={ node.towns }/> }
           </div>
