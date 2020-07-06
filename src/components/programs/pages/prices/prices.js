@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
 
 const Prices = ({ prices }) => {
 
@@ -43,6 +44,10 @@ const Prices = ({ prices }) => {
       </table>
     </>
   )
+}
+
+Prices.propTypes = {
+  prices: PropTypes.array.isRequired
 }
 
 export default Prices

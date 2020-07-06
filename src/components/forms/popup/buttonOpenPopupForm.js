@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import { useDispatch } from "react-redux"
 
 import { openPopupForm } from "../../../store/form/actions"
@@ -18,6 +19,11 @@ const ButtonOpenPopupForm = ({ text, className, ...other }) => {
       { text }
     </button>
   )
+}
+
+ButtonOpenPopupForm.propTypes = {
+  text: PropTypes.string.isRequired,
+  className: PropTypes.string
 }
 
 export default ButtonOpenPopupForm

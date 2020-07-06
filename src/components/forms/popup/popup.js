@@ -32,7 +32,7 @@ const PopupForm = () => {
   const closeForm = () => dispatch(closePopupForm())
 
   const onSubmit = (values, actions) => {
-    console.log(actions)
+    console.log(values)
   }
 
   return (

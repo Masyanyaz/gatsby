@@ -1,49 +1,43 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 
+import { useDispatch, useSelector } from "react-redux"
+
 import FiltersLayout from "../../../layouts/filters/filters"
-import PreviewProgram from "../../../components/programs/preview/preview"
-import Filters from "../../../components/programs/filters/filters"
+
+import Link from "../../../components/global/link"
 
 import "./filters.css"
 
+import {changeDirection, changeService} from "../../../store/url/actions"
+
 const FiltersPage = (props) => {
 
+  const dispatch = useDispatch()
+  const direction = useSelector(state => state.url.direction)
+  const service = useSelector(state => state.url.service)
   const data = props.data
-  const context = props.pageContext
-  const types = context.typePath ? context.typePath.split('/') : []
 
-  let filtered
-
-  if(!types.length) {
-    filtered = data.allStrapiTours.edges
-  } else {
-    filtered = data.allStrapiTours.edges.filter(tour => {
-      return types.every(type => tour.node.types.map(({ path }) => path).includes(type))
-    })
-  }
+  useEffect(() => {
+    dispatch(changeDirection(data.strapiDirections.path))
+    dispatch(changeService('excursion'))
+  }, [direction, service])
 
   return (
     <FiltersLayout directionName={ data.strapiDirections.name }>
       <h1>{ data.strapiDirections.name }</h1>
       <div>Описание</div>
       <hr />
-      <h2>Фильтры:</h2>
-      <Filters
-        pathPage={context.pathPage}
-        { ...context }
-      />
-      <hr />
       <div className="preview__grid">
-        { filtered.length ?
-          filtered.map(({ node }) => (
-            <PreviewProgram
-              key={ node.id }
-              node={ node }
-              directionPath={ context.directionPath }
-            />
+        { data.allStrapiExcursions.edges.length ?
+          data.allStrapiExcursions.edges.map(({ node }) => (
+            <div key={node.id}>
+              <Link to={`/catalogue/programs/${ data.strapiDirections.path }/excursion/${node.category.path}/${node.path}`}>
+                { node.name }
+              </Link>
+            </div>
         )) :
-          'Туров с данными фильтрами не найдено'
+          'Экскурсий не найдено'
         }
       </div>
     </FiltersLayout>
@@ -51,37 +45,18 @@ const FiltersPage = (props) => {
 }
 
 export const query = graphql`
-  query($directionPath: String!, $categoryPath: String, $seasonPath: String, $typePath: String) {
+  query($directionPath: String!) {
     strapiDirections(path: {eq: $directionPath}) {
       name
+      path
     }
-    allStrapiTours(
+    allStrapiExcursions(
       filter: {
         direction: {
           path: {
             eq: $directionPath
           }
         }
-        category: {
-          path: {
-            eq : $categoryPath
-          }
-        }
-        seasons: {
-          elemMatch: {
-            path: {
-              eq: $seasonPath
-            }
-          }
-        }
-        types: {
-          elemMatch: {
-            path: {
-              eq: $typePath
-            }
-          }
-        }
-        
       }
     ) {
       edges {
@@ -89,26 +64,7 @@ export const query = graphql`
           id
           name
           path
-          preview_text
-          prices {
-            types {
-              value
-            }
-          }
-          days {
-            id
-          }
-          types {
-            id
-            name
-            path
-            img {
-              publicURL
-            }
-          }
           category {
-            id
-            name
             path
           }
         }

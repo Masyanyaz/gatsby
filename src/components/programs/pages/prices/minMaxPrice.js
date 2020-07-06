@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 const MinMaxPriceBlock = ({ prices }) => {
   const pricesArray = prices.reduce((res, price) => {
@@ -15,6 +16,10 @@ const MinMaxPriceBlock = ({ prices }) => {
       }
     </>
   )
+}
+
+MinMaxPriceBlock.propTypes = {
+  prices: PropTypes.array.isRequired
 }
 
 export default MinMaxPriceBlock

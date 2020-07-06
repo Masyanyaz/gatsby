@@ -1,16 +1,27 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { graphql } from "gatsby"
 
 import FiltersLayout from "../../../layouts/filters/filters"
 import PreviewProgram from "../../../components/programs/preview/preview"
-import Filters from "../../../components/programs/filters/filters"
 
+import Filters from "../../../components/programs/filters/filters"
 import "./filters.css"
+import { changeDirection, changeService } from "../../../store/url/actions"
 
 const FiltersPage = (props) => {
 
   const data = props.data
   const context = props.pageContext
+  const dispatch = useDispatch()
+
+  const direction = useSelector(state => state.url.direction)
+  const service = useSelector(state => state.url.service)
+
+  useEffect(() => {
+    dispatch(changeDirection(data.strapiDirections.path))
+    dispatch(changeService('tour'))
+  }, [direction, service])
 
   return (
     <FiltersLayout directionName={ data.strapiDirections.name }>
@@ -43,6 +54,7 @@ export const query = graphql`
   query($directionPath: String!, $categoryPath: String, $seasonPath: String, $typePath: String) {
     strapiDirections(path: {eq: $directionPath}) {
       name
+      path
     }
     allStrapiTours(
       filter: {

@@ -69,5 +69,11 @@ module.exports = async ({ graphql, reporter, createPage, path, components }) => 
       context,
     })
 
+    createPage({
+      path: `${ path.filterPage }/${ path.excursion }/${ direction.node.path }/all`,
+      component: components.filtersExcursion,
+      context,
+    })
+
   })
 }

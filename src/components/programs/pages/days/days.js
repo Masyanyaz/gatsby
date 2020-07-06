@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import "./days.css"
 
 const Days = ({ days }) => {
@@ -26,7 +27,10 @@ const Days = ({ days }) => {
       }
     </div>
   )
+}
 
+Days.propTypes = {
+  days: PropTypes.array.isRequired
 }
 
 export default Days

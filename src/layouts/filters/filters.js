@@ -26,6 +26,11 @@ const FiltersLayout = ({ children, directionName }) => {
   )
 }
 
+FiltersLayout.defaultProps = {
+  excursion: false,
+  tour: false
+}
+
 FiltersLayout.propTypes = {
   children: PropTypes.node.isRequired
 }

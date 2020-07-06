@@ -1,7 +1,7 @@
 import { OPEN_POPUP_FORM, CLOSE_POPUP_FORM } from "./actions"
 
 const defaultState = {
-  openForm: false,
+  openForm: false
 }
 
 export const formReducer = (state = defaultState, action) => {
