@@ -2,6 +2,8 @@ import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
+import MinMaxPriceBlock from "../pages/prices/minMaxPrice"
+
 const PreviewImage = ({ directionPath, category, path, prices }) => {
 
   // TODO: Убрать запрос и картинку из запроса в filters
@@ -19,11 +21,6 @@ const PreviewImage = ({ directionPath, category, path, prices }) => {
     }
   `)
 
-  const pricesArray = prices.reduce((res, price) => {
-    const prices = price.types.map(type => type.value)
-    return [...res, ...prices]
-  }, [])
-
   return (
     <div className="preview__block-top">
       <Link
@@ -33,11 +30,7 @@ const PreviewImage = ({ directionPath, category, path, prices }) => {
         <Img fluid={ data.strapiTours.preview_image.childImageSharp.fluid } />
       </Link>
       <div className="preview__block-top-type">
-        {
-          prices.length ?
-            `a ${ Math.min(...pricesArray) } - de ${ Math.max(...pricesArray) }` :
-            `price`
-        }
+        <MinMaxPriceBlock prices={ prices } />
       </div>
     </div>
   )

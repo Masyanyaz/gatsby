@@ -5,7 +5,7 @@ import "./header-menu.css"
 import DesktopMenu from "./desktopMenu"
 import ButtonOpenPopupForm from "../forms/popup/buttonOpenPopupForm"
 
-const Header = ({ popupClick }) => {
+const Header = () => {
   const data = useStaticQuery(graphql`
   {
     allStrapiDirections {

@@ -4,3 +4,10 @@
   margin-bottom: 15px;
   position: relative;
 }
+
+.popup__form-item textarea {
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 100px;
+  min-height: 50px;
+}

@@ -20,7 +20,6 @@ const DefaultLayout = ({ children }) => {
         <PopupForm />
       </div>
       <Footer />
-
     </>
   )
 }
