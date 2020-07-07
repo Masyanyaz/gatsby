@@ -2,8 +2,22 @@
     background: #EDECE8;
     padding: 10px;
     margin: 10px 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.aboutTour__item span{
+.aboutTour__item{
+    display: flex;
+    flex-direction: row;
+}
+
+.aboutTour__item > div{
+    flex-grow: 1;
+    flex-basis: 1px;
+}
+
+.aboutTour__item-name{
+    text-align: right;
+    margin-right: 10px;
     font-weight: bold;
 }
