@@ -2,14 +2,11 @@ import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 
 import { useDispatch, useSelector } from "react-redux"
-
 import FiltersLayout from "../../../layouts/filters/filters"
-
 import Link from "../../../components/global/link"
-
 import "./filters.css"
-
 import {changeDirection, changeService} from "../../../store/url/actions"
+import PreviewExcursions from "../../../components/excursions/preview/preview"
 
 const FiltersPage = (props) => {
 
@@ -31,11 +28,7 @@ const FiltersPage = (props) => {
       <div className="preview__grid">
         { data.allStrapiExcursions.edges.length ?
           data.allStrapiExcursions.edges.map(({ node }) => (
-            <div key={node.id}>
-              <Link to={`/catalogue/programs/${ data.strapiDirections.path }/excursion/${node.category.path}/${node.path}`}>
-                { node.name }
-              </Link>
-            </div>
+            <PreviewExcursions key={node.id} node={node}/>
         )) :
           'Экскурсий не найдено'
         }
@@ -63,8 +56,18 @@ export const query = graphql`
         node {
           id
           name
+          hours
           path
-          category {
+          transports{
+            id
+            name
+            icon{
+              id
+              name
+              publicURL
+            }
+          }
+          direction{
             path
           }
         }

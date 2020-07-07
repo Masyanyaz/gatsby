@@ -10,7 +10,6 @@ import "./filters.css"
 import { changeDirection, changeService } from "../../../store/url/actions"
 
 const FiltersPage = (props) => {
-
   const data = props.data
   const context = props.pageContext
   const dispatch = useDispatch()

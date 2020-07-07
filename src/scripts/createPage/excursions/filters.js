@@ -8,9 +8,6 @@ module.exports = async ({ graphql, reporter, createPage, path, components }) => 
             direction {
               path
             }
-            category {
-              path
-            }
           }
         }
       }

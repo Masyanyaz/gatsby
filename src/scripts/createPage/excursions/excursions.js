@@ -8,9 +8,6 @@ module.exports = async ({ graphql, reporter, createPage, path, components }) => 
             direction {
               path
             }
-            category {
-              path
-            }
           }
         }
       }
@@ -27,7 +24,7 @@ module.exports = async ({ graphql, reporter, createPage, path, components }) => 
   allStrapiExcursions.edges.forEach(({ node }) => {
 
     createPage({
-      path: `${ path.programsPath }/${ node.direction.path }/${ path.excursion }/${ node.category.path }/${ node.path }`,
+      path: `${ path.programsPath }/${ node.direction.path }/${ path.excursion }/all/${ node.path }`,
       component: components.PageExcursion,
       context: {
         pagePath: node.path,

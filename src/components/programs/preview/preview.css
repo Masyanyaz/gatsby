@@ -51,11 +51,23 @@
   position: relative;
 }
 
-.preview__block-center-row-element a {
+#towns:after{
+  position: absolute;
+  content: '';
+  height: 2px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 65%;
+  background: green;
+  bottom: 12px;
+}
+
+.preview__block-center-row-element > div {
   display: flex;
 }
 
-.preview__block-center-row-element > a > img {
+.preview__block-center-row-element > div > img {
   width: 32px;
   margin: 10px; /*убрать, вместе с margin-bottom: 1.45em из layout.css*/
 }

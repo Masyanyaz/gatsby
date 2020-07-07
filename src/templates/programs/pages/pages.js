@@ -24,13 +24,12 @@ const TagList = ({ direction, category, seasons }) => {
 const ToursPage = (props) => {
 
   const data = props.data.strapiTours
-
   return (
     <FiltersLayout directionName={ data.direction.name }>
       <div className="programm__img">
         <img src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg" alt="" />
       </div>
-
+      <h2>{data.name}</h2>
       <div className="programm__info">
         <TagList direction={data.direction} category={data.category} seasons={data.seasons}/>
         <div className="programm__info-description">
@@ -38,16 +37,16 @@ const ToursPage = (props) => {
         </div>
         <AboutTour days={data.days} towns={data.towns} groupCount={data.groupCount} priceType={data.priceType} prices={data.prices}/>
 
-        <ButtonOpenPopupForm text="Вызов формы" className="asd" />
-
+        <ButtonOpenPopupForm text="Слыш, купи" className="programm__button" />
+        <p style={{paddingTop:"50px"}}>Сделаем вид, что это заготовка для тура одним взглядом</p>
         <div className="programm__info-tags">
           { data.types.map(type => (
             <div key={ type.id } className="programm__info-tags-item">
               <img
                 src={ type.img.publicURL }
-                title={ type.name }
                 alt=""
               />
+              <span>{type.name}</span>
             </div>
           )) }
         </div>

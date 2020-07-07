@@ -22,9 +22,9 @@ const PreviewTypes = ({ directionPath, types }) => {
     <>
       {
         [...types, strapiTypes].map(type => (
-          <Link key={ type.id } to={ `/catalogue/filters/${ directionPath }/tours/${ type.path }/` }>
+          <div key={ type.id }>
             <img src={ type.img.publicURL } title={ type.name } alt="" />
-          </Link>
+          </div>
         ))
       }
     </>
