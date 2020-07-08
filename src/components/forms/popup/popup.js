@@ -52,11 +52,7 @@ const PopupForm = () => {
 									name="phone"
 									label="Laissez votre numéro de téléphone pour recevoir notre appel"
 								/>
-								<FormItem
-									name="comment"
-									label="Quels services vous intéressent?"
-									as="textarea"
-								/>
+								<FormItem name="comment" label="Quels services vous intéressent?" as="textarea" />
 								<button type="submit" className="popup__form-submit">
 									Submit
 								</button>

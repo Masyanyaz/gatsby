@@ -10,11 +10,7 @@ const ButtonOpenPopupForm = ({ text, className, ...other }) => {
 	const openForm = () => dispatch(openPopupForm())
 
 	return (
-		<button
-			onClick={openForm}
-			className={`${className} button-reset`}
-			{...other}
-		>
+		<button onClick={openForm} className={`${className} button-reset`} {...other}>
 			{text}
 		</button>
 	)

@@ -36,9 +36,7 @@ const PreviewProgram = ({ node, directionPath }) => {
 			<div className="preview__block-center">
 				<div className="preview__block-name">{node.name}</div>
 				<div className="preview__block-center-row">
-					<div className="preview__block-center-row-element">
-						{node.days.length} дней
-					</div>
+					<div className="preview__block-center-row-element">{node.days.length} дней</div>
 					<div
 						role="button"
 						tabIndex="0"

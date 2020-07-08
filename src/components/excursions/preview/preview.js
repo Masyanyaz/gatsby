@@ -10,9 +10,7 @@ const PreviewExcursions = ({ node }) => {
 			<div className="expreview__block-center">
 				<div className="expreview__block-center-row name">{node.name}</div>
 				<div className="expreview__block-center-row">
-					<div className="expreview__block-center-row-element">
-						{node.hours} часа
-					</div>
+					<div className="expreview__block-center-row-element">{node.hours} часа</div>
 					<div className="expreview__block-center-row-element">
 						{node.transports.map((transport) => (
 							<img

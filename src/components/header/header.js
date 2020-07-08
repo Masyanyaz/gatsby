@@ -63,11 +63,7 @@ const Header = () => {
 								<img src="https://cuisinedevoyage.com/img/mail.svg" alt="" />
 							</Link>
 							<Link to="#">
-								<img
-									className="phone"
-									src="https://cuisinedevoyage.com/img/phone.svg"
-									alt=""
-								/>
+								<img className="phone" src="https://cuisinedevoyage.com/img/phone.svg" alt="" />
 							</Link>
 							<ButtonOpenPopupForm
 								text="envoyer une demande"

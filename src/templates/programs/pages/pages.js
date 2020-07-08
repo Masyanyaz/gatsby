@@ -49,15 +49,10 @@ const ToursPage = (props) => {
 			</div>
 			<h2>{data.name}</h2>
 			<div className="programm__info">
-				<TagList
-					direction={data.direction}
-					category={data.category}
-					seasons={data.seasons}
-				/>
+				<TagList direction={data.direction} category={data.category} seasons={data.seasons} />
 				<div className="programm__info-description">
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut
-					repudiandae eaque provident quis excepturi sunt enim dolore debitis
-					molestiae!
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque
+					provident quis excepturi sunt enim dolore debitis molestiae!
 				</div>
 				<AboutTour
 					days={data.days}
@@ -68,9 +63,7 @@ const ToursPage = (props) => {
 				/>
 
 				<ButtonOpenPopupForm text="Слыш, купи" className="programm__button" />
-				<p style={{ paddingTop: '50px' }}>
-					Сделаем вид, что это заготовка для тура одним взглядом
-				</p>
+				<p style={{ paddingTop: '50px' }}>Сделаем вид, что это заготовка для тура одним взглядом</p>
 				<div className="programm__info-tags">
 					{data.types.map((type) => (
 						<div key={type.id} className="programm__info-tags-item">
@@ -87,11 +80,7 @@ const ToursPage = (props) => {
 				<div className="programm__menu-item">Дополнительная информация</div>
 			</div>
 			<Days days={data.days} />
-			{data.prices.length ? (
-				<Prices prices={data.prices} />
-			) : (
-				<h3>По запросу</h3>
-			)}
+			{data.prices.length ? <Prices prices={data.prices} /> : <h3>По запросу</h3>}
 		</PagesLayout>
 	)
 }
