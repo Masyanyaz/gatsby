@@ -14,19 +14,19 @@ const TagList = ({ direction, category, seasons }) => {
 	return (
 		<div className="tag-list">
 			<Link
-				to={`/catalogue/filters/${direction.path}/tours/all/all/all`}
+				to={`/${direction.path}`}
 				className="tag-list-element"
 			>
 				{direction.name}
 			</Link>
 			<Link
-				to={`/catalogue/filters/all/tours/${category.path}/all/all`}
+				to={`/catalogue/filters/tours/all/${category.path}/all/all`}
 				className="tag-list-element"
 			>
 				{category.name}
 			</Link>
 			<Link
-				to={`/catalogue/filters/all/tours/all/${
+				to={`/catalogue/filters/tours/all/all/${
 					seasons.length !== 1 ? 'all' : seasons[0].path
 				}/all`}
 				className="tag-list-element"
@@ -54,15 +54,15 @@ const ToursPage = (props) => {
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque
 					provident quis excepturi sunt enim dolore debitis molestiae!
 				</div>
-				<AboutTour
-					days={data.days}
-					towns={data.towns}
-					groupCount={data.groupCount}
-					priceType={data.priceType}
-					prices={data.prices}
-				/>
+				{/*<AboutTour*/}
+				{/*	days={data.days}*/}
+				{/*	towns={data.towns}*/}
+				{/*	groupCount={data.groupCount}*/}
+				{/*	priceType={data.priceType}*/}
+				{/*	prices={data.prices}*/}
+				{/*/>*/}
 
-				<ButtonOpenPopupForm text="Слыш, купи" className="programm__button" />
+				{/*<ButtonOpenPopupForm text="Слыш, купи" className="programm__button" />*/}
 				<p style={{ paddingTop: '50px' }}>Сделаем вид, что это заготовка для тура одним взглядом</p>
 				<div className="programm__info-tags">
 					{data.types.map((type) => (

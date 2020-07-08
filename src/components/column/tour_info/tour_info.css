@@ -1,0 +1,27 @@
+.tourInfo {
+    /*background: #EDECE8;*/
+    display: flex;
+    flex-direction: column;
+}
+
+.tourInfo__item {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0;
+}
+
+.tourInfo__item-info {
+    flex-grow: 1;
+    flex-basis: 1px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.tourInfo__item-name {
+    text-align: right;
+    font-weight: bold;
+    font-size: 20px;
+    flex-grow: 1;
+    flex-basis: 1px;
+    margin-left: 20px;
+}

@@ -56,6 +56,9 @@ export const query = graphql`
 		) {
 			edges {
 				node {
+					direction{
+						path
+					}
 					id
 					name
 					path

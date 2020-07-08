@@ -9,7 +9,14 @@ const MinMaxPriceBlock = ({ prices }) => {
 
 	return (
 		<>
-			{prices.length ? `a ${Math.min(...pricesArray)} - de ${Math.max(...pricesArray)}` : `price`}
+			{prices.length
+				?
+				<>
+				a <span>${Math.min(...pricesArray)}</span>  - de <span>${Math.max(...pricesArray)}</span>
+				</>
+				:
+				`price`
+			}
 		</>
 	)
 }

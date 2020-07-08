@@ -23,11 +23,11 @@ const PreviewProgram = ({ node, directionPath }) => {
 	const openTowns = () => {
 		setHover((hover) => !hover)
 	}
-
+	console.log(node)
 	return (
 		<div className="preview__block">
 			<PreviewImage
-				directionPath={directionPath}
+				directionPath={node.direction.path}
 				path={node.path}
 				category={node.category}
 				prices={node.prices}
@@ -54,7 +54,7 @@ const PreviewProgram = ({ node, directionPath }) => {
 			</div>
 
 			<Link
-				to={`/catalogue/programs/${directionPath}/tours/${node.category.path}/${node.path}/`}
+				to={`/catalogue/programs/${node.direction.path}/tours/${node.category.path}/${node.path}/`}
 				className="preview__block-button"
 			>
 				{' '}

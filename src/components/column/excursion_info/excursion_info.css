@@ -1,0 +1,35 @@
+.excursionInfo__block-element{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.excursionInfo__block-element > span{
+    font-size: 20px;
+    font-weight: bold;
+    flex-grow: 1.1;
+    flex-basis: 1px;
+    text-align: right;
+    margin-left: 20px;
+}
+
+.excursionInfo__block-element > div{
+    flex-grow: 1;
+    flex-basis: 1px;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.excursionInfo__block-element > div > span{
+    font-size: 24px;
+    color: blue;
+}
+
+.excursionInfo__block-element img{
+    width: 50px;
+    min-width: 50px;
+}
+
+.excursionInfo__block-element img:nth-child(2){
+    margin-left: 20px;
+}

@@ -7,10 +7,12 @@ import '../default.css'
 import Header from '../../components/header/header'
 import Footer from '../../components/footer/footer'
 import PopupForm from '../../components/forms/popup/popup'
-import DirectionBlock from '../../components/column/direction/direction'
-import CommonBlock from '../../components/column/common/common'
-import AdvantBlock from '../../components/column/advant/advant'
+import ExcursionInfo from '../../components/column/excursion_info/excursion_info'
 import { useSelector } from 'react-redux'
+import ButtonOpenPopupForm from '../../components/forms/popup/buttonOpenPopupForm'
+import ColumnPrice from '../../components/column/price/price'
+import ColumnReview from "../../components/column/review/review";
+import TourInfo from '../../components/column/tour_info/tour_info'
 
 const PagesLayout = ({ children, directionName }) => {
 	const service = useSelector((state) => state.url.service)
@@ -22,14 +24,16 @@ const PagesLayout = ({ children, directionName }) => {
 				<div className="main-content">
 					<main>{children}</main>
 				</div>
-				<div className="right-column">
-					{service === 'excursion' ? (
-						<div>exursions</div>
-					) : (
-						<DirectionBlock directionName={directionName} />
-					)}
-					<CommonBlock />
-					<AdvantBlock />
+				<div className="right-column fixed">
+					{service === 'excursion'
+						?
+						( <ExcursionInfo/> )
+						:
+						( <TourInfo/> )
+					}
+					<ColumnPrice/>
+					<ButtonOpenPopupForm text="Слыш, купи" className="column__button" />
+					<ColumnReview/>
 				</div>
 				<PopupForm />
 			</div>

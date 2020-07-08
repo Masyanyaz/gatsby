@@ -1,0 +1,8 @@
+.columnReview{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    margin-top: 20px;
+    height: 300px;
+}
