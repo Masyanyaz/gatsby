@@ -51,7 +51,7 @@
   position: relative;
 }
 
-#towns:after{
+.preview__block-center-row-element.towns:after {
   position: absolute;
   content: '';
   height: 2px;
@@ -82,7 +82,7 @@
   border: 1px solid;
 }
 
-.town-list{
+.town-list {
   position: absolute;
   bottom: 100%;
   left: 100%;

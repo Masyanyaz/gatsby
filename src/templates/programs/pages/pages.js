@@ -1,120 +1,149 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import "./pages.css"
+import './pages.css'
 
-import FiltersLayout from "../../../layouts/filters/filters"
-import AboutTour from "../../../components/programs/pages/about/about";
-import Days from "../../../components/programs/pages/days/days"
-import Prices from "../../../components/programs/pages/prices/prices"
-import Link from "../../../components/global/link"
-import ButtonOpenPopupForm from "../../../components/forms/popup/buttonOpenPopupForm"
-
+import AboutTour from '../../../components/programs/pages/about/about'
+import Days from '../../../components/programs/pages/days/days'
+import Prices from '../../../components/programs/pages/prices/prices'
+import Link from '../../../components/global/link'
+import ButtonOpenPopupForm from '../../../components/forms/popup/buttonOpenPopupForm'
+import PagesLayout from '../../../layouts/pages/pages'
 
 const TagList = ({ direction, category, seasons }) => {
-  return(
-    <div className="tag-list">
-      <Link to={`/catalogue/filters/${direction.path}/tours/all/all/all`} className="tag-list-element">{direction.name}</Link>
-      <Link to={`/catalogue/filters/all/tours/${category.path}/all/all`} className="tag-list-element">{category.name}</Link>
-      <Link to={`/catalogue/filters/all/tours/all/${ seasons.length !== 1 ? "all" : seasons[0].path }/all`} className="tag-list-element">{seasons.length !== 1 ? "Круглый год" : seasons[0].name}</Link>
-    </div>
-  )
+	return (
+		<div className="tag-list">
+			<Link
+				to={`/catalogue/filters/${direction.path}/tours/all/all/all`}
+				className="tag-list-element"
+			>
+				{direction.name}
+			</Link>
+			<Link
+				to={`/catalogue/filters/all/tours/${category.path}/all/all`}
+				className="tag-list-element"
+			>
+				{category.name}
+			</Link>
+			<Link
+				to={`/catalogue/filters/all/tours/all/${
+					seasons.length !== 1 ? 'all' : seasons[0].path
+				}/all`}
+				className="tag-list-element"
+			>
+				{seasons.length !== 1 ? 'Круглый год' : seasons[0].name}
+			</Link>
+		</div>
+	)
 }
 
 const ToursPage = (props) => {
+	const data = props.data.strapiTours
+	return (
+		<PagesLayout directionName={data.direction.name}>
+			<div className="programm__img">
+				<img
+					src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg"
+					alt=""
+				/>
+			</div>
+			<h2>{data.name}</h2>
+			<div className="programm__info">
+				<TagList
+					direction={data.direction}
+					category={data.category}
+					seasons={data.seasons}
+				/>
+				<div className="programm__info-description">
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut
+					repudiandae eaque provident quis excepturi sunt enim dolore debitis
+					molestiae!
+				</div>
+				<AboutTour
+					days={data.days}
+					towns={data.towns}
+					groupCount={data.groupCount}
+					priceType={data.priceType}
+					prices={data.prices}
+				/>
 
-  const data = props.data.strapiTours
-  return (
-    <FiltersLayout directionName={ data.direction.name }>
-      <div className="programm__img">
-        <img src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg" alt="" />
-      </div>
-      <h2>{data.name}</h2>
-      <div className="programm__info">
-        <TagList direction={data.direction} category={data.category} seasons={data.seasons}/>
-        <div className="programm__info-description">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque provident quis excepturi sunt enim dolore debitis molestiae!
-        </div>
-        <AboutTour days={data.days} towns={data.towns} groupCount={data.groupCount} priceType={data.priceType} prices={data.prices}/>
+				<ButtonOpenPopupForm text="Слыш, купи" className="programm__button" />
+				<p style={{ paddingTop: '50px' }}>
+					Сделаем вид, что это заготовка для тура одним взглядом
+				</p>
+				<div className="programm__info-tags">
+					{data.types.map((type) => (
+						<div key={type.id} className="programm__info-tags-item">
+							<img src={type.img.publicURL} alt="" />
+							<span>{type.name}</span>
+						</div>
+					))}
+				</div>
+			</div>
 
-        <ButtonOpenPopupForm text="Слыш, купи" className="programm__button" />
-        <p style={{paddingTop:"50px"}}>Сделаем вид, что это заготовка для тура одним взглядом</p>
-        <div className="programm__info-tags">
-          { data.types.map(type => (
-            <div key={ type.id } className="programm__info-tags-item">
-              <img
-                src={ type.img.publicURL }
-                alt=""
-              />
-              <span>{type.name}</span>
-            </div>
-          )) }
-        </div>
-      </div>
-
-      <div className="programm__menu">
-        <div className="programm__menu-item">Программа</div>
-        <div className="programm__menu-item">Цена и условия</div>
-        <div className="programm__menu-item">Дополнительная информация</div>
-      </div>
-      <Days days={ data.days } />
-      { data.prices.length ? <Prices prices={ data.prices } /> : <h3>По запросу</h3> }
-    </FiltersLayout>
-  )
+			<div className="programm__menu">
+				<div className="programm__menu-item">Программа</div>
+				<div className="programm__menu-item">Цена и условия</div>
+				<div className="programm__menu-item">Дополнительная информация</div>
+			</div>
+			<Days days={data.days} />
+			{data.prices.length ? (
+				<Prices prices={data.prices} />
+			) : (
+				<h3>По запросу</h3>
+			)}
+		</PagesLayout>
+	)
 }
 
 export const query = graphql`
-  query($pagePath: String!) {
-    strapiTours(
-      path: {
-        eq: $pagePath
-      }
-    ) {
-    name
-    days {
-      id
-      name
-      text
-      picture {
-        publicURL
-      }
-    }
-    direction {
-      name
-      path
-    }
-    category{
-      name
-      path
-    }
-    seasons{
-      name
-      path
-    }
-    types {
-      id
-      img {
-        publicURL
-      }
-      name
-    }
-    prices {
-      id
-      count
-      types {
-        id
-        name
-        value
-      }
-    }
-    towns{
-      name
-      id
-    }
-    groupCount
-    priceType
-    }
-  }
+	query($pagePath: String!) {
+		strapiTours(path: { eq: $pagePath }) {
+			name
+			days {
+				id
+				name
+				text
+				picture {
+					publicURL
+				}
+			}
+			direction {
+				name
+				path
+			}
+			category {
+				name
+				path
+			}
+			seasons {
+				name
+				path
+			}
+			types {
+				id
+				img {
+					publicURL
+				}
+				name
+			}
+			prices {
+				id
+				count
+				types {
+					id
+					name
+					value
+				}
+			}
+			towns {
+				name
+				id
+			}
+			groupCount
+			priceType
+		}
+	}
 `
 
 export default ToursPage

@@ -1,85 +1,47 @@
-import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
 
-import "./filters.css"
+import './filters.css'
+
+import DirectionsBlockFilter from './directions'
+import CategoriesBlockFilter from './categories'
+import SeasonsBlockFilter from './seasons'
 
 const Filters = ({ directionPath, categories, seasons, categoryPath, seasonPath, typePath }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      allStrapiDirections(filter: {
-          tours: {
-            elemMatch: {
-              id: {
-                ne: null
-              }
-            }
-          }
-        }) {
-          edges {
-            node {
-              id
-              name
-              path
-            }
-          }
-        }
-    }
-  `)
+	const data = useStaticQuery(graphql`
+		query {
+			allStrapiDirections(filter: { tours: { elemMatch: { id: { ne: null } } } }) {
+				edges {
+					node {
+						id
+						name
+						path
+					}
+				}
+			}
+		}
+	`)
 
-  return (
-    <div>
-      <div>
-        {
-          data.allStrapiDirections.edges.map(({ node: { id, name, path } }) => (
-            <Link
-              to={ `/catalogue/filters/tours/${ path }/${ categoryPath || 'all' }/${ seasonPath || 'all' }/${ typePath || 'all' }` }
-              key={ id } style={ { marginRight: "10px" } }
-              activeClassName={ "active" }
-            >
-              { name }
-            </Link>
-          ))
-        }
-      </div>
-      <div>
-        <Link
-          to={ `/catalogue/filters/tours/${ directionPath }/all/${ seasonPath || 'all' }/${ typePath || 'all' }` }
-          style={ { marginRight: "10px" } }
-          activeClassName={ "active" }
-        > Все </Link> {
-        categories.map(({ node: { id, name, path } }) => (
-          <Link
-            to={ `/catalogue/filters/tours/${ directionPath }/${ path }/${ seasonPath || 'all' }/${ typePath || 'all' }` }
-            key={ id }
-            activeClassName={ "active" }
-            style={ { marginRight: "10px" } }
-          >
-            { name }
-          </Link>
-        ))
-      }
-      </div>
-      <div>
-        <Link
-          to={ `/catalogue/filters/tours/${ directionPath }/${ categoryPath || 'all' }/all/${ typePath || 'all' }` }
-          style={ { marginRight: "10px" } }
-          activeClassName={ "active" }
-        > Все </Link>
-        {
-          seasons.map(({ node: { id, name, path } }) => (
-            <Link
-              to={ `/catalogue/filters/tours/${ directionPath }/${ categoryPath || 'all' }/${ path }/${ typePath || 'all' }` }
-              key={ id }
-              activeClassName={ "active" }
-              style={ { marginRight: "10px" } }
-            >
-              { name }
-            </Link>
-          ))
-        }
-      </div>
-    </div>
-  )
+	const directions = data.allStrapiDirections.edges
+
+	const directionPathArray = directions.map((direction) => direction.node.path)
+	const directionIncludes = directionPathArray.includes(directionPath)
+
+	const context = {
+		directionPath,
+		categoryPath,
+		seasonPath,
+		typePath,
+		directionIncludes,
+	}
+
+	return (
+		<div className="filters">
+			<DirectionsBlockFilter directions={directions} {...context} />
+			<CategoriesBlockFilter categories={categories} {...context} />
+			<SeasonsBlockFilter seasons={seasons} {...context} />
+		</div>
+	)
 }
 
 export default Filters

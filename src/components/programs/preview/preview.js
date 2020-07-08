@@ -1,59 +1,69 @@
-import React, { useState } from "react"
-import "./preview.css"
+import React, { useState } from 'react'
+import './preview.css'
 
-import PreviewImage from "./image"
-import PreviewTypes from "./types"
-import Link from "../../global/link"
+import PreviewImage from './image'
+import PreviewTypes from './types'
+import Link from '../../global/link'
 
-const TownsList = ({towns}) => {
-  return(
-    <div className="town-list">
-      <ul>
-        {
-          towns.map(town => (
-            <li key={town.id}>{town.name}</li>
-          ))
-        }
-      </ul>
-    </div>
-  )
+const TownsList = ({ towns }) => {
+	return (
+		<div className="town-list">
+			<ul>
+				{towns.map((town) => (
+					<li key={town.id}>{town.name}</li>
+				))}
+			</ul>
+		</div>
+	)
 }
 
 const PreviewProgram = ({ node, directionPath }) => {
-  const [hover, setHover] = useState(false)
+	const [hover, setHover] = useState(false)
 
-  const openTowns = () => {
-    setHover(hover => !hover)
-  }
+	const openTowns = () => {
+		setHover((hover) => !hover)
+	}
 
-  return (
-    <div className="preview__block">
+	return (
+		<div className="preview__block">
+			<PreviewImage
+				directionPath={directionPath}
+				path={node.path}
+				category={node.category}
+				prices={node.prices}
+			/>
 
-      <PreviewImage directionPath={ directionPath } path={ node.path } category={ node.category } prices={ node.prices } />
+			<div className="preview__block-center">
+				<div className="preview__block-name">{node.name}</div>
+				<div className="preview__block-center-row">
+					<div className="preview__block-center-row-element">
+						{node.days.length} дней
+					</div>
+					<div
+						role="button"
+						tabIndex="0"
+						className="preview__block-center-row-element towns"
+						onMouseEnter={openTowns}
+						onMouseLeave={openTowns}
+					>
+						{node.towns.length} города
+						{hover && <TownsList towns={node.towns} />}
+					</div>
+					<div className="preview__block-center-row-element">
+						<PreviewTypes directionPath={directionPath} types={node.types} />
+					</div>
+				</div>
+			</div>
 
-      <div className="preview__block-center">
-        <div className="preview__block-name">
-          { node.name }
-        </div>
-        <div className="preview__block-center-row">
-          <div className="preview__block-center-row-element">{ node.days.length } дней</div>
-          <div role="button" tabIndex="0" className="preview__block-center-row-element" id="towns" onMouseEnter={openTowns} onMouseLeave={openTowns}>
-            { node.towns.length } города
-            { hover && <TownsList towns={ node.towns }/> }
-          </div>
-          <div className="preview__block-center-row-element">
-            <PreviewTypes directionPath={ directionPath } types={ node.types } />
-          </div>
-        </div>
-      </div>
-
-      <Link
-        to={ `/catalogue/programs/${ directionPath }/tours/${ node.category.path }/${ node.path }/` }
-        className="preview__block-button"
-      > ПОДРОБНЕЕ </Link>
-
-    </div>
-  )
+			<Link
+				to={`/catalogue/programs/${directionPath}/tours/${node.category.path}/${node.path}/`}
+				className="preview__block-button"
+			>
+				{' '}
+				ПОДРОБНЕЕ{' '}
+			</Link>
+		</div>
+	)
 }
 
 export default PreviewProgram

@@ -1,35 +1,30 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import FiltersLayout from "../../../layouts/filters/filters"
+import PagesLayout from '../../../layouts/pages/pages'
 
-import "./pages.css"
+import './pages.css'
 
 const ExcursionsPage = (props) => {
+	const data = props.data.strapiExcursions
 
-  const data = props.data.strapiExcursions
-
-  return (
-    <FiltersLayout directionName={ data.direction.name }>
-      <p>{ data.name }</p>
-      <p>{ data.direction.name }</p>
-    </FiltersLayout>
-  )
+	return (
+		<PagesLayout directionName={data.direction.name}>
+			<p>{data.name}</p>
+			<p>{data.direction.name}</p>
+		</PagesLayout>
+	)
 }
 
 export const query = graphql`
-  query($pagePath: String!) {
-    strapiExcursions (
-      path: {
-        eq: $pagePath
-      }
-    ) {
-      name
-      direction {
-        name
-      }
-    }
-  }
+	query($pagePath: String!) {
+		strapiExcursions(path: { eq: $pagePath }) {
+			name
+			direction {
+				name
+			}
+		}
+	}
 `
 
 export default ExcursionsPage

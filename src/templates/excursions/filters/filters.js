@@ -1,79 +1,59 @@
-import React, { useEffect } from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import { useDispatch, useSelector } from "react-redux"
-import FiltersLayout from "../../../layouts/filters/filters"
-import Link from "../../../components/global/link"
-import "./filters.css"
-import {changeDirection, changeService} from "../../../store/url/actions"
-import PreviewExcursions from "../../../components/excursions/preview/preview"
+import './filters.css'
+
+import FiltersLayout from '../../../layouts/filters/filters'
+import PreviewExcursions from '../../../components/excursions/preview/preview'
 
 const FiltersPage = (props) => {
+	const data = props.data
 
-  const dispatch = useDispatch()
-  const direction = useSelector(state => state.url.direction)
-  const service = useSelector(state => state.url.service)
-  const data = props.data
-
-  useEffect(() => {
-    dispatch(changeDirection(data.strapiDirections.path))
-    dispatch(changeService('excursion'))
-  }, [direction, service])
-
-  return (
-    <FiltersLayout directionName={ data.strapiDirections.name }>
-      <h1>{ data.strapiDirections.name }</h1>
-      <div>Описание</div>
-      <hr />
-      <div className="preview__grid">
-        { data.allStrapiExcursions.edges.length ?
-          data.allStrapiExcursions.edges.map(({ node }) => (
-            <PreviewExcursions key={node.id} node={node}/>
-        )) :
-          'Экскурсий не найдено'
-        }
-      </div>
-    </FiltersLayout>
-  )
+	return (
+		<FiltersLayout direction={data.strapiDirections} service="excursion">
+			<h1>{data.strapiDirections.name}</h1>
+			<div>Описание</div>
+			<hr />
+			<div className="preview__grid">
+				{data.allStrapiExcursions.edges.length
+					? data.allStrapiExcursions.edges.map(({ node }) => (
+							<PreviewExcursions key={node.id} node={node} />
+					  ))
+					: 'Экскурсий не найдено'}
+			</div>
+		</FiltersLayout>
+	)
 }
 
 export const query = graphql`
-  query($directionPath: String!) {
-    strapiDirections(path: {eq: $directionPath}) {
-      name
-      path
-    }
-    allStrapiExcursions(
-      filter: {
-        direction: {
-          path: {
-            eq: $directionPath
-          }
-        }
-      }
-    ) {
-      edges {
-        node {
-          id
-          name
-          hours
-          path
-          transports{
-            id
-            name
-            icon{
-              id
-              name
-              publicURL
-            }
-          }
-          direction{
-            path
-          }
-        }
-      }
-    }
-  }
+	query($directionPath: String) {
+		strapiDirections(path: { eq: $directionPath }) {
+			name
+			path
+		}
+		allStrapiExcursions(filter: { direction: { path: { eq: $directionPath } } }) {
+			edges {
+				node {
+					id
+					name
+					hours
+					path
+					transports {
+						id
+						name
+						icon {
+							id
+							name
+							publicURL
+						}
+					}
+					direction {
+						path
+					}
+				}
+			}
+		}
+	}
 `
 
 export default FiltersPage

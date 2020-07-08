@@ -1,35 +1,9 @@
-module.exports = async ({ graphql, reporter, createPage, path, components }) => {
-  const result = await graphql(`
-    {
-      allStrapiExcursions {
-        edges {
-          node {
-            path
-            direction {
-              path
-            }
-          }
-        }
-      }
-    }
-  `)
+module.exports = async (args) => {
+	const { graphql, createPage, reporter, components, path, direction, context } = args
 
-  if (result.errors) {
-    reporter.panicOnBuild(`Error while running GraphQL query.`)
-    return
-  }
-
-  const { allStrapiExcursions } = result.data
-
-  allStrapiExcursions.edges.forEach(({ node }) => {
-
-    createPage({
-      path: `${ path.filterPage }/${ path.excursion }/${ node.direction.path }/all`,
-      component: components.filtersExcursion,
-      context: {
-        directionPath: node.direction.path,
-      },
-    })
-
-  })
+	createPage({
+		path: `${path.filterPage}/${path.excursion}/${direction.node.path}/all`,
+		component: components.filtersExcursion,
+		context,
+	})
 }

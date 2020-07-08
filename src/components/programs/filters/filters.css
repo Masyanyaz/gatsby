@@ -1,3 +1,7 @@
 .active {
   color: red
 }
+
+.filters a {
+  margin-right: 10px;
+}

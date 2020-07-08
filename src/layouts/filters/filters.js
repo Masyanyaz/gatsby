@@ -1,38 +1,42 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 
-import "../global.css"
-import "../default.css"
+import '../global.css'
+import '../default.css'
 
-import Header from "../../components/header/header"
-import RightColumn from "../../components/column/column"
-import Footer from "../../components/footer/footer"
-import PopupForm from "../../components/forms/popup/popup"
+import { changeDirection, changeService } from '../../store/url/actions'
 
-const FiltersLayout = ({ children, directionName }) => {
+import Header from '../../components/header/header'
+import RightColumn from '../../components/column/column'
+import Footer from '../../components/footer/footer'
+import PopupForm from '../../components/forms/popup/popup'
 
-  return (
-    <>
-      <Header />
-      <div className="content">
-        <div className="main-content">
-          <main>{ children }</main>
-        </div>
-        <RightColumn directionName={ directionName } />
-        <PopupForm />
-      </div>
-      <Footer />
-    </>
-  )
-}
+const FiltersLayout = ({ children, direction, service }) => {
+	const dispatch = useDispatch()
 
-FiltersLayout.defaultProps = {
-  excursion: false,
-  tour: false
+	useEffect(() => {
+		dispatch(changeDirection(direction))
+		dispatch(changeService(service))
+	}, [dispatch, service, direction])
+
+	return (
+		<>
+			<Header />
+			<div className="content">
+				<div className="main-content">
+					<main>{children}</main>
+				</div>
+				<RightColumn />
+				<PopupForm />
+			</div>
+			<Footer />
+		</>
+	)
 }
 
 FiltersLayout.propTypes = {
-  children: PropTypes.node.isRequired
+	children: PropTypes.node.isRequired,
 }
 
 export default FiltersLayout
