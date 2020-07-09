@@ -3,7 +3,7 @@ import { graphql, Link, useStaticQuery } from 'gatsby'
 import './header-menu.css'
 
 import DesktopMenu from './desktopMenu'
-import ButtonOpenPopupForm from '../forms/popup/buttonOpenPopupForm'
+import FormsPopupButton from '../forms/popup/button'
 
 const Header = () => {
 	const data = useStaticQuery(graphql`
@@ -65,7 +65,7 @@ const Header = () => {
 							<Link to="#">
 								<img className="phone" src="https://cuisinedevoyage.com/img/phone.svg" alt="" />
 							</Link>
-							<ButtonOpenPopupForm
+							<FormsPopupButton
 								text="envoyer une demande"
 								className="header__menu-right-side-top-button"
 							/>

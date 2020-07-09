@@ -1,0 +1,14 @@
+.message {
+  position: absolute;
+  top: 100%;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}

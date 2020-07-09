@@ -1,9 +1,9 @@
 import React from 'react'
 import './index.css'
 
-import DefaultLayout from '../layouts/default/default'
+import LayoutsDefault from '../layouts/default'
 import SEO from '../components/global/seo'
-import AdvantBlock from '../components/column/advant/advant'
+import ColumnBlocksAdvant from '../components/column/blocks/advant'
 import Link from '../components/global/link'
 import { graphql, useStaticQuery } from 'gatsby'
 
@@ -23,7 +23,7 @@ const IndexPage = (props) => {
 	`)
 
 	return (
-		<DefaultLayout>
+		<LayoutsDefault>
 			<SEO title="Home" />
 			<h1>Туры по России и странам СНГ</h1>
 			<div className="first">
@@ -47,19 +47,19 @@ const IndexPage = (props) => {
 					molestiae numquam rerum temporibus veritatis. Asperiores beatae deleniti distinctio
 					dolorum nulla obcaecati, recusandae temporibus voluptatem.
 				</div>
-				<AdvantBlock />
+				<ColumnBlocksAdvant />
 			</div>
 
 			<h2>Популярные направления</h2>
 			<div className="dir__grid">
 				{data.allStrapiDirections.edges.map((direction) => (
 					<Link to={`/${direction.node.path}`} key={direction.node.id}>
-						<div className="dir__grid-img"></div>
+						<div className="dir__grid-img" />
 						<div className="dir__grid-name">{direction.node.name}</div>
 					</Link>
 				))}
 			</div>
-		</DefaultLayout>
+		</LayoutsDefault>
 	)
 }
 

@@ -3,10 +3,10 @@ import { graphql } from 'gatsby'
 
 import './filters.css'
 
-import FiltersLayout from '../../../layouts/filters/filters'
-import PreviewProgram from '../../../components/programs/preview/preview'
-import Filters from '../../../components/programs/filters/filters'
-
+import LayoutsFilters from '../../../layouts/filters'
+import PreviewTours from '../../../components/preview/tours'
+import GeneralFilter from '../../../general/filter'
+// TODO: Переименовать!
 import Combi from './asd'
 
 const FiltersPage = (props) => {
@@ -14,26 +14,22 @@ const FiltersPage = (props) => {
 	const context = props.pageContext
 
 	return (
-		<FiltersLayout direction={data.strapiDirections} service="tour">
+		<LayoutsFilters direction={data.strapiDirections} service="tour">
 			<h1>{data.strapiDirections.name}</h1>
 			<div>Описание</div>
 			<hr />
 			<h2>Фильтры:</h2>
-			<Filters {...context} />
+			<GeneralFilter {...context} />
 			<hr />
 			<div className="preview__grid">
 				{data.allStrapiTours.edges.length
 					? data.allStrapiTours.edges.map(({ node }) => (
-							<PreviewProgram key={node.id} node={node} directionPath={context.directionPath} />
+							<PreviewTours key={node.id} node={node} directionPath={context.directionPath} />
 					  ))
 					: 'Туров с данными фильтрами не найдено'}
 			</div>
-			<Combi
-				towns={data.strapiDirections.towns}
-				directionPath={context.directionPath}
-				context={context}
-			/>
-		</FiltersLayout>
+			<Combi towns={data.strapiDirections.towns} directionPath={context.directionPath} />
+		</LayoutsFilters>
 	)
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import PreviewProgram from '../../../components/programs/preview/preview'
+import PreviewTours from '../../../components/preview/tours'
 
-const Combi = ({ towns, directionPath, context }) => {
+const Combi = ({ towns, directionPath }) => {
 	const tours = useStaticQuery(graphql`
 		{
 			allStrapiTours {
@@ -61,7 +61,7 @@ const Combi = ({ towns, directionPath, context }) => {
 					<h2>Другие туры</h2>
 					<div className="preview__grid">
 						{filterTours.map(({ node }) => (
-							<PreviewProgram key={node.id} node={node} directionPath={directionPath} />
+							<PreviewTours key={node.id} node={node} />
 						))}
 					</div>
 				</div>

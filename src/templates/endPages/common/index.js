@@ -3,7 +3,7 @@ import SEO from '../../../components/global/seo'
 import Link from '../../../components/global/link'
 import './index.css'
 import { graphql, useStaticQuery } from 'gatsby'
-import DefaultLayout from '../../../layouts/default/default'
+import LayoutsDefault from '../../../layouts/default'
 
 const TemplatesEndPagesCommon = ({ h1, url }) => {
 	const data = useStaticQuery(graphql`
@@ -21,7 +21,7 @@ const TemplatesEndPagesCommon = ({ h1, url }) => {
 	`)
 
 	return (
-		<DefaultLayout>
+		<LayoutsDefault>
 			<SEO title={'программы'} />
 			<h1>{h1}</h1>
 			<p>
@@ -67,12 +67,12 @@ const TemplatesEndPagesCommon = ({ h1, url }) => {
 						}
 						key={direction.node.id}
 					>
-						<div className="dir__grid-img"></div>
+						<div className="dir__grid-img" />
 						<div className="dir__grid-name">{direction.node.name}</div>
 					</Link>
 				))}
 			</div>
-		</DefaultLayout>
+		</LayoutsDefault>
 	)
 }
 

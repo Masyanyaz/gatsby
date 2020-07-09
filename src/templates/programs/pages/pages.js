@@ -3,12 +3,11 @@ import { graphql } from 'gatsby'
 
 import './pages.css'
 
-import AboutTour from '../../../components/programs/pages/about/about'
-import Days from '../../../components/programs/pages/days/days'
-import Prices from '../../../components/programs/pages/prices/prices'
+import GeneralDays from '../../../general/days'
+import GeneralPrices from '../../../general/prices'
 import Link from '../../../components/global/link'
-import ButtonOpenPopupForm from '../../../components/forms/popup/buttonOpenPopupForm'
-import PagesLayout from '../../../layouts/pages/pages'
+import LayoutsPages from '../../../layouts/pages'
+import ColumnBlocksInfo from '../../../components/column/blocks/info'
 
 const TagList = ({ direction, category, seasons }) => {
 	return (
@@ -36,8 +35,16 @@ const TagList = ({ direction, category, seasons }) => {
 
 const ToursPage = (props) => {
 	const data = props.data.strapiTours
+	const pricesArray = data.prices.reduce((res, price) => {
+		const prices = price.types.map((type) => type.value)
+		return [...res, ...prices]
+	}, [])
+
+	const componentInfo = () => (
+		<ColumnBlocksInfo prices={pricesArray} days={data.days} towns={data.towns} />
+	)
 	return (
-		<PagesLayout directionName={data.direction.name}>
+		<LayoutsPages componentInfo={componentInfo}>
 			<div className="programm__img">
 				<img
 					src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg"
@@ -51,15 +58,6 @@ const ToursPage = (props) => {
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque
 					provident quis excepturi sunt enim dolore debitis molestiae!
 				</div>
-				{/*<AboutTour*/}
-				{/*	days={data.days}*/}
-				{/*	towns={data.towns}*/}
-				{/*	groupCount={data.groupCount}*/}
-				{/*	priceType={data.priceType}*/}
-				{/*	prices={data.prices}*/}
-				{/*/>*/}
-
-				{/*<ButtonOpenPopupForm text="Слыш, купи" className="programm__button" />*/}
 				<p style={{ paddingTop: '50px' }}>Сделаем вид, что это заготовка для тура одним взглядом</p>
 				<div className="programm__info-tags">
 					{data.types.map((type) => (
@@ -76,9 +74,9 @@ const ToursPage = (props) => {
 				<div className="programm__menu-item">Цена и условия</div>
 				<div className="programm__menu-item">Дополнительная информация</div>
 			</div>
-			<Days days={data.days} />
-			{data.prices.length ? <Prices prices={data.prices} /> : <h3>По запросу</h3>}
-		</PagesLayout>
+			<GeneralDays days={data.days} />
+			{data.prices.length ? <GeneralPrices prices={data.prices} /> : <h3>По запросу</h3>}
+		</LayoutsPages>
 	)
 }
 

@@ -7,7 +7,7 @@ const Footer = () => (
 			textAlign: `center`,
 		}}
 	>
-		© {new Date().getFullYear()}
+		<span>© {new Date().getFullYear()}</span>
 	</footer>
 )
 

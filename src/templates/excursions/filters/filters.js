@@ -3,14 +3,14 @@ import { graphql } from 'gatsby'
 
 import './filters.css'
 
-import FiltersLayout from '../../../layouts/filters/filters'
-import PreviewExcursions from '../../../components/excursions/preview/preview'
+import LayoutsFilters from '../../../layouts/filters'
+import PreviewExcursions from '../../../components/preview/excursions'
 
 const FiltersPage = (props) => {
 	const data = props.data
 
 	return (
-		<FiltersLayout direction={data.strapiDirections} service="excursion">
+		<LayoutsFilters direction={data.strapiDirections} service="excursion">
 			<h1>{data.strapiDirections.name}</h1>
 			<div>Описание</div>
 			<hr />
@@ -21,7 +21,7 @@ const FiltersPage = (props) => {
 					  ))
 					: 'Экскурсий не найдено'}
 			</div>
-		</FiltersLayout>
+		</LayoutsFilters>
 	)
 }
 
@@ -49,6 +49,10 @@ export const query = graphql`
 					}
 					direction {
 						path
+					}
+					prices {
+						count
+						value
 					}
 				}
 			}
