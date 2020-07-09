@@ -11,7 +11,7 @@ import ExcursionInfo from '../../components/column/excursion_info/excursion_info
 import { useSelector } from 'react-redux'
 import ButtonOpenPopupForm from '../../components/forms/popup/buttonOpenPopupForm'
 import ColumnPrice from '../../components/column/price/price'
-import ColumnReview from "../../components/column/review/review";
+import ColumnReview from '../../components/column/review/review'
 import TourInfo from '../../components/column/tour_info/tour_info'
 
 const PagesLayout = ({ children, directionName }) => {
@@ -25,15 +25,10 @@ const PagesLayout = ({ children, directionName }) => {
 					<main>{children}</main>
 				</div>
 				<div className="right-column fixed">
-					{service === 'excursion'
-						?
-						( <ExcursionInfo/> )
-						:
-						( <TourInfo/> )
-					}
-					<ColumnPrice/>
+					{service === 'excursion' ? <ExcursionInfo /> : <TourInfo />}
+					<ColumnPrice />
 					<ButtonOpenPopupForm text="Слыш, купи" className="column__button" />
-					<ColumnReview/>
+					<ColumnReview />
 				</div>
 				<PopupForm />
 			</div>

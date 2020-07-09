@@ -10,7 +10,13 @@ const ExcursionsPage = (props) => {
 
 	return (
 		<PagesLayout directionName={data.direction.name}>
-			<p>{data.name}</p>
+			<div className="programm__img">
+				<img
+					src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg"
+					alt=""
+				/>
+			</div>
+			<h1>{data.name}</h1>
 			<p>{data.direction.name}</p>
 		</PagesLayout>
 	)

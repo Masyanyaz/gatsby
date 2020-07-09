@@ -1,10 +1,8 @@
-import React from "react"
-import "./review.css"
+import React from 'react'
+import './review.css'
 
 const ColumnReview = (props) => {
-  return(
-    <div className="columnReview">Отзыв</div>
-  )
+	return <div className="columnReview">Отзыв</div>
 }
 
 export default ColumnReview

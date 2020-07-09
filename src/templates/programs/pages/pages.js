@@ -13,10 +13,7 @@ import PagesLayout from '../../../layouts/pages/pages'
 const TagList = ({ direction, category, seasons }) => {
 	return (
 		<div className="tag-list">
-			<Link
-				to={`/${direction.path}`}
-				className="tag-list-element"
-			>
+			<Link to={`/${direction.path}`} className="tag-list-element">
 				{direction.name}
 			</Link>
 			<Link
