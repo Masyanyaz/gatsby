@@ -1,0 +1,14 @@
+.first{
+    display: flex;
+}
+.first > div{
+    flex-grow: 1;
+    flex-basis: 1px;
+}
+
+.first-p{
+    flex-grow: 4!important;
+}
+.first .advant{
+    margin-top: 0;
+}

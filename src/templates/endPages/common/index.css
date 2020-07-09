@@ -1,0 +1,13 @@
+.dir__grid{
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    z-index: 10;
+}
+
+.dir__grid-img{
+    width: 200px;
+    min-width: 200px;
+    height: 200px;
+    background: #bababa;
+}

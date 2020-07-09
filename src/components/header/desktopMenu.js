@@ -13,11 +13,11 @@ const menuItems = [
 		name: 'Inspirations',
 		data: 'categories',
 	},
-	{
-		id: 3,
-		name: 'Services',
-		data: 'directions',
-	},
+	// {
+	// 	id: 3,
+	// 	name: 'Services',
+	// 	data: 'directions',
+	// },
 ]
 
 const DesktopMenu = (props) => {
@@ -37,7 +37,7 @@ const DesktopMenu = (props) => {
 
 	return (
 		<div className="header__menu-left-side">
-			{isOpen && <OpenMenu items={props[item]} />}
+			{isOpen && <OpenMenu items={props[item]} dataItem={item} />}
 			{menuItems.map((menuItem) => (
 				<div
 					role="button"
