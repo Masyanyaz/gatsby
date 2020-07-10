@@ -1,5 +1,6 @@
 .first{
     display: flex;
+    align-items: center;
 }
 .first > div{
     flex-grow: 1;
@@ -11,4 +12,82 @@
 }
 .first .advant{
     margin-top: 0;
+}
+
+main .dir__grid a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainserv{
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+.mainserv__item{
+    display: flex;
+    align-items: center;
+}
+
+.mainserv__item-img{
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+    background: #bababa;
+    margin-right: 20px;
+    margin-left: 100px; /*костыль*/
+}
+
+.mainReview{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 200px;
+}
+.mainReview > div{
+    width: 50%;
+    height: 200px;
+    border: 1px solid;
+}
+
+.mainReview__text, .mainReview__video{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainReview__review-preview{
+    display: flex;
+}
+
+.mainReview__review-preview-img{
+    width: 300px;
+    min-width: 300px;
+    background: #bababa;
+    margin-right: 20px;
+}
+
+.mainReview__review-preview-text{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.frase{
+    font-size: 24px;
+    color: blueviolet;
+    font-weight: bold;
+    align-self: center;
+    margin: 20px 0;
+}
+
+.frase-p{
+    align-self: center;
+}
+
+.frase-a{
+    margin-top: auto;
+    align-self: flex-end;
+    margin-right: 20px;
 }

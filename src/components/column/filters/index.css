@@ -3,7 +3,7 @@
   margin-left: auto;
   padding: 30px;
   border: 1px solid;
-  width: 450px;
+  width: 25%;
 }
 
 .column__button {
@@ -12,9 +12,4 @@
   padding: 10px;
   border-radius: 5px;
   width: 100%;
-}
-
-.fixed{
-  position: fixed;
-  right: 20px;
 }

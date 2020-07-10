@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import './global.css'
@@ -11,14 +11,28 @@ import FormsPopupButton from '../components/forms/popup/button'
 import ColumnBlocksReview from '../components/column/blocks/review'
 
 const LayoutsPages = ({ children, componentInfo }) => {
+	const [scrollTop, setScrollTop] = useState(0)
+
+	useEffect(() => {
+		function onScroll() {
+			let currentPosition = window.pageYOffset
+			setScrollTop(currentPosition <= 0 ? 0 : currentPosition)
+		}
+
+		window.addEventListener('scroll', onScroll)
+		return () => window.removeEventListener('scroll', onScroll)
+	}, [scrollTop])
+
+	const isScrolling = scrollTop > 0
+
 	return (
 		<>
-			<Header />
+			<Header className={'page'} />
 			<div className="content">
 				<div className="main-content">
 					<main>{children}</main>
 				</div>
-				<div className="right-column fixed">
+				<div className={`right-column ${isScrolling ? 'fixed' : ''}`}>
 					{componentInfo()}
 					<FormsPopupButton text="Слыш, купи" className="column__button" />
 					<ColumnBlocksReview />

@@ -5,6 +5,15 @@
 
 main {
   margin-top: 30px;
+  margin-right: 30px;
+}
+
+.main-content{
+  width: 75%;
+}
+
+.main-content.main{
+  width: 100%
 }
 
 .button-reset {
@@ -14,4 +23,15 @@ main {
   cursor: pointer;
   padding: 0;
   margin: 0;
+}
+
+.right-column.fixed{
+  position: fixed;
+  margin-top: -70px;
+  right: 5%;
+  width: 22.5%;
+}
+
+.page.scrolled .header__menu-right-side-top-button{
+  display: none;
 }

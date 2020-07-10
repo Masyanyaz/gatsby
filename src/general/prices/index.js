@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import './index.css'
 
 const GeneralPrices = ({ prices }) => {
 	const [countSelected, setCountSelected] = useState(prices[0].count)
@@ -19,22 +20,24 @@ const GeneralPrices = ({ prices }) => {
 					</button>
 				))}
 			</div>
-			<table>
-				<thead>
-					<tr>
-						{types.map((type) => (
-							<th key={type.id}>{type.name}</th>
-						))}
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						{types.map((type) => (
-							<td key={type.id}>{type.value}</td>
-						))}
-					</tr>
-				</tbody>
-			</table>
+
+			<div className="priceTable">
+				<div className="priceTable__line">
+					{types.map((type) => (
+						<div className="priceTable__line-item" key={type.id}>
+							{type.name}
+						</div>
+					))}
+				</div>
+
+				<div className="priceTable__line">
+					{types.map((type) => (
+						<div className="priceTable__line-item" key={type.id}>
+							{type.value}
+						</div>
+					))}
+				</div>
+			</div>
 		</>
 	)
 }

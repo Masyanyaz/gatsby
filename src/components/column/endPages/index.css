@@ -14,7 +14,8 @@
   width: 100%;
 }
 
-.fixed{
+.right-column .fixed{
   position: fixed;
   right: 20px;
+  margin-top: -90px;
 }

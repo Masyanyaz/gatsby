@@ -49,7 +49,7 @@ const IndexPage = (props) => {
 				</div>
 				<ColumnBlocksAdvant />
 			</div>
-
+			<div style={{ margin: '100px' }}></div>
 			<h2>Популярные направления</h2>
 			<div className="dir__grid">
 				{data.allStrapiDirections.edges.map((direction) => (
@@ -58,6 +58,58 @@ const IndexPage = (props) => {
 						<div className="dir__grid-name">{direction.node.name}</div>
 					</Link>
 				))}
+			</div>
+			<div style={{ margin: '100px' }}></div>
+			<h2>Порулярые отдельные услуги</h2>
+			<div className="mainserv">
+				<div className="mainserv__item">
+					<div className="mainserv__item-img"></div>
+					<div className="mainserv__item-name">Составление программы</div>
+				</div>
+				<div className="mainserv__item">
+					<div className="mainserv__item-img"></div>
+					<div className="mainserv__item-name">Консьерж</div>
+				</div>
+				<div className="mainserv__item">
+					<div className="mainserv__item-img"></div>
+					<div className="mainserv__item-name">Приглашение и виза</div>
+				</div>
+				<div className="mainserv__item">
+					<div className="mainserv__item-img"></div>
+					<div className="mainserv__item-name">Страховка</div>
+				</div>
+				<div className="mainserv__item">
+					<div className="mainserv__item-img"></div>
+					<div className="mainserv__item-name">Авиабилеты</div>
+				</div>
+				<div className="mainserv__item">
+					<div className="mainserv__item-img"></div>
+					<div className="mainserv__item-name">Билеты на поезда</div>
+				</div>
+			</div>
+			<div style={{ margin: '100px' }}></div>
+			<h2>Отзывы наших клиентов</h2>
+			<div className="mainReview">
+				<div className="mainReview__text">
+					Over9000 пололжительных отзывов, средня оценка 147/100
+				</div>
+				<div className="mainReview__video">Я видео</div>
+				<div className="mainReview__review-preview">
+					<div className="mainReview__review-preview-img"></div>
+					<div className="mainReview__review-preview-text">
+						<div className="frase">Я просто в восторге от тура</div>
+						<div className="frase-p">Лухари тур за миллион евро</div>
+						<div className="frase-a">Читать целиком > > ></div>
+					</div>
+				</div>
+				<div className="mainReview__review-preview">
+					<div className="mainReview__review-preview-img"></div>
+					<div className="mainReview__review-preview-text">
+						<div className="frase">Лучшая поездка в моей жизни</div>
+						<div className="frase-p">Тур по Чебоксарам</div>
+						<div className="frase-a">Читать целиком > > ></div>
+					</div>
+				</div>
 			</div>
 		</LayoutsDefault>
 	)

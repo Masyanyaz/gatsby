@@ -1,0 +1,42 @@
+.tabs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tabs__item {
+    background: #ababab;
+    flex-grow: 1;
+    flex-basis: 1px;
+    color: #fff;
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
+}
+
+.tabs__item:focus {
+    background: #464646;
+}
+
+.priceTable{
+    display: flex;
+    flex-direction: column;
+}
+
+.priceTable__line{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.priceTable__line-item{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 1px;
+    border-right: 2px solid #ababab;
+    border-left: 1px solid #fff;
+    box-sizing: border-box;
+}
+
+.priceTable__line-item:last-child{
+    border-right: none;
+}

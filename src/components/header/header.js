@@ -5,7 +5,7 @@ import './header-menu.css'
 import DesktopMenu from './desktopMenu'
 import FormsPopupButton from '../forms/popup/button'
 
-const Header = () => {
+const Header = ({ className }) => {
 	const data = useStaticQuery(graphql`
 		{
 			allStrapiDirections {
@@ -45,7 +45,7 @@ const Header = () => {
 	return (
 		<>
 			{isScrolling && <div style={{ height: '180px' }} />}
-			<header className={isScrolling ? 'scrolled' : ''}>
+			<header className={`${className} ${isScrolling ? 'scrolled' : ''}`}>
 				<div className="header__menu">
 					<DesktopMenu
 						directions={data.allStrapiDirections.edges}
