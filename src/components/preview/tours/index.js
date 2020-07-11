@@ -23,9 +23,7 @@ const PreviewTours = ({ node }) => {
 	const openTowns = () => {
 		setHover((hover) => !hover)
 	}
-	console.log(1)
-	console.log(2)
-	console.log(3)
+
 	return (
 		<div className="preview__block">
 			<PreviewImage
