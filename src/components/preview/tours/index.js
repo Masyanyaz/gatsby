@@ -24,6 +24,7 @@ const PreviewTours = ({ node }) => {
 		setHover((hover) => !hover)
 	}
 	console.log(1)
+	console.log(2)
 	return (
 		<div className="preview__block">
 			<PreviewImage
