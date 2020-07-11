@@ -44,7 +44,7 @@ const PreviewTours = ({ node }) => {
 						onMouseEnter={openTowns}
 						onMouseLeave={openTowns}
 					>
-						{node.towns.length} города
+						{node.towns.length} город
 						{hover && <TownsList towns={node.towns} />}
 					</div>
 					<div className="preview__block-center-row-element">
