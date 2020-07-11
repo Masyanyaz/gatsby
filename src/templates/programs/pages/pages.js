@@ -5,30 +5,24 @@ import './pages.css'
 
 import GeneralDays from '../../../general/days'
 import GeneralPrices from '../../../general/prices'
-import Link from '../../../components/global/link'
 import LayoutsPages from '../../../layouts/pages'
 import ColumnBlocksInfo from '../../../components/column/blocks/info'
+import GlobalUITag from '../../../components/global/UI/tag'
 
 const TagList = ({ direction, category, seasons }) => {
 	return (
 		<div className="tag-list">
-			<Link to={`/${direction.path}`} className="tag-list-element">
-				{direction.name}
-			</Link>
-			<Link
+			<GlobalUITag to={`/${direction.path}`} text={direction.name} />
+			<GlobalUITag
 				to={`/catalogue/filters/tours/all/${category.path}/all/all`}
-				className="tag-list-element"
-			>
-				{category.name}
-			</Link>
-			<Link
+				text={category.name}
+			/>
+			<GlobalUITag
 				to={`/catalogue/filters/tours/all/all/${
 					seasons.length !== 1 ? 'all' : seasons[0].path
 				}/all`}
-				className="tag-list-element"
-			>
-				{seasons.length !== 1 ? 'Круглый год' : seasons[0].name}
-			</Link>
+				text={seasons.length !== 1 ? 'Круглый год' : seasons[0].name}
+			/>
 		</div>
 	)
 }

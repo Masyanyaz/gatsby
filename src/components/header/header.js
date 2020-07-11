@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { graphql, Link, useStaticQuery } from 'gatsby'
+
 import './header-menu.css'
 
 import DesktopMenu from './desktopMenu'
 import FormsPopupButton from '../forms/popup/button'
 
-const Header = ({ className }) => {
+const Header = () => {
 	const data = useStaticQuery(graphql`
 		{
 			allStrapiDirections {
@@ -28,13 +29,18 @@ const Header = ({ className }) => {
 			}
 		}
 	`)
+
 	const [scrollTop, setScrollTop] = useState(0)
 
 	useEffect(() => {
 		function onScroll() {
 			let currentPosition = window.pageYOffset
-			setScrollTop(currentPosition <= 0 ? 0 : currentPosition)
+			if (currentPosition <= 10) {
+				setScrollTop(currentPosition <= 0 ? 0 : currentPosition)
+			}
 		}
+
+		setScrollTop(window.pageYOffset)
 
 		window.addEventListener('scroll', onScroll)
 		return () => window.removeEventListener('scroll', onScroll)
@@ -43,9 +49,8 @@ const Header = ({ className }) => {
 	const isScrolling = scrollTop > 0
 
 	return (
-		<>
-			{isScrolling && <div style={{ height: '180px' }} />}
-			<header className={`${className} ${isScrolling ? 'scrolled' : ''}`}>
+		<div style={{ paddingTop: isScrolling ? '180px' : 0 }}>
+			<header className={isScrolling ? 'scrolled' : ''}>
 				<div className="header__menu">
 					<DesktopMenu
 						directions={data.allStrapiDirections.edges}
@@ -65,10 +70,12 @@ const Header = ({ className }) => {
 							<Link to="#">
 								<img className="phone" src="https://cuisinedevoyage.com/img/phone.svg" alt="" />
 							</Link>
-							<FormsPopupButton
-								text="envoyer une demande"
-								className="header__menu-right-side-top-button"
-							/>
+							<div className="header__button">
+								<FormsPopupButton
+									text="envoyer une demande"
+									className="header__menu-right-side-top-button"
+								/>
+							</div>
 						</div>
 						<div className="header__menu-right-side-bottom">
 							<Link to="/catalogue/tours" className="header__menu-right-side-bottom-element">
@@ -92,7 +99,7 @@ const Header = ({ className }) => {
 					</div>
 				</div>
 			</header>
-		</>
+		</div>
 	)
 }
 

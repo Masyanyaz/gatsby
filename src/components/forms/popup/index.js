@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
 import { name, email, phone, comment } from '../schema'
 
-import './index.css'
+import styles from './index.module.css'
 
 import { closePopupForm } from '../../../store/form/actions'
 
@@ -38,8 +38,8 @@ const FormsPopup = () => {
 		<>
 			{openForm && (
 				<div>
-					<div className="popup" onClick={closeForm} />
-					<div className="popup__form">
+					<div className={styles.popup} onClick={closeForm} />
+					<div className={styles.popup__form}>
 						<Formik
 							initialValues={initialValues}
 							validationSchema={validationSchema}
@@ -57,7 +57,7 @@ const FormsPopup = () => {
 									label="Quels services vous intéressent?"
 									as="textarea"
 								/>
-								<button type="submit" className="popup__form-submit">
+								<button type="submit" className={styles.popup__formSubmit}>
 									Submit
 								</button>
 							</Form>

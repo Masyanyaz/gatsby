@@ -1,11 +1,15 @@
 import React from 'react'
 
-import './index.css'
+import styles from './index.module.css'
+
+const Message = ({ children, className }) => (
+	<span className={`${styles.message} ${className}`}>{children}</span>
+)
 
 export const FormsBlocksMessageError = ({ children }) => (
-	<span className="error message">{children}</span>
+	<Message className={styles.error}>{children}</Message>
 )
 
 export const FormsBlocksMessageSuccess = ({ children }) => (
-	<span className="success message">{children}</span>
+	<Message className={styles.success}>{children}</Message>
 )

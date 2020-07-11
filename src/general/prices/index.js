@@ -1,6 +1,9 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+
 import './index.css'
+
+import GlobalUIButton from '../../components/global/UI/button'
 
 const GeneralPrices = ({ prices }) => {
 	const [countSelected, setCountSelected] = useState(prices[0].count)
@@ -10,14 +13,13 @@ const GeneralPrices = ({ prices }) => {
 		<>
 			<div className="tabs">
 				{prices.map(({ count }) => (
-					<button
-						className="tabs__item button-reset"
+					<GlobalUIButton
 						key={count}
+						text={`${count} человека`}
+						className="tabs__item button-reset"
 						onClick={() => setCountSelected(count)}
 						onKeyDown={() => setCountSelected(count)}
-					>
-						{count} человека
-					</button>
+					/>
 				))}
 			</div>
 

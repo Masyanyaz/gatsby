@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './index.css'
 
-const ColumnBlocksCommon = () => {
-	const [open, setOpen] = useState(false)
-	const openContent = () => {
-		setOpen(true)
-	}
+import GlobalUISpoiler from '../../../global/UI/spoiler'
 
+const ColumnBlocksCommon = () => {
 	return (
 		<div className="common">
 			<p>autres services</p>
@@ -23,16 +20,12 @@ const ColumnBlocksCommon = () => {
 				<div className="common__element-icon" />
 				<p>Billets de train</p>
 			</div>
-			{!open ? (
-				<button className="common__more button-reset" onClick={openContent}>
-					encore
-				</button>
-			) : (
+			<GlobalUISpoiler text="encore" className="common__more">
 				<div className="common__element">
 					<div className="common__element-icon" />
 					<p>Transferts</p>
 				</div>
-			)}
+			</GlobalUISpoiler>
 		</div>
 	)
 }

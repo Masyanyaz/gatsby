@@ -1,0 +1,12 @@
+.sticky {
+  position: sticky;
+  top: 120px;
+}
+
+.button {
+  background: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}

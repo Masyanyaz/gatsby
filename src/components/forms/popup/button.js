@@ -4,16 +4,14 @@ import { useDispatch } from 'react-redux'
 
 import { openPopupForm } from '../../../store/form/actions'
 
+import GlobalUIButton from '../../global/UI/button'
+
 const FormsPopupButton = ({ text, className, ...other }) => {
 	const dispatch = useDispatch()
 
 	const openForm = () => dispatch(openPopupForm())
 
-	return (
-		<button onClick={openForm} className={`${className} button-reset`} {...other}>
-			{text}
-		</button>
-	)
+	return <GlobalUIButton text={text} className={className} onClick={openForm} {...other} />
 }
 
 FormsPopupButton.defaultProps = {

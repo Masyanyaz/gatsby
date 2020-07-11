@@ -1,38 +1,38 @@
-.advant{
-    margin-top: 100px;
+.advant {
+  margin-top: 100px;
 }
 
-.advant > p{
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
+.advant > p {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
 }
 
-.advant__grid{
-    display: flex;
-    flex-wrap: wrap;
+.advant__grid {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.advant__grid-element{
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-basis: 1px;
-    justify-content: center;
-    align-items: center;
-    /*border: 1px solid;*/
-    box-sizing: border-box;
-    margin: 15px;
+.advant__grid-element {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 1px;
+  justify-content: center;
+  align-items: center;
+  /*border: 1px solid;*/
+  box-sizing: border-box;
+  margin: 15px;
 }
 
-.advant__grid-element-icon{
-    width: 100px;
-    height: 100px;
-    background: #bababa;
+.advant__grid-element-icon {
+  width: 100px;
+  height: 100px;
+  background: #bababa;
 }
 
 .advant__grid-element p {
-    height: 30px;
-    text-align: center;
+  height: 30px;
+  text-align: center;
 }

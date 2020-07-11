@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './index.css'
+import '../column.css'
 
 import ColumnBlocksAdvant from '../blocks/advant'
 import ColumnBlocksDirection from '../blocks/direction'
@@ -8,10 +8,10 @@ import ColumnBlocksCommon from '../blocks/common'
 
 const ColumnFilters = () => {
 	return (
-		<div className="right-column">
-			<ColumnBlocksDirection />
-			<ColumnBlocksCommon />
-			<ColumnBlocksAdvant />
+		<div className="right-column-container">
+			<div className="right-column">
+				<ColumnBlocksDirection /> <ColumnBlocksCommon /> <ColumnBlocksAdvant />
+			</div>
 		</div>
 	)
 }

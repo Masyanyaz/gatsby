@@ -1,19 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import './index.css'
+import '../column.css'
+import styles from './index.module.css'
 
-import ColumnBlocksAdvant from '../blocks/advant'
-import DirectionsBlockFilter from '../../programs/filters/directions'
-import ColumnBlocksCommon from '../blocks/common'
+import FormsPopupButton from '../../forms/popup/button'
+import ColumnBlocksReview from '../blocks/review'
 
-const ColumnEndPages = () => {
+const ColumnEndPages = ({ componentInfo }) => {
 	return (
-		<div className="right-column">
-			<DirectionsBlockFilter />
-			<ColumnBlocksCommon />
-			<ColumnBlocksAdvant />
+		<div className="right-column-container">
+			<div className={`right-column ${styles.sticky}`}>
+				{componentInfo()}
+				<FormsPopupButton text="Слыш, купи" className={styles.button} />
+				<ColumnBlocksReview />
+			</div>
 		</div>
 	)
+}
+
+ColumnEndPages.propTypes = {
+	componentInfo: PropTypes.func.isRequired,
 }
 
 export default ColumnEndPages
