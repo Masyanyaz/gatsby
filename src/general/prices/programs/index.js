@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './index.css'
 
-import GlobalUIButton from '../../components/global/UI/button'
+import GlobalUIButton from '../../../components/global/UI/button'
 
 const GeneralPrices = ({ prices }) => {
 	const [countSelected, setCountSelected] = useState(prices[0].count)
