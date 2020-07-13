@@ -1,9 +1,9 @@
-.sticky {
+.right-column.sticky {
   position: sticky;
   top: 120px;
 }
 
-.button {
+.right-column-button {
   background: red;
   color: white;
   padding: 10px;

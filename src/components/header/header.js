@@ -49,7 +49,7 @@ const Header = () => {
 	const isScrolling = scrollTop > 0
 
 	return (
-		<div style={{ paddingTop: isScrolling ? '180px' : 0 }}>
+		<div style={{ paddingTop: isScrolling ? '165px' : 0 }}>
 			<header className={isScrolling ? 'scrolled' : ''}>
 				<div className="header__menu">
 					<DesktopMenu

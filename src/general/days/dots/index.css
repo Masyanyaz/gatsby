@@ -1,0 +1,46 @@
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.dots .slider-slide {
+  outline: none;
+}
+
+.dots-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5px 15px;
+  outline: none;
+}
+
+.dots-item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.dots-ball {
+  width: 20px;
+  height: 20px;
+  background-color: #bababa;
+  border-radius: 50%;
+}
+
+.dots-item-name {
+  font-size: 15px;
+}
+
+.active .dots-ball {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 6px solid #f00;
+}
+
+.active .dots-item-name {
+  color: #f00;
+}

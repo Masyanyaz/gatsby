@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import '../column.css'
-import styles from './index.module.css'
+import './index.css'
 
 import FormsPopupButton from '../../forms/popup/button'
 import ColumnBlocksReview from '../blocks/review'
@@ -10,9 +10,9 @@ import ColumnBlocksReview from '../blocks/review'
 const ColumnEndPages = ({ componentInfo }) => {
 	return (
 		<div className="right-column-container">
-			<div className={`right-column ${styles.sticky}`}>
+			<div className={`right-column sticky`}>
 				{componentInfo()}
-				<FormsPopupButton text="Слыш, купи" className={styles.button} />
+				<FormsPopupButton text="Слыш, купи" className="right-column-button" />
 				<ColumnBlocksReview />
 			</div>
 		</div>

@@ -13,7 +13,7 @@ const LayoutsDefault = ({ children }) => {
 		<>
 			<Header />
 			<div className="content">
-				<div className="main-content main">
+				<div className="main-content">
 					<main>{children}</main>
 				</div>
 				<FormsPopup />

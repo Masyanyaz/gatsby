@@ -68,7 +68,7 @@ const ToursPage = (props) => {
 				<div className="programm__menu-item">Цена и условия</div>
 				<div className="programm__menu-item">Дополнительная информация</div>
 			</div>
-			<GeneralDays days={data.days} />
+			{Boolean(data.days.length) && <GeneralDays days={data.days} />}
 			{data.prices.length ? <GeneralPrices prices={data.prices} /> : <h3>По запросу</h3>}
 		</LayoutsPages>
 	)
