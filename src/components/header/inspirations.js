@@ -29,7 +29,7 @@ const HeaderInspirations = () => {
 		<>
 			<div className="header__menu-left-side-element" onClick={() => setOpen(true)} ref={ref}>
 				Inspirations
-				{isOpen && <OpenMenu items={allStrapiCategories.edges} />}
+				{isOpen && <OpenMenu items={allStrapiCategories.edges} dataItem="categories" />}
 			</div>
 		</>
 	)

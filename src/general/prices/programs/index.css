@@ -4,7 +4,7 @@
     position: relative;
 }
 
-.tabs__item {
+.tabs .tabs__item {
     background: #ababab;
     flex-grow: 1;
     flex-basis: 1px;
@@ -13,7 +13,7 @@
     border-left: 2px solid #fff;
 }
 
-.tabs__item.focus {
+.tabs .tabs__item.focus {
     background: #464646;
     border-left: 2px solid red;
     border-right: 2px solid red;

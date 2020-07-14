@@ -8,7 +8,11 @@ import FormsPopupButton from '../../forms/popup/button'
 import useScrollPosition from '../../../hooks/scrollPosition'
 
 const HeaderDesktop = () => {
-	const [scrollTop, setScrollTop] = useState(window.scrollY)
+	const [scrollTop, setScrollTop] = useState(0)
+
+	useEffect(() => {
+		setScrollTop(window.scrollY)
+	}, [])
 
 	useScrollPosition(
 		({ currPos }) => {
