@@ -1,5 +1,5 @@
 .days-carousel {
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;*/
 }
 
 .days-carousel .slider-slide {
@@ -11,10 +11,10 @@
   display: flex;
 }
 
-.programm__days > div {
-  flex-grow: 1;
-  flex-basis: 1px;
-}
+/*.programm__days > div {*/
+/*  flex-grow: 1;*/
+/*  flex-basis: 1px;*/
+/*}*/
 
 .programm__days-left {
   display: flex;
@@ -22,6 +22,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin-right: 10px;
+  width: 50%;
 }
 
 .programm__days-left-count {
@@ -41,11 +42,22 @@
 }
 
 .programm__days-right {
-  margin-left: 10px;
+  /*margin-left: 10px;*/
+  min-width: 340px;
+  width: 340px;
+  height: 340px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  box-sizing: border-box;
 }
 
 .programm__days-right img {
-  width: 100%;
+  max-width: 600px;
+  height: 100%;
 }
 
 

@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import './pages.css'
 
 import GeneralDays from '../../../general/days'
-import GeneralPrices from '../../../general/prices'
+import GeneralPrices from '../../../general/prices/programs'
 import LayoutsPages from '../../../layouts/pages'
 import ColumnBlocksInfo from '../../../components/column/blocks/info'
 import GlobalUITag from '../../../components/global/UI/tag'
@@ -52,7 +52,8 @@ const ToursPage = (props) => {
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque
 					provident quis excepturi sunt enim dolore debitis molestiae!
 				</div>
-				<p style={{ paddingTop: '50px' }}>Сделаем вид, что это заготовка для тура одним взглядом</p>
+				<div className="otstup"></div>
+				<p>Сделаем вид, что это заготовка для тура одним взглядом</p>
 				<div className="programm__info-tags">
 					{data.types.map((type) => (
 						<div key={type.id} className="programm__info-tags-item">
@@ -69,7 +70,25 @@ const ToursPage = (props) => {
 				<div className="programm__menu-item">Дополнительная информация</div>
 			</div>
 			{Boolean(data.days.length) && <GeneralDays days={data.days} />}
+			<div className="otstup"></div>
 			{data.prices.length ? <GeneralPrices prices={data.prices} /> : <h3>По запросу</h3>}
+			<div className="otstup"></div>
+			<h2>Включено в тур</h2>
+			<ul>
+				<li>Всё</li>
+				<li>Всё</li>
+				<li>Всё</li>
+				<li>Всё</li>
+				<li>Всё</li>
+			</ul>
+			<h2>Не ключено в тур</h2>
+			<ul>
+				<li>Ничего</li>
+				<li>Ничего</li>
+				<li>Ничего</li>
+				<li>Ничего</li>
+				<li>Ничего</li>
+			</ul>
 		</LayoutsPages>
 	)
 }
