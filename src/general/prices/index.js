@@ -16,7 +16,7 @@ const GeneralPrices = ({ prices }) => {
 					<GlobalUIButton
 						key={count}
 						text={`${count} человека`}
-						className="tabs__item button-reset"
+						className={`tabs__item ${count === countSelected ? 'focus' : null}`}
 						onClick={() => setCountSelected(count)}
 						onKeyDown={() => setCountSelected(count)}
 					/>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import * as Yup from 'yup'
 import { Formik, Form } from 'formik'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,6 +9,8 @@ import styles from './index.module.css'
 import { closePopupForm } from '../../../store/form/actions'
 
 import FormsBlocksInput from '../blocks/input'
+import useOnClickOutside from '../../../hooks/onClickOutside'
+import useLockScroll from '../../../hooks/lockBodyScroll'
 
 const initialValues = {
 	name: '',
@@ -24,49 +26,52 @@ const validationSchema = Yup.object().shape({
 	comment,
 })
 
-const FormsPopup = () => {
+const Popup = () => {
 	const dispatch = useDispatch()
-	const openForm = useSelector((state) => state.form.openForm)
-
 	const closeForm = () => dispatch(closePopupForm())
+	const ref = useRef()
+
+	useLockScroll(true)
+	useOnClickOutside(ref, closeForm)
 
 	const onSubmit = (values) => {
 		console.log(values)
 	}
 
 	return (
-		<>
-			{openForm && (
-				<div>
-					<div className={styles.popup} onClick={closeForm} />
-					<div className={styles.popup__form}>
-						<Formik
-							initialValues={initialValues}
-							validationSchema={validationSchema}
-							onSubmit={onSubmit}
-						>
-							<Form>
-								<FormsBlocksInput name="name" label="Votre nom, prénom:" />
-								<FormsBlocksInput name="email" label="Votre email" />
-								<FormsBlocksInput
-									name="phone"
-									label="Laissez votre numéro de téléphone pour recevoir notre appel"
-								/>
-								<FormsBlocksInput
-									name="comment"
-									label="Quels services vous intéressent?"
-									as="textarea"
-								/>
-								<button type="submit" className={styles.popup__formSubmit}>
-									Submit
-								</button>
-							</Form>
-						</Formik>
-					</div>
-				</div>
-			)}
-		</>
+		<div className={styles.popup}>
+			<div className={styles.popup__form} ref={ref}>
+				<Formik
+					initialValues={initialValues}
+					validationSchema={validationSchema}
+					onSubmit={onSubmit}
+				>
+					<Form>
+						<FormsBlocksInput name="name" label="Votre nom, prénom:" />
+						<FormsBlocksInput name="email" label="Votre email" />
+						<FormsBlocksInput
+							name="phone"
+							label="Laissez votre numéro de téléphone pour recevoir notre appel"
+						/>
+						<FormsBlocksInput
+							name="comment"
+							label="Quels services vous intéressent?"
+							as="textarea"
+						/>
+						<button type="submit" className={styles.popup__formSubmit}>
+							Submit
+						</button>
+					</Form>
+				</Formik>
+			</div>
+		</div>
 	)
+}
+
+const FormsPopup = () => {
+	const openForm = useSelector((state) => state.form.openForm)
+
+	return <>{openForm && <Popup />}</>
 }
 
 export default FormsPopup

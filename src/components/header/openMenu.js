@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from '../global/link'
 
-const OpenMenu = ({ items, dataItem }) => {
+const OpenMenu = ({ items, dataItem = 'directions' }) => {
 	return (
 		<div className="hover__menu">
 			{items.map(({ node }) => (

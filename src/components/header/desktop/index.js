@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import Link from '../global/link'
+import Link from '../../global/link'
 
-import './header-menu.css'
+import './index.css'
 
-import DesktopMenu from './desktopMenu'
-import FormsPopupButton from '../forms/popup/button'
-import useScrollPosition from '../../hooks/scrollPosition'
+import DesktopMenu from '../desktopMenu'
+import FormsPopupButton from '../../forms/popup/button'
+import useScrollPosition from '../../../hooks/scrollPosition'
 
-const Header = () => {
-	const [scrollTop, setScrollTop] = useState(0)
-
-	const isScrolling = scrollTop > 0
-
-	useEffect(() => {
-		setScrollTop(window.scrollY)
-	}, [])
+const HeaderDesktop = () => {
+	const [scrollTop, setScrollTop] = useState(window.scrollY)
 
 	useScrollPosition(
 		({ currPos }) => {
@@ -26,6 +20,8 @@ const Header = () => {
 		null,
 		true,
 	)
+
+	const isScrolling = scrollTop > 0
 
 	return (
 		<div style={{ paddingTop: isScrolling ? '165px' : 0 }}>
@@ -79,4 +75,4 @@ const Header = () => {
 	)
 }
 
-export default Header
+export default HeaderDesktop

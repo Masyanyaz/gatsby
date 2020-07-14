@@ -6,7 +6,7 @@ html {
   -webkit-text-size-adjust: 100%;
   font: 112.5%/1.45em Rubik, serif;
   box-sizing: border-box;
-  overflow-y: scroll;
+  /*overflow-x: hidden;*/
 }
 
 body {

@@ -13,7 +13,7 @@
     border-left: 2px solid #fff;
 }
 
-.tabs__item:focus {
+.tabs__item.focus {
     background: #464646;
     border-left: 2px solid red;
     border-right: 2px solid red;

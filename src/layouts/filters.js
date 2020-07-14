@@ -7,7 +7,7 @@ import './default.css'
 
 import { changeDirection, changeService } from '../store/url/actions'
 
-import Header from '../components/header/header'
+import Header from '../components/header'
 import ColumnFilters from '../components/column/filters'
 import Footer from '../components/footer/footer'
 import FormsPopup from '../components/forms/popup'
