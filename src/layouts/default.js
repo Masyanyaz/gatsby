@@ -13,7 +13,7 @@ const LayoutsDefault = ({ children }) => {
 		<>
 			<Header />
 			<div className="content">
-				<div className="main-content">
+				<div className="main-content" style={{ width: '100%' }}>
 					<main>{children}</main>
 				</div>
 				<FormsPopup />

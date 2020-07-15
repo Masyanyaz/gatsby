@@ -6,6 +6,10 @@
   border: 1px solid;
 }
 
+.expreview__block:hover{
+  box-shadow: 0 0 5px #bababa;
+}
+
 .expreview__block-top {
   position: relative;
 }
