@@ -38,7 +38,7 @@ const GeneralDaysDots = ({
 						onClick={() => updateCurrentSlide(index)}
 					>
 						<div className="dots-ball" />
-						<span className="dots-item-name">Giorno {index + 1}</span>
+						<span className="dots-item-name">Jour {index + 1}</span>
 					</div>
 				))}
 			</Carousel>

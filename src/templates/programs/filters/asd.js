@@ -56,7 +56,7 @@ const Combi = ({ towns, directionPath }) => {
 
 	return (
 		<>
-			{filterTours.length ? (
+			{filterTours.length && directionPath ? (
 				<div>
 					<h2>Другие туры</h2>
 					<div className="preview__grid">

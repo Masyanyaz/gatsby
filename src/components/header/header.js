@@ -54,14 +54,6 @@ const Header = () => {
 							</div>
 						</div>
 						<div className="header__menu-right-side-bottom">
-							<Link to="/catalogue/tours" className="header__menu-right-side-bottom-element">
-								Tours
-							</Link>
-
-							<Link to="/catalogue/excursions" className="header__menu-right-side-bottom-element">
-								Excursions
-							</Link>
-
 							<Link to="#" className="header__menu-right-side-bottom-element">
 								Qui sommes-nous
 							</Link>

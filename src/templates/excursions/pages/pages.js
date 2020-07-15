@@ -15,7 +15,6 @@ const ExcursionsPage = (props) => {
 	const componentInfo = () => (
 		<ColumnBlocksInfo prices={pricesArray} hours={data.hours} transports={data.transports} />
 	)
-	console.log(data)
 	return (
 		<LayoutsPages componentInfo={componentInfo}>
 			<div className="programm__img">
