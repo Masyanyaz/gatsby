@@ -8,21 +8,20 @@ import GeneralPrices from '../../../general/prices/programs'
 import LayoutsPages from '../../../layouts/pages'
 import ColumnBlocksInfo from '../../../components/column/blocks/info'
 import GlobalUITag from '../../../components/global/UI/tag'
+import Link from '../../../components/global/link'
 
-const TagList = ({ direction, category, seasons }) => {
+const TagList = ({ direction, categories, guide }) => {
 	return (
 		<div className="tag-list">
 			<GlobalUITag to={`/${direction.path}`} text={direction.name} />
-			<GlobalUITag
-				to={`/catalogue/filters/tours/all/${category.path}/all/all`}
-				text={category.name}
-			/>
-			<GlobalUITag
-				to={`/catalogue/filters/tours/all/all/${
-					seasons.length !== 1 ? 'all' : seasons[0].path
-				}/all`}
-				text={seasons.length !== 1 ? 'Круглый год' : seasons[0].name}
-			/>
+			{categories.map((category) => (
+				<GlobalUITag
+					key={category.id}
+					to={`/catalogue/filters/tours/all/${category.path}/all/all`}
+					text={category.name}
+				/>
+			))}
+			<GlobalUITag to={`/catalogue/filters/tours/all/all/${guide.path}/all`} text={guide.name} />
 		</div>
 	)
 }
@@ -30,37 +29,46 @@ const TagList = ({ direction, category, seasons }) => {
 const ToursPage = (props) => {
 	const data = props.data.strapiTours
 	const pricesArray = data.prices.reduce((res, price) => {
-		const prices = price.types.map((type) => type.value)
+		const prices = price.count.map(({ value }) => value)
 		return [...res, ...prices]
 	}, [])
 
-	const componentInfo = () => (
+	const columnBlocksInfo = () => (
 		<ColumnBlocksInfo prices={pricesArray} days={data.days} towns={data.towns} />
 	)
+	const locationState = props.location.state
+
 	return (
-		<LayoutsPages componentInfo={componentInfo}>
+		<LayoutsPages columnBlocksInfo={columnBlocksInfo}>
 			<div className="programm__img">
 				<img
 					src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg"
 					alt=""
 				/>
 			</div>
+			<div>
+				<Link
+					to={locationState && locationState.back ? locationState.back : `/${data.direction.path}`}
+				>
+					Back
+				</Link>
+			</div>
 			<h2>{data.name}</h2>
 			<div className="programm__info">
-				<TagList direction={data.direction} category={data.category} seasons={data.seasons} />
+				<TagList direction={data.direction} categories={data.categories} guide={data.guide} />
 				<div className="programm__info-description">
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque
 					provident quis excepturi sunt enim dolore debitis molestiae!
 				</div>
-				<div className="otstup"></div>
+				<div className="otstup" />
 				<p>Сделаем вид, что это заготовка для тура одним взглядом</p>
 				<div className="programm__info-tags">
-					{data.types.map((type) => (
-						<div key={type.id} className="programm__info-tags-item">
-							<img src={type.img.publicURL} alt="" />
-							<span>{type.name}</span>
-						</div>
-					))}
+					{/*{data.types.map((type) => (*/}
+					{/*	<div key={type.id} className="programm__info-tags-item">*/}
+					{/*		<img src={type.img.publicURL} alt="" />*/}
+					{/*		<span>{type.name}</span>*/}
+					{/*	</div>*/}
+					{/*))}*/}
 				</div>
 			</div>
 
@@ -101,7 +109,7 @@ export const query = graphql`
 				id
 				name
 				text
-				picture {
+				image {
 					publicURL
 				}
 			}
@@ -109,27 +117,24 @@ export const query = graphql`
 				name
 				path
 			}
-			category {
+			categories {
+				id
+				name
+				path
+			}
+			guide {
+				id
 				name
 				path
 			}
 			seasons {
 				name
-				path
-			}
-			types {
-				id
-				img {
-					publicURL
-				}
-				name
 			}
 			prices {
 				id
-				count
-				types {
-					id
-					name
+				name
+				count {
+					count
 					value
 				}
 			}
@@ -138,7 +143,6 @@ export const query = graphql`
 				id
 			}
 			groupCount
-			priceType
 		}
 	}
 `

@@ -9,7 +9,7 @@ import Footer from '../components/footer/footer'
 import FormsPopup from '../components/forms/popup'
 import ColumnEndPages from '../components/column/endPages'
 
-const LayoutsPages = ({ children, componentInfo }) => {
+const LayoutsPages = ({ children, columnBlocksInfo }) => {
 	return (
 		<div className="page">
 			<Header />
@@ -17,7 +17,7 @@ const LayoutsPages = ({ children, componentInfo }) => {
 				<div className="main-content">
 					<main>{children}</main>
 				</div>
-				<ColumnEndPages componentInfo={componentInfo} />
+				<ColumnEndPages columnBlocksInfo={columnBlocksInfo} />
 				<FormsPopup />
 			</div>
 			<Footer />
@@ -27,7 +27,7 @@ const LayoutsPages = ({ children, componentInfo }) => {
 
 LayoutsPages.propTypes = {
 	children: PropTypes.node.isRequired,
-	componentInfo: PropTypes.func.isRequired,
+	columnBlocksInfo: PropTypes.func.isRequired,
 }
 
 export default LayoutsPages

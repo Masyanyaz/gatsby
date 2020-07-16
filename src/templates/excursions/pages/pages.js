@@ -7,31 +7,45 @@ import './pages.css'
 
 import ColumnBlocksInfo from '../../../components/column/blocks/info'
 import PricesExcursion from '../../../general/prices/excursions'
+import Link from '../../../components/global/link'
 
 const ExcursionsPage = (props) => {
 	const data = props.data.strapiExcursions
 	const pricesArray = data.prices.map((price) => price.value)
 
-	const componentInfo = () => (
+	const locationState = props.location.state
+
+	const columnBlocksInfo = () => (
 		<ColumnBlocksInfo prices={pricesArray} hours={data.hours} transports={data.transports} />
 	)
-	console.log(data)
+
 	return (
-		<LayoutsPages componentInfo={componentInfo}>
+		<LayoutsPages columnBlocksInfo={columnBlocksInfo}>
 			<div className="programm__img">
 				<img
 					src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg"
 					alt=""
 				/>
 			</div>
+			<div>
+				<Link
+					to={
+						locationState && locationState.back
+							? locationState.back
+							: `/catalogue/filters/excursion/all/all`
+					}
+				>
+					Back
+				</Link>
+			</div>
 			<h1>{data.name}</h1>
-			{/*<p>{data.direction.name}</p>*/}
-			<div className="otstup"></div>
+			<p>{data.direction.name}</p>
+			<div className="otstup" />
 			<p>Сделаем вид, что это заготовка для тура одним взглядом</p>
 			<div className="programm__info-tags">
 				{data.transports.map((type) => (
 					<div key={type.id} className="programm__info-tags-item">
-						<img src={type.icon.publicURL} alt="" />
+						<img src={type.image.publicURL} alt="" />
 						<span>{type.name}</span>
 					</div>
 				))}
@@ -64,7 +78,7 @@ const ExcursionsPage = (props) => {
 				necessitatibus nemo nihil nulla officia perferendis porro quasi quo reiciendis similique
 				totam unde, ut vel. Facere neque quae reiciendis sit.
 			</p>
-			<div className="otstup"></div>
+			<div className="otstup" />
 			<h2>Tarifs</h2>
 			<PricesExcursion prices={data.prices} />
 		</LayoutsPages>
@@ -78,14 +92,14 @@ export const query = graphql`
 			direction {
 				name
 			}
-			hours
 			transports {
 				id
 				name
-				icon {
+				image {
 					publicURL
 				}
 			}
+			hours
 			prices {
 				count
 				value

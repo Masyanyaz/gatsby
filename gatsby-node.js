@@ -1,7 +1,5 @@
-const createProgramsPages = require('./src/scripts/createPage/programs/pages')
-const createExcursionsPages = require('./src/scripts/createPage/excursions/pages')
-const createFilters = require('./src/scripts/createPage/filters')
-const createAllFilters = require('./src/scripts/createPage/programs/allFilters')
+const createPrograms = require('./src/scripts/createPage/programs')
+const createExcursions = require('./src/scripts/createPage/excursions')
 
 const path = {
 	filterPage: 'catalogue/filters',
@@ -28,17 +26,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 		path,
 	}
 
-	// Создание страниц фильтров
-	await createFilters(args)
+	// Создание страниц туров
+	await createPrograms(args)
 
-	// Создание страниц фильтров
-	await createAllFilters(args)
-
-	// Создание конечных страниц туров
-	await createProgramsPages(args)
-
-	// Создание конечных страниц экскурсий
-	await createExcursionsPages(args)
+	// Создание страниц экскурсий
+	await createExcursions(args)
 }
 
 exports.onCreateWebpackConfig = ({ getConfig, stage }) => {

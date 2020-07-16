@@ -9,36 +9,19 @@ import GeneralFilterSeasons from './seasons'
 
 const GeneralFilter = ({
 	directionPath,
+	directions,
 	categories,
-	seasons,
+	guides,
 	categoryPath,
-	seasonPath,
-	typePath,
+	guidePath,
 }) => {
-	const data = useStaticQuery(graphql`
-		query {
-			allStrapiDirections(filter: { tours: { elemMatch: { id: { ne: null } } } }) {
-				edges {
-					node {
-						id
-						name
-						path
-					}
-				}
-			}
-		}
-	`)
-
-	const directions = data.allStrapiDirections.edges
-
 	const directionPathArray = directions.map((direction) => direction.node.path)
 	const directionIncludes = directionPathArray.includes(directionPath)
 
 	const context = {
 		directionPath,
 		categoryPath,
-		seasonPath,
-		typePath,
+		guidePath,
 		directionIncludes,
 	}
 
@@ -46,7 +29,7 @@ const GeneralFilter = ({
 		<div className="filters">
 			<GeneralFilterDirections directions={directions} {...context} />
 			<GeneralFilterCategories categories={categories} {...context} />
-			<GeneralFilterSeasons seasons={seasons} {...context} />
+			<GeneralFilterSeasons guides={guides} {...context} />
 		</div>
 	)
 }

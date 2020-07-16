@@ -60,7 +60,7 @@ const GeneralDays = ({ days }) => {
 							<div className="programm__days-left-description">{day.text}</div>
 						</div>
 						<div className="programm__days-right">
-							<img src={day.picture.publicURL} alt="" />
+							<img src={day.image.publicURL} alt="" />
 						</div>
 					</div>
 				))}
@@ -80,10 +80,6 @@ const GeneralDays = ({ days }) => {
 
 GeneralDays.propTypes = {
 	days: PropTypes.array.isRequired,
-}
-
-GeneralDays.getInitialProps = ({ req }) => {
-	console.log(req)
 }
 
 export default GeneralDays

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './index.css'
 
 import PreviewImage from './image'
-import PreviewTypes from './types'
+// import PreviewTypes from './types'
 import Link from '../../global/link'
 
 const TownsList = ({ towns }) => {
@@ -17,20 +17,20 @@ const TownsList = ({ towns }) => {
 	)
 }
 
-const PreviewTours = ({ node }) => {
+const PreviewTours = ({ node, backPath }) => {
 	const [hover, setHover] = useState(false)
 
 	const openTowns = () => {
 		setHover((hover) => !hover)
 	}
-
 	return (
 		<div className="preview__block">
 			<PreviewImage
 				directionPath={node.direction.path}
 				path={node.path}
-				category={node.category}
+				category={node.categories[0]}
 				prices={node.prices}
+				backPath={backPath}
 			/>
 
 			<div className="preview__block-center">
@@ -48,14 +48,15 @@ const PreviewTours = ({ node }) => {
 						{hover && <TownsList towns={node.towns} />}
 					</div>
 					<div className="preview__block-center-row-element">
-						<PreviewTypes types={node.types} />
+						{/*<PreviewTypes types={node.types} />*/}
 					</div>
 				</div>
 			</div>
 
 			<Link
-				to={`/catalogue/programs/${node.direction.path}/tours/${node.category.path}/${node.path}/`}
+				to={`/catalogue/programs/${node.direction.path}/tours/${node.categories[0].path}/${node.path}/`}
 				className="preview__block-button"
+				state={{ back: backPath }}
 			>
 				ПОДРОБНЕЕ
 			</Link>

@@ -6,7 +6,8 @@ import './index.css'
 import GlobalUIButton from '../../../components/global/UI/button'
 
 const GeneralPrices = ({ prices }) => {
-	const [countSelected, setCountSelected] = useState(prices[0].count)
+	return null
+	/*const [countSelected, setCountSelected] = useState(prices[0].count)
 	const types = prices.find(({ count }) => count === countSelected).types
 
 	return (
@@ -41,7 +42,7 @@ const GeneralPrices = ({ prices }) => {
 				</div>
 			</div>
 		</>
-	)
+	)*/
 }
 
 GeneralPrices.propTypes = {

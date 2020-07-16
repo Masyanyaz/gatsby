@@ -3,7 +3,7 @@ import Link from '../../components/global/link'
 
 const GeneralFilterSeasons = ({
 	directionPath,
-	seasons,
+	guides,
 	categoryPath,
 	typePath,
 	directionIncludes,
@@ -15,11 +15,12 @@ const GeneralFilterSeasons = ({
 
 	return (
 		<div>
-			<Link to={linkAllSeasons} activeClassName={'active'}>
+			<Link partiallyActive to={linkAllSeasons} activeClassName={'active'}>
 				Все
 			</Link>
-			{seasons.map(({ node: { id, name, path } }) => (
+			{guides.map(({ node: { id, name, path } }) => (
 				<Link
+					partiallyActive
 					key={id}
 					to={`/catalogue/filters/tours/${directionPath}/${categoryPath}/${path}/${typePath}`}
 					activeClassName={'active'}

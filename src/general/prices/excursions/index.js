@@ -10,6 +10,7 @@ const PricesExcursion = ({ prices }) => {
 	}
 
 	const filteredPrices = prices.filter((price) => price.count === countSelected)
+
 	return (
 		<>
 			<div>

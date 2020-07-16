@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import PreviewTours from '../../../components/preview/tours'
 
-const Combi = ({ towns, directionPath }) => {
+const Combine = ({ towns, directionPath, backPath, categoryPath }) => {
 	const tours = useStaticQuery(graphql`
 		{
 			allStrapiTours {
@@ -13,7 +13,7 @@ const Combi = ({ towns, directionPath }) => {
 						path
 						preview_text
 						prices {
-							types {
+							count {
 								value
 							}
 						}
@@ -23,15 +23,7 @@ const Combi = ({ towns, directionPath }) => {
 						direction {
 							path
 						}
-						types {
-							id
-							name
-							path
-							img {
-								publicURL
-							}
-						}
-						category {
+						categories {
 							id
 							name
 							path
@@ -45,23 +37,25 @@ const Combi = ({ towns, directionPath }) => {
 			}
 		}
 	`)
-	const arrayTowns = towns.map((town) => town.id) // [1, 2, 3]
+	const arrayTowns = towns.map((town) => town.id)
+
 	const filterTours = tours.allStrapiTours.edges.filter((tour) => {
-		const tourTowns = tour.node.towns.map((town) => town.id) // [1, 2]
+		const tourTowns = tour.node.towns.map((town) => town.id)
 		return (
 			arrayTowns.every((item) => tourTowns.includes(item)) &&
-			tour.node.direction.path !== directionPath
+			tour.node.direction.path !== directionPath &&
+			tour.node.category.path === categoryPath
 		)
 	})
 
 	return (
 		<>
-			{filterTours.length ? (
+			{filterTours.length && directionPath ? (
 				<div>
 					<h2>Другие туры</h2>
 					<div className="preview__grid">
 						{filterTours.map(({ node }) => (
-							<PreviewTours key={node.id} node={node} />
+							<PreviewTours key={node.id} node={node} backPath={backPath} />
 						))}
 					</div>
 				</div>
@@ -70,4 +64,4 @@ const Combi = ({ towns, directionPath }) => {
 	)
 }
 
-export default Combi
+export default Combine

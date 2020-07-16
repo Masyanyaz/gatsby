@@ -5,24 +5,25 @@ import Link from '../../components/global/link'
 const GeneralFilterCategories = ({
 	directionPath,
 	categories,
-	seasonPath,
+	guidePath,
 	typePath,
 	directionIncludes,
 }) => {
 	const linkAllCategory =
-		seasonPath === 'all' && directionIncludes
+		guidePath === 'all' && directionIncludes
 			? `/${directionPath}`
-			: `/catalogue/filters/tours/${directionPath}/all/${seasonPath}/${typePath}`
+			: `/catalogue/filters/tours/${directionPath}/all/${guidePath}/${typePath}`
 
 	return (
 		<div>
-			<Link to={linkAllCategory} activeClassName={'active'}>
+			<Link partiallyActive to={linkAllCategory} activeClassName={'active'}>
 				Все
 			</Link>
 			{categories.map(({ node: { id, name, path } }) => (
 				<Link
+					partiallyActive
 					key={id}
-					to={`/catalogue/filters/tours/${directionPath}/${path}/${seasonPath}/${typePath}`}
+					to={`/catalogue/filters/tours/${directionPath}/${path}/${guidePath}/${typePath}`}
 					activeClassName={'active'}
 				>
 					{name}
@@ -34,7 +35,7 @@ const GeneralFilterCategories = ({
 
 GeneralFilterCategories.defaultProps = {
 	directionPath: 'all',
-	seasonPath: 'all',
+	guidePath: 'all',
 	typePath: 'all',
 }
 

@@ -1,38 +1,12 @@
-const createSeasons = require('./seasons')
-const createTypes = require('./types')
+const createGuides = require('./guides')
 
 module.exports = async (args) => {
-	const { graphql, createPage, reporter, components, path, direction, context } = args
-	const result = await graphql(`
-		{
-			allStrapiCategories(filter: { tours: { elemMatch: { id: { ne: null } } } }) {
-				edges {
-					node {
-						id
-						name
-						path
-						tours {
-							direction
-						}
-					}
-				}
-			}
-		}
-	`)
+	const { createPage, components, path, direction, context, data } = args
 
-	if (result.errors) {
-		reporter.panicOnBuild(`Error while running GraphQL query.`)
-		return
-	}
-
-	const { allStrapiCategories } = result.data
-
-	allStrapiCategories.edges.forEach((category) => {
+	data.categories.forEach((category) => {
 		const extendedArgs = { ...args, category }
 
-		createSeasons(extendedArgs)
-
-		// createTypes({ graphql, reporter, createPage, path, components, direction, context, category })
+		createGuides(extendedArgs)
 
 		createPage({
 			path: `${path.filterPage}/${path.tours}/${direction ? direction.node.path : 'all'}/${

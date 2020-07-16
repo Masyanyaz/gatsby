@@ -48,8 +48,8 @@ const ColumnBlocksInfo = ({ hours, days, transports, towns, prices }) => {
 				<div className="excursionInfo__block-element">
 					<span>{transports.length > 1 ? `Types de transport: ` : `Type de transport: `}</span>
 					<div>
-						{transports.map(({ id, name, icon }) => (
-							<img key={id} src={icon.publicURL} alt="" title={name} />
+						{transports.map(({ id, name, image }) => (
+							<img key={id} src={image.publicURL} alt="" title={name} />
 						))}
 					</div>
 				</div>

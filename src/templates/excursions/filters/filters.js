@@ -7,17 +7,18 @@ import LayoutsFilters from '../../../layouts/filters'
 import PreviewExcursions from '../../../components/preview/excursions'
 
 const FiltersPage = (props) => {
-	const data = props.data
+	const { strapiDirections, allStrapiExcursions } = props.data
+	const backPath = props.path
 
 	return (
-		<LayoutsFilters direction={data.strapiDirections} service="excursion">
-			<h1>{data.strapiDirections.name}</h1>
+		<LayoutsFilters direction={strapiDirections} service="excursion">
+			<h1>{strapiDirections.name}</h1>
 			<div>Описание</div>
 			<hr />
 			<div className="preview__grid">
-				{data.allStrapiExcursions.edges.length
-					? data.allStrapiExcursions.edges.map(({ node }) => (
-							<PreviewExcursions key={node.id} node={node} />
+				{allStrapiExcursions.edges.length
+					? allStrapiExcursions.edges.map(({ node }) => (
+							<PreviewExcursions key={node.id} node={node} backPath={backPath} />
 					  ))
 					: 'Экскурсий не найдено'}
 			</div>
@@ -30,6 +31,9 @@ export const query = graphql`
 		strapiDirections(path: { eq: $directionPath }) {
 			name
 			path
+			tours {
+				id
+			}
 		}
 		allStrapiExcursions(filter: { direction: { path: { eq: $directionPath } } }) {
 			edges {
@@ -38,17 +42,15 @@ export const query = graphql`
 					name
 					hours
 					path
+					direction {
+						path
+					}
 					transports {
 						id
 						name
-						icon {
-							id
-							name
+						image {
 							publicURL
 						}
-					}
-					direction {
-						path
 					}
 					prices {
 						count

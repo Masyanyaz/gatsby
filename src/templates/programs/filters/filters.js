@@ -7,37 +7,50 @@ import LayoutsFilters from '../../../layouts/filters'
 import PreviewTours from '../../../components/preview/tours'
 import GeneralFilter from '../../../general/filter'
 // TODO: Переименовать!
-import Combi from './asd'
+import Combine from './asd'
 
 const FiltersPage = (props) => {
-	const data = props.data
+	const { strapiDirections, allStrapiTours } = props.data
 	const context = props.pageContext
+	const backPath = props.path
 
 	return (
-		<LayoutsFilters direction={data.strapiDirections} service="tour">
-			<h1>{data.strapiDirections.name}</h1>
+		<LayoutsFilters direction={strapiDirections} service="tour">
+			<h1>{strapiDirections.name}</h1>
 			<div>Описание</div>
 			<hr />
 			<h2>Фильтры:</h2>
 			<GeneralFilter {...context} />
 			<hr />
 			<div className="preview__grid">
-				{data.allStrapiTours.edges.length
-					? data.allStrapiTours.edges.map(({ node }) => (
-							<PreviewTours key={node.id} node={node} directionPath={context.directionPath} />
+				{allStrapiTours.edges.length
+					? allStrapiTours.edges.map(({ node }) => (
+							<PreviewTours
+								key={node.id}
+								node={node}
+								directionPath={context.directionPath}
+								backPath={backPath}
+							/>
 					  ))
 					: 'Туров с данными фильтрами не найдено'}
 			</div>
-			<Combi towns={data.strapiDirections.towns} directionPath={context.directionPath} />
+			{/*<Combine
+				towns={strapiDirections.towns}
+				directionPath={context.directionPath}
+				backPath={backPath}
+			/>*/}
 		</LayoutsFilters>
 	)
 }
 
 export const query = graphql`
-	query($directionPath: String, $categoryPath: String, $seasonPath: String, $typePath: String) {
+	query($directionPath: String, $categoryPath: String) {
 		strapiDirections(path: { eq: $directionPath }) {
 			name
 			path
+			excursions {
+				id
+			}
 			towns {
 				id
 			}
@@ -45,9 +58,7 @@ export const query = graphql`
 		allStrapiTours(
 			filter: {
 				direction: { path: { eq: $directionPath } }
-				category: { path: { eq: $categoryPath } }
-				seasons: { elemMatch: { path: { eq: $seasonPath } } }
-				types: { elemMatch: { path: { eq: $typePath } } }
+				categories: { elemMatch: { path: { eq: $categoryPath } } }
 			}
 		) {
 			edges {
@@ -60,22 +71,14 @@ export const query = graphql`
 					path
 					preview_text
 					prices {
-						types {
+						count {
 							value
 						}
 					}
 					days {
 						id
 					}
-					types {
-						id
-						name
-						path
-						img {
-							publicURL
-						}
-					}
-					category {
+					categories {
 						id
 						name
 						path

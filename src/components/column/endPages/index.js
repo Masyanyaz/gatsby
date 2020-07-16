@@ -7,11 +7,11 @@ import './index.css'
 import FormsPopupButton from '../../forms/popup/button'
 import ColumnBlocksReview from '../blocks/review'
 
-const ColumnEndPages = ({ componentInfo }) => {
+const ColumnEndPages = ({ columnBlocksInfo }) => {
 	return (
 		<div className="right-column-container">
 			<div className={`right-column sticky`}>
-				{componentInfo()}
+				{columnBlocksInfo()}
 				<FormsPopupButton text="Слыш, купи" className="right-column-button" />
 				<ColumnBlocksReview />
 			</div>
@@ -20,7 +20,7 @@ const ColumnEndPages = ({ componentInfo }) => {
 }
 
 ColumnEndPages.propTypes = {
-	componentInfo: PropTypes.func.isRequired,
+	columnBlocksInfo: PropTypes.func.isRequired,
 }
 
 export default ColumnEndPages

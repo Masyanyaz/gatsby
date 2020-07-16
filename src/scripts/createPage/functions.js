@@ -1,19 +1,4 @@
 module.exports = {
-	uniqueValueArray: (array) => {
-		return array.group.map((items) => {
-			const unique = []
-			return {
-				fieldValue: items.fieldValue,
-				edges: items.edges.filter((item) => {
-					if (!unique.includes(item.node.id)) {
-						unique.push(item.node.id)
-						return item
-					}
-				}),
-			}
-		})
-	},
-
 	combine: (a, min = 1) => {
 		let fn = function (n, src, got, all) {
 			if (n === 0) {

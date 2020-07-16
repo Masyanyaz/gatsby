@@ -8,20 +8,23 @@ import Link from '../../../global/link'
 const ColumnBlocksDirection = () => {
 	const { direction, service } = useSelector((state) => state.url)
 
+	let topLink =
+		service === 'tour' ? (
+			<p>
+				<Link to={`/catalogue/filters/excursion/${direction.path}/all`}>Excursions</Link>
+			</p>
+		) : (
+			<p>
+				<Link to={`/${direction.path}`}>Tours</Link>
+			</p>
+		)
+
 	return (
 		<div className="direction">
 			<p>aussi à {direction.name}</p>
 			<div className="direction__element">
 				<div className="direction__element-icon" />
-				{service === 'tour' ? (
-					<p>
-						<Link to={`/catalogue/filters/excursion/${direction.path}/all`}>Excursions</Link>
-					</p>
-				) : (
-					<p>
-						<Link to={`/${direction.path}`}>Tours</Link>
-					</p>
-				)}
+				{topLink}
 			</div>
 			<div className="direction__element">
 				<div className="direction__element-icon" />

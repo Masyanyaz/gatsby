@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import GeneralPricesMinMax from '../../../general/prices/minMax'
 import Link from '../../global/link'
 
-const PreviewImage = ({ directionPath, category, path, prices }) => {
+const PreviewImage = ({ directionPath, backPath, category, path, prices }) => {
 	// TODO: Убрать запрос и картинку из запроса в filters
 	const data = useStaticQuery(graphql`
 		query {
@@ -22,7 +22,7 @@ const PreviewImage = ({ directionPath, category, path, prices }) => {
 	`)
 
 	const pricesArray = prices.reduce((res, price) => {
-		const prices = price.types.map((type) => type.value)
+		const prices = price.count.map(({ value }) => value)
 		return [...res, ...prices]
 	}, [])
 
@@ -31,6 +31,7 @@ const PreviewImage = ({ directionPath, category, path, prices }) => {
 			<Link
 				to={`/catalogue/programs/${directionPath}/tours/${category.path}/${path}/`}
 				className="preview__block-top-picture"
+				state={{ back: backPath }}
 			>
 				<Img fluid={data.strapiTours.preview_image.childImageSharp.fluid} />
 			</Link>
