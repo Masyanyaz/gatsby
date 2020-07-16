@@ -12,35 +12,35 @@ const GeneralPrices = ({ prices }) => {
 	// console.log(prices)
 	return (
 		<>
-			{/*<div className="tabs">*/}
-			{/*	{prices.map(({ count }) => (*/}
-			{/*		<GlobalUIButton*/}
-			{/*			key={count}*/}
-			{/*			text={`${count} человека`}*/}
-			{/*			className={`tabs__item ${count === countSelected ? 'focus' : null}`}*/}
-			{/*			onClick={() => setCountSelected(count)}*/}
-			{/*			onKeyDown={() => setCountSelected(count)}*/}
-			{/*		/>*/}
-			{/*	))}*/}
-			{/*</div>*/}
+			<div className="tabs">*!/}
+				{prices.map(({ count }) => (
+					<GlobalUIButton
+						key={count}
+						text={`${count} человека`}
+						className={`tabs__item ${count === countSelected ? 'focus' : null}`}
+						onClick={() => setCountSelected(count)}
+						onKeyDown={() => setCountSelected(count)}
+					/>
+				))}
+			</div>
 
-			{/*<div className="priceTable">*/}
-			{/*	<div className="priceTable__line">*/}
-			{/*		{types.map((type) => (*/}
-			{/*			<div className="priceTable__line-item" key={type.id}>*/}
-			{/*				{type.name}*/}
-			{/*			</div>*/}
-			{/*		))}*/}
-			{/*	</div>*/}
+			<div className="priceTable">
+				<div className="priceTable__line">
+					{types.map((type) => (
+						<div className="priceTable__line-item" key={type.id}>
+							{type.name}
+						</div>
+					))}
+				</div>
 
-			{/*	<div className="priceTable__line">*/}
-			{/*		{types.map((type) => (*/}
-			{/*			<div className="priceTable__line-item" key={type.id}>*/}
-			{/*				{type.value}*/}
-			{/*			</div>*/}
-			{/*		))}*/}
-			{/*	</div>*/}
-			{/*</div>*/}
+				<div className="priceTable__line">
+					{types.map((type) => (
+						<div className="priceTable__line-item" key={type.id}>
+							{type.value}
+						</div>
+					))}
+				</div>
+			</div>
 
 			<div className="priceTable">
 				{prices.map(({ count, types }) => (
