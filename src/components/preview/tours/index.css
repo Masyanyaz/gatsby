@@ -6,6 +6,10 @@
   border: 1px solid;
 }
 
+.preview__block:hover{
+  box-shadow: 0 0 5px #bababa;
+}
+
 .preview__block-top {
   position: relative;
 }

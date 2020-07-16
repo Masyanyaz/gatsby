@@ -1,17 +1,13 @@
 import React from 'react'
-import Link from '../global/link'
+import Link from '../../global/link'
 
-const OpenMenu = ({ items, dataItem = 'directions' }) => {
+const InspirationsOpenMenu = ({ items }) => {
 	return (
 		<div className="hover__menu">
 			{items.map(({ node }) => (
 				<Link
 					key={node.id}
-					to={
-						dataItem === 'directions'
-							? `/${node.path}`
-							: `/catalogue/filters/tours/all/${node.path}/all/all`
-					}
+					to={`/catalogue/filters/tours/all/${node.path}/all/all`}
 					className="hover__menu-item"
 				>
 					<div className="hover__menu-item-picture" />
@@ -22,4 +18,4 @@ const OpenMenu = ({ items, dataItem = 'directions' }) => {
 	)
 }
 
-export default OpenMenu
+export default InspirationsOpenMenu
