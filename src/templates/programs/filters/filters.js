@@ -44,49 +44,28 @@ const FiltersPage = (props) => {
 }
 
 export const query = graphql`
-	query($directionPath: String, $categoryPath: String) {
+	query($directionPath: String, $categoryPath: String, $guidePath: String) {
 		strapiDirections(path: { eq: $directionPath }) {
-			name
-			path
-			excursions {
-				id
-			}
-			towns {
-				id
-			}
+			...directionMain
+			...directionTours
+			...directionExcursions
 		}
 		allStrapiTours(
 			filter: {
 				direction: { path: { eq: $directionPath } }
 				categories: { elemMatch: { path: { eq: $categoryPath } } }
+				guide: { path: { eq: $guidePath } }
 			}
 		) {
 			edges {
 				node {
-					direction {
-						path
-					}
-					id
-					name
-					path
+					...toursMain
+					...toursDirection
+					...toursPrices
+					...toursDays
+					...toursCategories
+					...toursTowns
 					preview_text
-					prices {
-						count {
-							value
-						}
-					}
-					days {
-						id
-					}
-					categories {
-						id
-						name
-						path
-					}
-					towns {
-						id
-						name
-					}
 				}
 			}
 		}

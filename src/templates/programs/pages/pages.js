@@ -104,44 +104,14 @@ const ToursPage = (props) => {
 export const query = graphql`
 	query($pagePath: String!) {
 		strapiTours(path: { eq: $pagePath }) {
-			name
-			days {
-				id
-				name
-				text
-				image {
-					publicURL
-				}
-			}
-			direction {
-				name
-				path
-			}
-			categories {
-				id
-				name
-				path
-			}
-			guide {
-				id
-				name
-				path
-			}
-			seasons {
-				name
-			}
-			prices {
-				id
-				name
-				count {
-					count
-					value
-				}
-			}
-			towns {
-				name
-				id
-			}
+			...toursMain
+			...toursDays
+			...toursDirection
+			...toursCategories
+			...toursGuide
+			...toursSeasons
+			...toursPrices
+			...toursTowns
 			groupCount
 		}
 	}
