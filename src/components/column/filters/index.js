@@ -3,8 +3,8 @@ import React from 'react'
 import '../column.css'
 
 import ColumnBlocksAdvant from '../blocks/advant'
-import ColumnBlocksDirection from '../blocks/direction'
 import ColumnBlocksCommon from '../blocks/common'
+import ColumnBlocksDirection from '../blocks/direction'
 
 const ColumnFilters = () => {
 	return (

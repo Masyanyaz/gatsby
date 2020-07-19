@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+
 import './index.css'
 
 import PreviewImage from './image'
@@ -62,6 +64,11 @@ const PreviewTours = ({ node, backPath }) => {
 			</Link>
 		</div>
 	)
+}
+
+PreviewTours.propTypes = {
+	node: PropTypes.object.isRequired,
+	backPath: PropTypes.string.isRequired,
 }
 
 export default PreviewTours

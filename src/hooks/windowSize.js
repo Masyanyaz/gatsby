@@ -28,6 +28,7 @@ const useWindowSize = () => {
 
 import { useEffect, useState } from 'react'
 
+// Хук для отслеживания ширины экрана при ресайзе
 const isClient = typeof window === 'object'
 
 const useWindowSize = () => {
@@ -38,14 +39,11 @@ const useWindowSize = () => {
 			return false
 		}
 
-		const handleResize = () => setTimeout(() => setWidth(window.innerWidth), 500)
+		const handleResize = () => setTimeout(() => setWidth(window.innerWidth), 1000)
 
 		window.addEventListener('resize', handleResize)
-
-		return () => {
-			window.removeEventListener('resize', handleResize)
-		}
-	})
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
 
 	return width
 }

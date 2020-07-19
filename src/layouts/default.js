@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import './global.css'
 import './default.css'
 
-import Header from '../components/header/header'
+import Header from '../components/header'
 import Footer from '../components/footer/footer'
 import FormsPopup from '../components/forms/popup'
 
@@ -13,7 +13,7 @@ const LayoutsDefault = ({ children }) => {
 		<>
 			<Header />
 			<div className="content">
-				<div className="main-content" style={{ width: '100%' }}>
+				<div className="main-content">
 					<main>{children}</main>
 				</div>
 				<FormsPopup />

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import Link from '../../global/link'
 
 import './index.css'
 
-import DesktopMenu from '../desktopMenu'
+import HeaderDesktopMenu from './menu'
 import FormsPopupButton from '../../forms/popup/button'
 import useScrollPosition from '../../../hooks/scrollPosition'
+import Link from '../../global/link'
 
 const HeaderDesktop = () => {
 	const [scrollTop, setScrollTop] = useState(0)
@@ -31,7 +31,7 @@ const HeaderDesktop = () => {
 		<div style={{ paddingTop: isScrolling ? '165px' : 0 }}>
 			<header className={isScrolling ? 'scrolled' : ''}>
 				<div className="header__menu">
-					<DesktopMenu />
+					<HeaderDesktopMenu />
 					<div className="header__menu-center">
 						<Link to="/">
 							<img src="https://cuisinedevoyage.com/img/logo-v2t.svg" alt="" />

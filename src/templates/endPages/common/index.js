@@ -1,28 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
+import './index.css'
+
 import SEO from '../../../components/global/seo'
 import Link from '../../../components/global/link'
-import './index.css'
-import { graphql, useStaticQuery } from 'gatsby'
 import LayoutsDefault from '../../../layouts/default'
 
-const TemplatesEndPagesCommon = ({ h1, url }) => {
-	const data = useStaticQuery(graphql`
-		{
-			allStrapiDirections {
-				edges {
-					node {
-						id
-						name
-						path
-					}
-				}
-			}
-		}
-	`)
-
+const TemplatesEndPagesCommon = ({ h1, title, description, url, directions }) => {
 	return (
 		<LayoutsDefault>
-			<SEO title={'программы'} />
+			<SEO title={title} description={description} />
 			<h1>{h1}</h1>
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus adipisci consequuntur,
@@ -53,27 +41,30 @@ const TemplatesEndPagesCommon = ({ h1, url }) => {
 				perferendis provident rem tempore ut velit voluptatem! Enim, odit quam.
 			</p>
 
-			<p>
-				<b>Смотрите какие у нас клёвые туры:</b>
-			</p>
+			<h3>Смотрите какие у нас клёвые туры:</h3>
 
 			<div className="dir__grid">
-				{data.allStrapiDirections.edges.map((direction) => (
+				{directions.edges.map(({ node: { id, name, path } }) => (
 					<Link
-						to={
-							url === 'tours'
-								? `/${direction.node.path}`
-								: `/catalogue/filters/excursion/${direction.node.path}/all`
-						}
-						key={direction.node.id}
+						key={id}
+						to={url === 'tours' ? `/${path}` : `/catalogue/filters/excursion/${path}/all`}
 					>
 						<div className="dir__grid-img" />
-						<div className="dir__grid-name">{direction.node.name}</div>
+						<div className="dir__grid-name">{name}</div>
 					</Link>
 				))}
 			</div>
 		</LayoutsDefault>
 	)
+}
+
+TemplatesEndPagesCommon.propTypes = {
+	directions: PropTypes.shape({
+		edges: PropTypes.array,
+	}).isRequired,
+	h1: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	description: PropTypes.string.isRequired,
 }
 
 export default TemplatesEndPagesCommon

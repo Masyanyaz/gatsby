@@ -1,14 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Link from '../../components/global/link'
 
-const GeneralFilterDirections = ({
-	directions,
-	categoryPath,
-	guidePath,
-	typePath,
-	directionIncludes,
-}) => {
+const GeneralFilterDirections = ({ directions, categoryPath, guidePath, directionIncludes }) => {
 	return (
 		<div>
 			<Link
@@ -23,7 +18,7 @@ const GeneralFilterDirections = ({
 					(!directionIncludes && categoryPath === 'all' && guidePath === 'all') ||
 					(directionIncludes && categoryPath === 'all' && guidePath === 'all')
 						? `/${path}`
-						: `/catalogue/filters/tours/${path}/${categoryPath}/${guidePath}/${typePath}`
+						: `/catalogue/filters/tours/${path}/${categoryPath}/${guidePath}/all`
 				return (
 					<Link partiallyActive key={id} to={linkDirection} activeClassName={'active'}>
 						{name}
@@ -37,7 +32,13 @@ const GeneralFilterDirections = ({
 GeneralFilterDirections.defaultProps = {
 	categoryPath: 'all',
 	guidePath: 'all',
-	typePath: 'all',
+}
+
+GeneralFilterDirections.propTypes = {
+	categoryPath: PropTypes.string,
+	guidePath: PropTypes.string,
+	directions: PropTypes.array.isRequired,
+	directionIncludes: PropTypes.bool.isRequired,
 }
 
 export default GeneralFilterDirections

@@ -1,18 +1,17 @@
 import React, { useRef, useState } from 'react'
-
 import { graphql, useStaticQuery } from 'gatsby'
+
 import useOnClickOutside from '../../../hooks/onClickOutside'
-import InspirationsOpenMenu from './openMenu'
+import HeaderInspirationsOpenMenu from './openMenu'
+import GlobalUIButton from '../../global/UI/button'
 
 const HeaderInspirations = () => {
-	const { allStrapiCategories } = useStaticQuery(graphql`
+	const { allStrapiInspirations } = useStaticQuery(graphql`
 		{
-			allStrapiCategories {
+			allStrapiInspirations {
 				edges {
 					node {
-						id
-						name
-						path
+						...inspirationMain
 					}
 				}
 			}
@@ -27,9 +26,9 @@ const HeaderInspirations = () => {
 
 	return (
 		<>
-			<div className="header__menu-left-side-element" onClick={() => setOpen(true)} ref={ref}>
-				Inspirations
-				{isOpen && <InspirationsOpenMenu items={allStrapiCategories.edges} />}
+			<div className="header__menu-left-side-element" ref={ref}>
+				<GlobalUIButton onClick={() => setOpen(true)}>Inspirations</GlobalUIButton>
+				{isOpen && <HeaderInspirationsOpenMenu inspirations={allStrapiInspirations.edges} />}
 			</div>
 		</>
 	)

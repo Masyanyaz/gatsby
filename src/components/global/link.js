@@ -27,4 +27,5 @@ const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
 		</a>
 	)
 }
+
 export default Link

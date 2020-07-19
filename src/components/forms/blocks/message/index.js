@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import styles from './index.module.css'
 
@@ -13,3 +14,12 @@ export const FormsBlocksMessageError = ({ children }) => (
 export const FormsBlocksMessageSuccess = ({ children }) => (
 	<Message className={styles.success}>{children}</Message>
 )
+
+Message.defaultProps = {
+	className: '',
+}
+
+Message.propTypes = FormsBlocksMessageError.propTypes = FormsBlocksMessageSuccess.propTypes = {
+	children: PropTypes.node.isRequired,
+	className: PropTypes.string,
+}

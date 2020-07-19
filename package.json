@@ -2,7 +2,7 @@
   "name": "gatsby-starter-default",
   "private": true,
   "description": "Cuisine De Voyage",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Masyanyaz and Nomel",
   "dependencies": {
     "@hot-loader/react-dom": "^16.13.0",
@@ -14,16 +14,17 @@
     "gatsby-plugin-offline": "^3.2.17",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-sharp": "^2.6.19",
+    "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gatsby-source-filesystem": "^2.3.19",
     "gatsby-source-strapi": "0.0.12",
     "gatsby-transformer-sharp": "^2.5.11",
+    "nuka-carousel": "^4.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
-    "nuka-carousel": "^4.7.0",
     "yup": "^0.29.1"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 
-const ColumnBlocksReview = (props) => {
+const ColumnBlocksReview = () => {
 	return <div className="columnReview">Отзыв</div>
 }
 

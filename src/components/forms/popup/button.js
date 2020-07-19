@@ -11,7 +11,11 @@ const FormsPopupButton = ({ text, className, ...other }) => {
 
 	const openForm = () => dispatch(openPopupForm())
 
-	return <GlobalUIButton text={text} className={className} onClick={openForm} {...other} />
+	return (
+		<GlobalUIButton className={className} onClick={openForm} {...other}>
+			{text}
+		</GlobalUIButton>
+	)
 }
 
 FormsPopupButton.defaultProps = {

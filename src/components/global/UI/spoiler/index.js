@@ -13,7 +13,9 @@ const GlobalUISpoiler = ({ children, text, className, ...other }) => {
 	return (
 		<>
 			{!open ? (
-				<GlobalUIButton text={text} className={className} onClick={openContent} {...other} />
+				<GlobalUIButton className={className} onClick={openContent} {...other}>
+					{text}
+				</GlobalUIButton>
 			) : (
 				<>{children}</>
 			)}

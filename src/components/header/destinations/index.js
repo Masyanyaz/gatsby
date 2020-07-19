@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
-
 import { graphql, useStaticQuery } from 'gatsby'
-import DestinationsOpenMenu from './openMenu'
+
+import HeaderDestinationsOpenMenu from './openMenu'
 import useOnClickOutside from '../../../hooks/onClickOutside'
-import useWindowSize from '../../../hooks/windowSize'
+import GlobalUIButton from '../../global/UI/button'
 
 const HeaderDestinations = () => {
 	const { allStrapiDirections } = useStaticQuery(graphql`
@@ -11,9 +11,7 @@ const HeaderDestinations = () => {
 			allStrapiDirections {
 				edges {
 					node {
-						id
-						name
-						path
+						...directionMain
 					}
 				}
 			}
@@ -28,9 +26,9 @@ const HeaderDestinations = () => {
 
 	return (
 		<>
-			<div className="header__menu-left-side-element" onClick={() => setOpen(true)} ref={ref}>
-				Destinations
-				{isOpen && <DestinationsOpenMenu items={allStrapiDirections.edges} />}
+			<div className="header__menu-left-side-element" ref={ref}>
+				<GlobalUIButton onClick={() => setOpen(true)}>Destinations</GlobalUIButton>
+				{isOpen && <HeaderDestinationsOpenMenu directions={allStrapiDirections.edges} />}
 			</div>
 		</>
 	)

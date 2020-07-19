@@ -2,11 +2,7 @@ const createCategories = require('./categories')
 const createGuides = require('./guides')
 const createAllFilters = require('./allFilters')
 
-const itemsInDirections = (array, id) => {
-	return array.edges.filter((item) => {
-		return item.node.tours.map((tour) => tour.direction).includes(id)
-	})
-}
+const { setDisabledNullItems } = require('../functions')
 
 module.exports = async (args) => {
 	const { graphql, createPage, reporter, components } = args
@@ -65,31 +61,33 @@ module.exports = async (args) => {
 		guides: allStrapiGuides.edges,
 	}
 
-	allStrapiDirections.edges.forEach((direction) => {
-		const context = {
-			directionPath: direction.node.path,
-			...data,
-			categories: itemsInDirections(allStrapiCategories, direction.node.strapiId),
-			guides: itemsInDirections(allStrapiGuides, direction.node.strapiId),
-		}
+	await Promise.all(
+		allStrapiDirections.edges.map(async (direction) => {
+			const context = {
+				directionPath: direction.node.path,
+				...data,
+				categories: setDisabledNullItems(allStrapiCategories, direction.node.strapiId),
+				guides: setDisabledNullItems(allStrapiGuides, direction.node.strapiId),
+			}
 
-		const extendedArgs = {
-			...args,
-			data,
-			direction,
-			context,
-		}
+			const extendedArgs = {
+				...args,
+				data,
+				direction,
+				context,
+			}
 
-		createCategories(extendedArgs)
+			await createCategories(extendedArgs)
 
-		createGuides(extendedArgs)
+			await createGuides(extendedArgs)
 
-		createPage({
-			path: `${direction.node.path}`,
-			component: components.filtersProgram,
-			context,
-		})
-	})
+			createPage({
+				path: direction.node.path,
+				component: components.filtersProgram,
+				context,
+			})
+		}),
+	)
 
 	await createAllFilters({ ...args, data })
 }

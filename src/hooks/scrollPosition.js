@@ -1,5 +1,6 @@
 import { useRef, useLayoutEffect } from 'react'
 
+// Хук для отслеживания координат скрола страницы
 const isClient = typeof window === 'object'
 
 const getScrollPosition = ({ element, useWindow }) => {
@@ -38,7 +39,6 @@ const useScrollPosition = (effect, deps, element, useWindow, wait) => {
 		}
 
 		window.addEventListener('scroll', handleScroll)
-
 		return () => window.removeEventListener('scroll', handleScroll)
 	}, deps)
 }

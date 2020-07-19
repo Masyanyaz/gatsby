@@ -28,7 +28,7 @@ module.exports = async (args) => {
 	allStrapiTours.edges.forEach(({ node }) => {
 		createPage({
 			path: `${path.programsPath}/${node.direction.path}/${path.tours}/${node.categories[0].path}/${node.path}`,
-			component: components.PageProgram,
+			component: components.pageProgram,
 			context: {
 				pagePath: node.path,
 			},

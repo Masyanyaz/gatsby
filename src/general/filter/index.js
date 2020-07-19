@@ -1,21 +1,21 @@
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
+import PropTypes from 'prop-types'
 
 import './index.css'
 
 import GeneralFilterDirections from './directions'
 import GeneralFilterCategories from './categories'
-import GeneralFilterSeasons from './seasons'
+import GeneralFilterGuides from './guides'
 
 const GeneralFilter = ({
 	directionPath,
+	categoryPath,
+	guidePath,
 	directions,
 	categories,
 	guides,
-	categoryPath,
-	guidePath,
 }) => {
-	const directionPathArray = directions.map((direction) => direction.node.path)
+	const directionPathArray = directions.map(({ node: { path } }) => path)
 	const directionIncludes = directionPathArray.includes(directionPath)
 
 	const context = {
@@ -29,9 +29,24 @@ const GeneralFilter = ({
 		<div className="filters">
 			<GeneralFilterDirections directions={directions} {...context} />
 			<GeneralFilterCategories categories={categories} {...context} />
-			<GeneralFilterSeasons guides={guides} {...context} />
+			<GeneralFilterGuides guides={guides} {...context} />
 		</div>
 	)
+}
+
+GeneralFilter.defaultProps = {
+	directionPath: 'all',
+	categoryPath: 'all',
+	guidePath: 'all',
+}
+
+GeneralFilter.propTypes = {
+	directionPath: PropTypes.string,
+	categoryPath: PropTypes.string,
+	guidePath: PropTypes.string,
+	directions: PropTypes.array.isRequired,
+	categories: PropTypes.array.isRequired,
+	guides: PropTypes.array.isRequired,
 }
 
 export default GeneralFilter

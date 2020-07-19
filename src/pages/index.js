@@ -1,26 +1,15 @@
 import React from 'react'
+import { graphql } from 'gatsby'
+
 import './index.css'
 
 import LayoutsDefault from '../layouts/default'
 import SEO from '../components/global/seo'
 import ColumnBlocksAdvant from '../components/column/blocks/advant'
 import Link from '../components/global/link'
-import { graphql, useStaticQuery } from 'gatsby'
 
 const IndexPage = (props) => {
-	const data = useStaticQuery(graphql`
-		{
-			allStrapiDirections {
-				edges {
-					node {
-						id
-						name
-						path
-					}
-				}
-			}
-		}
-	`)
+	const { allStrapiDirections } = props.data
 
 	return (
 		<LayoutsDefault>
@@ -52,7 +41,7 @@ const IndexPage = (props) => {
 			<div style={{ margin: '100px' }} />
 			<h2>Популярные направления</h2>
 			<div className="dir__grid">
-				{data.allStrapiDirections.edges.map((direction) => (
+				{allStrapiDirections.edges.map((direction) => (
 					<Link to={`/${direction.node.path}`} key={direction.node.id}>
 						<div className="dir__grid-img" />
 						<div className="dir__grid-name">{direction.node.name}</div>
@@ -114,5 +103,17 @@ const IndexPage = (props) => {
 		</LayoutsDefault>
 	)
 }
+
+export const query = graphql`
+	{
+		allStrapiDirections {
+			edges {
+				node {
+					...directionMain
+				}
+			}
+		}
+	}
+`
 
 export default IndexPage

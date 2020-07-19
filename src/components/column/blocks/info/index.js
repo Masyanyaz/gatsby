@@ -1,78 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 
 import './index.css'
 
-import GeneralPricesMinMax from '../../../../general/prices/minMax'
+import ColumnBlocksInfoExcursions from './excursions'
+import ColumnBlocksInfoPrograms from './programs'
 
-const ColumnBlocksInfo = ({ hours, days, transports, towns, prices }) => {
+import { TourInfo } from '../../../../templates/endPages/programs'
+import { ExcursionInfo } from '../../../../templates/endPages/excursions'
+
+const ColumnBlocksInfo = () => {
+	const tourInfoContext = useContext(TourInfo)
+	const excursionInfoContext = useContext(ExcursionInfo)
+
 	return (
 		<div className="excursionInfo__block">
-			{hours && (
-				<div className="excursionInfo__block-element">
-					<span>Durée: </span>
-					<div>
-						<span>{hours}</span> часов
-					</div>
-				</div>
-			)}
-			{days && (
-				<div className="excursionInfo__block-element">
-					<span>Jours: </span>
-					<div>
-						{days.length ? (
-							<div>
-								<span>{days.length}</span> дней
-							</div>
-						) : (
-							'слыш, добавь дни'
-						)}
-					</div>
-				</div>
-			)}
-			{towns && (
-				<div className="excursionInfo__block-element">
-					<span>Towns: </span>
-					<div>
-						{towns.length ? (
-							<div>
-								<span>{towns.length}</span> город
-							</div>
-						) : (
-							'слыш, добавь города'
-						)}
-					</div>
-				</div>
-			)}
-			{transports && (
-				<div className="excursionInfo__block-element">
-					<span>{transports.length > 1 ? `Types de transport: ` : `Type de transport: `}</span>
-					<div>
-						{transports.map(({ id, name, image }) => (
-							<img key={id} src={image.publicURL} alt="" title={name} />
-						))}
-					</div>
-				</div>
-			)}
-			<div className="excursionInfo__block-element">
-				<span>Цена:</span>
-				<div>
-					<GeneralPricesMinMax prices={prices} />
-				</div>
-			</div>
+			{tourInfoContext && <ColumnBlocksInfoPrograms {...tourInfoContext} />}
+			{excursionInfoContext && <ColumnBlocksInfoExcursions {...excursionInfoContext} />}
 		</div>
 	)
-}
-
-ColumnBlocksInfo.defaultProps = {
-	hours: null,
-	days: null,
-	transports: null,
-	towns: null,
-}
-
-ColumnBlocksInfo.propTypes = {
-	prices: PropTypes.array.isRequired,
 }
 
 export default ColumnBlocksInfo

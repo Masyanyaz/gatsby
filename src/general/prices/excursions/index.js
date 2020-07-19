@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+
 import './index.css'
 
 const PricesExcursion = ({ prices }) => {
@@ -14,6 +16,7 @@ const PricesExcursion = ({ prices }) => {
 	return (
 		<>
 			<div>
+				{/*eslint-disable-next-line jsx-a11y/no-onchange*/}
 				<select onChange={handleSelect} defaultValue={countSelected}>
 					{counts.map((count) => (
 						<option key={count} value={count}>
@@ -25,12 +28,16 @@ const PricesExcursion = ({ prices }) => {
 
 			<div className="exPriceTable">
 				<div>Prix par personne:</div>
-				{filteredPrices.map((price) => (
-					<div key={price.id}>{price.value} euro</div>
+				{filteredPrices.map(({ id, value }) => (
+					<div key={id}>{value} euro</div>
 				))}
 			</div>
 		</>
 	)
+}
+
+PricesExcursion.propTypes = {
+	prices: PropTypes.array.isRequired,
 }
 
 export default PricesExcursion

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 
 import useOnClickOutside from '../../../hooks/onClickOutside'
-import useWindowSize from '../../../hooks/windowSize'
 import Link from '../../global/link'
+import GlobalUIButton from '../../global/UI/button'
 
 const HeaderServices = () => {
 	const [isOpen, setOpen] = useState(false)
@@ -10,10 +10,11 @@ const HeaderServices = () => {
 	const ref = useRef()
 
 	useOnClickOutside(ref, () => setOpen(false))
+
 	return (
 		<>
-			<div className="header__menu-left-side-element" onClick={() => setOpen(true)} ref={ref}>
-				Services
+			<div className="header__menu-left-side-element" ref={ref}>
+				<GlobalUIButton onClick={() => setOpen(true)}>Services</GlobalUIButton>
 				{isOpen && (
 					<div className="hover__menu">
 						<Link to={`/catalogue/tours`} className="hover__menu-item">

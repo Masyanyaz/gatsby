@@ -1,7 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Carousel from 'nuka-carousel'
 
 import './index.css'
+
+import GlobalUIButton from '../../../components/global/UI/button'
 
 const GeneralDaysDots = ({
 	days,
@@ -28,18 +31,16 @@ const GeneralDaysDots = ({
 				withoutControls
 			>
 				{days.map((day, index) => (
-					<div
+					<GlobalUIButton
 						key={index}
-						className={`dots-item ${currentSlide === index ? 'active' : null}`}
+						className={`dots-item ${currentSlide === index ? 'active' : ''}`}
 						aria-label={`Selected: ${index + 1} slide`}
 						title={`Selected: ${index + 1} slide`}
-						role="button"
-						tabIndex={0}
 						onClick={() => updateCurrentSlide(index)}
 					>
 						<div className="dots-ball" />
 						<span className="dots-item-name">Jour {index + 1}</span>
-					</div>
+					</GlobalUIButton>
 				))}
 			</Carousel>
 			<button disabled={isLastDay} onClick={next}>
@@ -47,6 +48,15 @@ const GeneralDaysDots = ({
 			</button>
 		</div>
 	)
+}
+
+GeneralDaysDots.propTypes = {
+	days: PropTypes.array.isRequired,
+	isLastDay: PropTypes.bool.isRequired,
+	updateCurrentSlide: PropTypes.func.isRequired,
+	next: PropTypes.func.isRequired,
+	prev: PropTypes.func.isRequired,
+	countHiddenSlides: PropTypes.number.isRequired,
 }
 
 export default GeneralDaysDots

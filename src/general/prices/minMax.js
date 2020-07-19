@@ -16,7 +16,7 @@ const GeneralPricesMinMax = ({ prices }) => {
 }
 
 GeneralPricesMinMax.propTypes = {
-	prices: PropTypes.array.isRequired,
+	prices: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
 
 export default GeneralPricesMinMax

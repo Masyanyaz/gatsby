@@ -26,7 +26,7 @@ module.exports = async (args) => {
 	allStrapiExcursions.edges.forEach(({ node }) => {
 		createPage({
 			path: `${path.programsPath}/${node.direction.path}/${path.excursion}/all/${node.path}`,
-			component: components.PageExcursion,
+			component: components.pageExcursion,
 			context: {
 				pagePath: node.path,
 			},

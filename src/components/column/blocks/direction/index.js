@@ -1,31 +1,24 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useContext } from 'react'
 
 import './index.css'
 
-import Link from '../../../global/link'
+import ColumnBlocksDirectionPrograms from './programs'
+import ColumnBlocksDirectionExcursions from './excursions'
 
-const ColumnBlocksDirection = () => {
-	const { direction, service } = useSelector((state) => state.url)
+import { TourFilterInfo } from '../../../../templates/filters/programs'
+import { ExcursionFilterInfo } from '../../../../templates/filters/excursions'
 
-	let topLink =
-		service === 'tour' ? (
-			<p>
-				<Link to={`/catalogue/filters/excursion/${direction.path}/all`}>Excursions</Link>
-			</p>
-		) : (
-			<p>
-				<Link to={`/${direction.path}`}>Tours</Link>
-			</p>
-		)
+const ColumnBlocksDirection = ({ direction, directionPath }) => {
+	const tourFilterInfoContext = useContext(TourFilterInfo)
+	const excursionFilterInfoContext = useContext(ExcursionFilterInfo)
 
 	return (
 		<div className="direction">
-			<p>aussi à {direction.name}</p>
-			<div className="direction__element">
-				<div className="direction__element-icon" />
-				{topLink}
-			</div>
+			<p>{directionPath ? `aussi à ${direction.name}` : 'Все направления'}</p>
+			{tourFilterInfoContext && <ColumnBlocksDirectionPrograms {...tourFilterInfoContext} />}
+			{excursionFilterInfoContext && (
+				<ColumnBlocksDirectionExcursions {...excursionFilterInfoContext} />
+			)}
 			<div className="direction__element">
 				<div className="direction__element-icon" />
 				<p>Billets de théâtre</p>

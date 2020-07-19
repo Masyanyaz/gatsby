@@ -11,7 +11,7 @@ const GeneralDays = ({ days }) => {
 
 	const daysLength = days.length
 	const isLastDay = currentSlide === days.length - 1
-	const countHiddenSlides = daysLength - 6
+	const countHiddenSlides = daysLength - 6 < 0 ? 0 : daysLength - 6
 
 	const next = () => {
 		setCurrentSlide((currentSlide) => (isLastDay ? daysLength - 1 : currentSlide + 1))
@@ -40,8 +40,8 @@ const GeneralDays = ({ days }) => {
 				}
 				withoutControls
 			>
-				{days.map((day, i) => (
-					<div key={day.id} className="programm__days">
+				{days.map(({ id, name, text, image }, i) => (
+					<div key={id} className="programm__days">
 						<div className="programm__days-left">
 							<div
 								style={{
@@ -52,19 +52,24 @@ const GeneralDays = ({ days }) => {
 								}}
 								className="programm__days-left-count"
 							>
-								{Boolean(i) && <button onClick={prev}>-</button>}
+								<button disabled={!currentSlide} onClick={prev}>
+									-
+								</button>
 								<span>День {i + 1}</span> из {days.length}
-								{i !== daysLength - 1 && <button onClick={next}>+</button>}
+								<button disabled={isLastDay} onClick={next}>
+									+
+								</button>
 							</div>
-							<div className="programm__days-left-name">{day.name}</div>
-							<div className="programm__days-left-description">{day.text}</div>
+							<div className="programm__days-left-name">{name}</div>
+							<div className="programm__days-left-description">{text}</div>
 						</div>
 						<div className="programm__days-right">
-							<img src={day.image.publicURL} alt="" />
+							<img src={image.publicURL} alt="" />
 						</div>
 					</div>
 				))}
 			</Carousel>
+
 			<GeneralDaysDots
 				days={days}
 				updateCurrentSlide={updateCurrentSlide}

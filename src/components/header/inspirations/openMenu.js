@@ -1,15 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import Link from '../../global/link'
 
-const InspirationsOpenMenu = ({ items }) => {
+const HeaderInspirationsOpenMenu = ({ inspirations }) => {
 	return (
 		<div className="hover__menu">
-			{items.map(({ node }) => (
-				<Link
-					key={node.id}
-					to={`/catalogue/filters/tours/all/${node.path}/all/all`}
-					className="hover__menu-item"
-				>
+			{inspirations.map(({ node }) => (
+				<Link key={node.id} to={`/${node.path}`} className="hover__menu-item">
 					<div className="hover__menu-item-picture" />
 					<div className="hover__menu-item-name">{node.name}</div>
 				</Link>
@@ -18,4 +16,8 @@ const InspirationsOpenMenu = ({ items }) => {
 	)
 }
 
-export default InspirationsOpenMenu
+HeaderInspirationsOpenMenu.propTypes = {
+	inspirations: PropTypes.array.isRequired,
+}
+
+export default HeaderInspirationsOpenMenu
