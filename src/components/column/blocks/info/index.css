@@ -33,3 +33,9 @@
 .excursionInfo__block-element img:nth-child(2){
     margin-left: 20px;
 }
+
+.infotypes{
+    font-size: 20px;
+    /*font-weight: bold;*/
+    margin-left: 30px;
+}

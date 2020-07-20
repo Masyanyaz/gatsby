@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import GeneralPricesMinMax from '../../../../general/prices/minMax'
 
-const ColumnBlocksInfoPrograms = ({ days, towns, prices }) => {
+const ColumnBlocksInfoPrograms = ({ days, towns, prices, priceType, groupCount }) => {
 	return (
 		<>
 			{days && (
@@ -20,6 +20,9 @@ const ColumnBlocksInfoPrograms = ({ days, towns, prices }) => {
 					</div>
 				</div>
 			)}
+			<div className="excursionInfo__block-element infotypes">
+				{priceType.name}, {groupCount ? groupCount : `нетю`}
+			</div>
 			{towns && (
 				<div className="excursionInfo__block-element">
 					<span>Towns: </span>

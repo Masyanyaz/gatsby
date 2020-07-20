@@ -5,6 +5,7 @@ import './index.css'
 
 import GeneralDays from '../../../general/days'
 import GeneralPrices from '../../../general/prices/programs'
+import GeneralOverall from '../../../general/overall'
 import LayoutsPages from '../../../layouts/pages'
 import GlobalUITag from '../../../components/global/UI/tag'
 import Link from '../../../components/global/link'
@@ -38,6 +39,8 @@ const ToursPage = (props) => {
 		prices: pricesArray,
 		days: data.days,
 		towns: data.towns,
+		priceType: data.priceType,
+		groupCount: data.groupCount,
 	}
 
 	const locationState = props.location.state
@@ -57,8 +60,7 @@ const ToursPage = (props) => {
 							locationState && locationState.back ? locationState.back : `/${data.direction.path}`
 						}
 					>
-						{' '}
-						Back{' '}
+						Back
 					</Link>
 				</div>
 				<h2>{data.name}</h2>
@@ -69,13 +71,7 @@ const ToursPage = (props) => {
 						provident quis excepturi sunt enim dolore debitis molestiae!
 					</div>
 					<div className="otstup" />
-					<p>Сделаем вид, что это заготовка для тура одним взглядом</p>
-					<div className="programm__info-tags">
-						{/*{data.types.map((type) => (*/}{' '}
-						{/*	<div key={type.id} className="programm__info-tags-item">*/}{' '}
-						{/*		<img src={type.img.publicURL} alt="" />*/} {/*		<span>{type.name}</span>*/}{' '}
-						{/*	</div>*/} {/*))}*/}
-					</div>
+					<GeneralOverall icons={data.icons} />
 				</div>
 
 				<div className="programm__menu">
@@ -119,6 +115,8 @@ export const query = graphql`
 			...toursSeason
 			...toursPrices
 			...toursTowns
+			...toursPriceType
+			...toursIcons
 			groupCount
 		}
 	}
