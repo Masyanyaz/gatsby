@@ -39,10 +39,10 @@ const FiltersPage = (props) => {
 						: 'Туров с данными фильтрами не найдено'}
 				</div>
 				{/*<Combine
-						towns={strapiDirections.towns}
-						directionPath={context.directionPath}
-						backPath={backPath}
-					/>*/}
+					towns={strapiDirections.towns}
+					directionPath={context.directionPath}
+					backPath={backPath}
+				/>*/}
 			</LayoutsFilters>
 		</TourFilterInfo.Provider>
 	)
@@ -57,7 +57,7 @@ export const query = graphql`
 		}
 		allStrapiTours(
 			filter: {
-				direction: { path: { eq: $directionPath } }
+				directions: { elemMatch: { path: { eq: $directionPath } } }
 				categories: { elemMatch: { path: { eq: $categoryPath } } }
 				guide: { path: { eq: $guidePath } }
 			}
@@ -65,7 +65,7 @@ export const query = graphql`
 			edges {
 				node {
 					...toursMain
-					...toursDirection
+					...toursDirections
 					...toursPrices
 					...toursDays
 					...toursCategories

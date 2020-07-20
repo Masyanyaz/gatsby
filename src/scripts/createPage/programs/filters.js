@@ -25,9 +25,6 @@ module.exports = async (args) => {
 							id
 							name
 							path
-							tours {
-								direction
-							}
 						}
 					}
 				}
@@ -37,9 +34,6 @@ module.exports = async (args) => {
 							id
 							name
 							path
-							tours {
-								direction
-							}
 						}
 					}
 				}
@@ -66,8 +60,8 @@ module.exports = async (args) => {
 			const context = {
 				directionPath: direction.node.path,
 				...data,
-				categories: setDisabledNullItems(allStrapiCategories, direction.node.strapiId),
-				guides: setDisabledNullItems(allStrapiGuides, direction.node.strapiId),
+				// categories: setDisabledNullItems(allStrapiCategories, direction.node.strapiId),
+				// guides: setDisabledNullItems(allStrapiGuides, direction.node.strapiId),
 			}
 
 			const extendedArgs = {

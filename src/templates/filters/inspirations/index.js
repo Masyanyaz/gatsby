@@ -35,7 +35,7 @@ export const query = graphql`
 			edges {
 				node {
 					...toursMain
-					...toursDirection
+					...toursDirections
 					...toursPrices
 					...toursDays
 					...toursCategories

@@ -10,10 +10,12 @@ import LayoutsPages from '../../../layouts/pages'
 import GlobalUITag from '../../../components/global/UI/tag'
 import Link from '../../../components/global/link'
 
-const TagList = ({ direction, categories, guide }) => {
+const TagList = ({ directions, categories, guide }) => {
 	return (
 		<div className="tag-list">
-			<GlobalUITag to={`/${direction.path}`} text={direction.name} />
+			{directions.map(({ id, path, name }) => (
+				<GlobalUITag key={id} to={`/${path}`} text={name} />
+			))}
 			{categories.map((category) => (
 				<GlobalUITag
 					key={category.id}
@@ -65,7 +67,7 @@ const ToursPage = (props) => {
 				</div>
 				<h2>{data.name}</h2>
 				<div className="programm__info">
-					<TagList direction={data.direction} categories={data.categories} guide={data.guide} />
+					<TagList directions={data.directions} categories={data.categories} guide={data.guide} />
 					<div className="programm__info-description">
 						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque
 						provident quis excepturi sunt enim dolore debitis molestiae!
@@ -109,7 +111,7 @@ export const query = graphql`
 		strapiTours(path: { eq: $pagePath }) {
 			...toursMain
 			...toursDays
-			...toursDirection
+			...toursDirections
 			...toursCategories
 			...toursGuide
 			...toursSeason

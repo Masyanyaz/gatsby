@@ -28,7 +28,7 @@ const PreviewTours = ({ node, backPath }) => {
 	return (
 		<div className="preview__block">
 			<PreviewImage
-				directionPath={node.direction.path}
+				directionPath={node.directions[0].path}
 				path={node.path}
 				category={node.categories[0]}
 				prices={node.prices}
@@ -56,7 +56,7 @@ const PreviewTours = ({ node, backPath }) => {
 			</div>
 
 			<Link
-				to={`/catalogue/programs/${node.direction.path}/tours/${node.categories[0].path}/${node.path}/`}
+				to={`/catalogue/programs/${node.directions[0].path}/tours/${node.categories[0].path}/${node.path}/`}
 				className="preview__block-button"
 				state={{ back: backPath }}
 			>

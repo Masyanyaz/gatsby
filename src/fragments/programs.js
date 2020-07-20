@@ -76,9 +76,9 @@ export const toursSeason = graphql`
 	}
 `
 
-export const toursDirection = graphql`
-	fragment toursDirection on StrapiTours {
-		direction {
+export const toursDirections = graphql`
+	fragment toursDirections on StrapiTours {
+		directions {
 			id
 			name
 			path

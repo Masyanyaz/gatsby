@@ -6,7 +6,7 @@ module.exports = async (args) => {
 				edges {
 					node {
 						path
-						direction {
+						directions {
 							path
 						}
 						categories {
@@ -27,7 +27,7 @@ module.exports = async (args) => {
 
 	allStrapiTours.edges.forEach(({ node }) => {
 		createPage({
-			path: `${path.programsPath}/${node.direction.path}/${path.tours}/${node.categories[0].path}/${node.path}`,
+			path: `${path.programsPath}/${node.directions[0].path}/${path.tours}/${node.categories[0].path}/${node.path}`,
 			component: components.pageProgram,
 			context: {
 				pagePath: node.path,

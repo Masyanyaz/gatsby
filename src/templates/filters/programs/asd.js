@@ -12,7 +12,7 @@ const Combine = ({ towns, directionPath, backPath, categoryPath }) => {
 						...toursMain
 						...toursPrices
 						...toursDays
-						...toursDirection
+						...toursDirections
 						...toursCategories
 						...toursTowns
 						preview_text
