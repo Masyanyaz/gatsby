@@ -40,6 +40,8 @@ export const query = graphql`
 					...toursDays
 					...toursCategories
 					...toursTowns
+					...toursSeason
+					...toursPriceType
 					preview_text
 				}
 			}

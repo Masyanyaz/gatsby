@@ -38,6 +38,7 @@
 .preview__block-name {
   padding: 10px 0;
   font-size: 20px;
+  height: 65px;
 }
 
 .preview__block-center-row {
@@ -67,12 +68,11 @@
   bottom: 12px;
 }
 
-.preview__block-center-row-element > div {
+.preview__block-center-row-element .preview__block-icons {
   display: flex;
 }
 
-.preview__block-center-row-element > div > img {
-  width: 32px;
+.preview__block-icons-img {
   margin: 10px; /*убрать, вместе с margin-bottom: 1.45em из layout.css*/
 }
 

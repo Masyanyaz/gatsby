@@ -20,6 +20,7 @@ module.exports = {
 					'guides',
 					'inspirations',
 					'icons',
+					'price-types',
 				],
 				queryLimit: 1000,
 			},

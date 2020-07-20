@@ -25,6 +25,7 @@ const PreviewTours = ({ node, backPath }) => {
 	const openTowns = () => {
 		setHover((hover) => !hover)
 	}
+
 	return (
 		<div className="preview__block">
 			<PreviewImage
@@ -50,7 +51,11 @@ const PreviewTours = ({ node, backPath }) => {
 						{hover && <TownsList towns={node.towns} />}
 					</div>
 					<div className="preview__block-center-row-element">
-						<PreviewToursIcons node={node} />
+						<PreviewToursIcons
+							priceTypeId={node.priceType.id}
+							seasonId={node.season.id}
+							categoryId={node.categories[0].icon}
+						/>
 					</div>
 				</div>
 			</div>

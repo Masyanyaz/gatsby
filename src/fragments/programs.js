@@ -89,6 +89,7 @@ export const toursDirections = graphql`
 export const toursPriceType = graphql`
 	fragment toursPriceType on StrapiTours {
 		priceType {
+			id
 			name
 			image {
 				publicURL

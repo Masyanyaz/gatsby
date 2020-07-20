@@ -76,11 +76,11 @@ const ToursPage = (props) => {
 					<GeneralOverall icons={data.icons} />
 				</div>
 
-				<div className="programm__menu">
-					<div className="programm__menu-item">Программа</div>
-					<div className="programm__menu-item">Цена и условия</div>
-					<div className="programm__menu-item">Дополнительная информация</div>
-				</div>
+				{/*<div className="programm__menu">*/}
+				{/*	<div className="programm__menu-item">Программа</div>*/}
+				{/*	<div className="programm__menu-item">Цена и условия</div>*/}
+				{/*	<div className="programm__menu-item">Дополнительная информация</div>*/}
+				{/*</div>*/}
 				{data.days.length > 0 && <GeneralDays days={data.days} />}
 				<div className="otstup" />
 				{data.prices.length ? <GeneralPrices prices={data.prices} /> : <h3>По запросу</h3>}
