@@ -16,7 +16,7 @@ const GeneralFilterCategories = ({ directionPath, categories, guidePath, directi
 			</Link>
 			{categories.map(({ node: { id, name, path, disabled } }) => (
 				<Link
-					style={{ opacity: disabled ? 0.5 : 1 }}
+					// style={{ opacity: disabled ? 0.5 : 1 }}
 					partiallyActive
 					key={id}
 					to={`/catalogue/filters/tours/${directionPath}/${path}/${guidePath}/all`}

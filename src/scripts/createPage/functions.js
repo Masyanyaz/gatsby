@@ -35,6 +35,17 @@ const setDisabledNullItems = (array, id) => {
 	})
 }
 
+const getLengthToursWithFilter = (array, directionId = null, categoryId = null, guideId = null) => {
+	return array.edges.filter((tour) => {
+		const categories = tour.node.categories.map(({ id }) => id)
+		let direction = directionId ? tour.node.direction.id === directionId : true
+		let category = categoryId ? categories.includes(categoryId) : true
+		let guide = guideId ? tour.node.guide.id === guideId : true
+
+		return direction && category && guide
+	}).length
+}
+
 module.exports = {
 	combine,
 	itemsInDirections,

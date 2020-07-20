@@ -17,7 +17,6 @@ const FiltersPage = (props) => {
 	const backPath = props.path
 	const directionPath = context.directionPath
 
-	console.log(context)
 	const tourFilterInfoContext = {
 		direction: strapiDirections,
 		directionPath: directionPath,

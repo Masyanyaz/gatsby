@@ -1,5 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
+
 import PreviewTours from '../../../components/preview/tours'
 
 const Combine = ({ towns, directionPath, backPath, categoryPath }) => {
@@ -8,30 +9,13 @@ const Combine = ({ towns, directionPath, backPath, categoryPath }) => {
 			allStrapiTours {
 				edges {
 					node {
-						id
-						name
-						path
+						...toursMain
+						...toursPrices
+						...toursDays
+						...toursDirection
+						...toursCategories
+						...toursTowns
 						preview_text
-						prices {
-							count {
-								value
-							}
-						}
-						days {
-							id
-						}
-						direction {
-							path
-						}
-						categories {
-							id
-							name
-							path
-						}
-						towns {
-							id
-							name
-						}
 					}
 				}
 			}

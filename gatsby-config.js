@@ -19,6 +19,7 @@ module.exports = {
 					'seasons',
 					'guides',
 					'inspirations',
+					'icons',
 				],
 				queryLimit: 1000,
 			},
