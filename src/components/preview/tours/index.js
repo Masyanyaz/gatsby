@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './index.css'
 
 import PreviewImage from './image'
-// import PreviewTypes from './types'
 import Link from '../../global/link'
+import PreviewToursIcons from './icons'
 
 const TownsList = ({ towns }) => {
 	return (
@@ -48,7 +48,7 @@ const PreviewTours = ({ node, backPath }) => {
 						{hover && <TownsList towns={node.towns} />}
 					</div>
 					<div className="preview__block-center-row-element">
-						{/*<PreviewTypes types={node.types} />*/}
+						<PreviewToursIcons node={node} />
 					</div>
 				</div>
 			</div>

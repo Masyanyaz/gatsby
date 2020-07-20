@@ -5,6 +5,7 @@ import './pages.css'
 
 import GeneralDays from '../../../general/days'
 import GeneralPrices from '../../../general/prices/programs'
+import GeneralOverall from '../../../general/overall'
 import LayoutsPages from '../../../layouts/pages'
 import ColumnBlocksInfo from '../../../components/column/blocks/info'
 import GlobalUITag from '../../../components/global/UI/tag'
@@ -34,10 +35,16 @@ const ToursPage = (props) => {
 	}, [])
 
 	const columnBlocksInfo = () => (
-		<ColumnBlocksInfo prices={pricesArray} days={data.days} towns={data.towns} />
+		<ColumnBlocksInfo
+			prices={pricesArray}
+			days={data.days}
+			towns={data.towns}
+			priceType={data.priceType}
+			groupCount={data.groupCount}
+		/>
 	)
 	const locationState = props.location.state
-
+	console.log(data)
 	return (
 		<LayoutsPages columnBlocksInfo={columnBlocksInfo}>
 			<div className="programm__img">
@@ -61,22 +68,14 @@ const ToursPage = (props) => {
 					provident quis excepturi sunt enim dolore debitis molestiae!
 				</div>
 				<div className="otstup" />
-				<p>Сделаем вид, что это заготовка для тура одним взглядом</p>
-				<div className="programm__info-tags">
-					{/*{data.types.map((type) => (*/}
-					{/*	<div key={type.id} className="programm__info-tags-item">*/}
-					{/*		<img src={type.img.publicURL} alt="" />*/}
-					{/*		<span>{type.name}</span>*/}
-					{/*	</div>*/}
-					{/*))}*/}
-				</div>
+				<GeneralOverall icons={data.icons} />
 			</div>
 
-			<div className="programm__menu">
-				<div className="programm__menu-item">Программа</div>
-				<div className="programm__menu-item">Цена и условия</div>
-				<div className="programm__menu-item">Дополнительная информация</div>
-			</div>
+			{/*<div className="programm__menu">*/}
+			{/*	<div className="programm__menu-item">Программа</div>*/}
+			{/*	<div className="programm__menu-item">Цена и условия</div>*/}
+			{/*	<div className="programm__menu-item">Дополнительная информация</div>*/}
+			{/*</div>*/}
 			{Boolean(data.days.length) && <GeneralDays days={data.days} />}
 			<div className="otstup" />
 			{data.prices.length ? <GeneralPrices prices={data.prices} /> : <h3>По запросу</h3>}
@@ -109,9 +108,11 @@ export const query = graphql`
 			...toursDirection
 			...toursCategories
 			...toursGuide
-			...toursSeasons
+			...toursSeason
 			...toursPrices
 			...toursTowns
+			...toursIcons
+			...toursPriceType
 			groupCount
 		}
 	}

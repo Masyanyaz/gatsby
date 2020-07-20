@@ -5,7 +5,7 @@ import './index.css'
 
 import GeneralPricesMinMax from '../../../../general/prices/minMax'
 
-const ColumnBlocksInfo = ({ hours, days, transports, towns, prices }) => {
+const ColumnBlocksInfo = ({ hours, days, transports, towns, prices, priceType, groupCount }) => {
 	return (
 		<div className="excursionInfo__block">
 			{hours && (
@@ -30,13 +30,18 @@ const ColumnBlocksInfo = ({ hours, days, transports, towns, prices }) => {
 					</div>
 				</div>
 			)}
+			{
+				<div className="excursionInfo__block-element infotypes">
+					{priceType.name}, {groupCount ? groupCount : `нетю`}
+				</div>
+			}
 			{towns && (
 				<div className="excursionInfo__block-element">
-					<span>Towns: </span>
+					<span>Villes: </span>
 					<div>
 						{towns.length ? (
 							<div>
-								<span>{towns.length}</span> город
+								<span>{towns.length}</span> ville
 							</div>
 						) : (
 							'слыш, добавь города'
@@ -55,7 +60,7 @@ const ColumnBlocksInfo = ({ hours, days, transports, towns, prices }) => {
 				</div>
 			)}
 			<div className="excursionInfo__block-element">
-				<span>Цена:</span>
+				<span>Prix:</span>
 				<div>
 					<GeneralPricesMinMax prices={prices} />
 				</div>

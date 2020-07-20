@@ -27,6 +27,7 @@ export const toursCategories = graphql`
 			id
 			name
 			path
+			icon
 		}
 	}
 `
@@ -63,9 +64,9 @@ export const toursGuide = graphql`
 	}
 `
 
-export const toursSeasons = graphql`
-	fragment toursSeasons on StrapiTours {
-		seasons {
+export const toursSeason = graphql`
+	fragment toursSeason on StrapiTours {
+		season {
 			id
 			name
 			image {
@@ -81,6 +82,29 @@ export const toursDirection = graphql`
 			id
 			name
 			path
+		}
+	}
+`
+
+export const toursPriceType = graphql`
+	fragment toursPriceType on StrapiTours {
+		priceType {
+			name
+			image {
+				publicURL
+			}
+		}
+	}
+`
+
+export const toursIcons = graphql`
+	fragment toursIcons on StrapiTours {
+		icons {
+			id
+			name
+			image {
+				publicURL
+			}
 		}
 	}
 `

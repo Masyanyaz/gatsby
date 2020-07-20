@@ -25,7 +25,7 @@ const GeneralDays = ({ days }) => {
 			setCurrentSlide(index)
 		}
 	}
-
+	console.log(days)
 	return (
 		<div>
 			<Carousel
@@ -60,7 +60,7 @@ const GeneralDays = ({ days }) => {
 							<div className="programm__days-left-description">{day.text}</div>
 						</div>
 						<div className="programm__days-right">
-							<img src={day.image.publicURL} alt="" />
+							{/*<img src={day.image.publicURL} alt="" />*/}
 						</div>
 					</div>
 				))}
