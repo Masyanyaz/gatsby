@@ -1,24 +1,18 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import './index.css'
 
 import ColumnBlocksDirectionPrograms from './programs'
 import ColumnBlocksDirectionExcursions from './excursions'
 
-import { TourFilterInfo } from '../../../../templates/filters/programs'
-import { ExcursionFilterInfo } from '../../../../templates/filters/excursions'
-
-const ColumnBlocksDirection = () => {
-	const tourFilterInfoContext = useContext(TourFilterInfo)
-	const excursionFilterInfoContext = useContext(ExcursionFilterInfo)
-
+const ColumnBlocksDirection = ({ tourFilterInfoContext, excursionFilterInfoContext }) => {
 	return (
-		<div className="direction">
+		<>
 			{tourFilterInfoContext && <ColumnBlocksDirectionPrograms {...tourFilterInfoContext} />}
 			{excursionFilterInfoContext && (
 				<ColumnBlocksDirectionExcursions {...excursionFilterInfoContext} />
 			)}
-		</div>
+		</>
 	)
 }
 

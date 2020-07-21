@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 
 import './index.css'
@@ -6,24 +6,18 @@ import './index.css'
 import LayoutsFilters from '../../../layouts/filters'
 import PreviewTours from '../../../components/preview/tours'
 import GeneralFilter from '../../../general/filter'
+import FiltersProgramsProvider from './provider'
 // TODO: Переименовать!
-// import Combine from './asd'
+import Combine from './asd'
 
-export const TourFilterInfo = createContext(false)
-
-const FiltersPage = (props) => {
-	const { strapiDirections, allStrapiTours } = props.data
-	const context = props.pageContext
-	const backPath = props.path
+const FiltersPage = ({ data, pageContext, path }) => {
+	const { strapiDirections, allStrapiTours } = data
+	const context = pageContext
+	const backPath = path
 	const directionPath = context.directionPath
 
-	const tourFilterInfoContext = {
-		direction: strapiDirections,
-		directionPath: directionPath,
-	}
-
 	return (
-		<TourFilterInfo.Provider value={tourFilterInfoContext}>
+		<FiltersProgramsProvider direction={strapiDirections} directionPath={directionPath}>
 			<LayoutsFilters>
 				<h1>{directionPath ? strapiDirections.name : 'Все направления'}</h1>
 				<div>Описание</div>
@@ -38,13 +32,14 @@ const FiltersPage = (props) => {
 						  ))
 						: 'Туров с данными фильтрами не найдено'}
 				</div>
-				{/*<Combine
-					towns={strapiDirections.towns}
-					directionPath={context.directionPath}
+				<Combine
+					directionPath={directionPath}
+					categoryPath={context.categoryPath}
+					guidePath={context.guidePath}
 					backPath={backPath}
-				/>*/}
+				/>
 			</LayoutsFilters>
-		</TourFilterInfo.Provider>
+		</FiltersProgramsProvider>
 	)
 }
 

@@ -5,8 +5,8 @@ import './index.css'
 import ColumnBlocksInfoExcursions from './excursions'
 import ColumnBlocksInfoPrograms from './programs'
 
-import { TourInfo } from '../../../../templates/endPages/programs'
-import { ExcursionInfo } from '../../../../templates/endPages/excursions'
+import { TourInfo } from '../../../../templates/endPages/programs/provider'
+import { ExcursionInfo } from '../../../../templates/endPages/excursions/provider'
 
 const ColumnBlocksInfo = () => {
 	const tourInfoContext = useContext(TourInfo)

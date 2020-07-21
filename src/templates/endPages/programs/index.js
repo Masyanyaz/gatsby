@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 
 import './index.css'
@@ -9,6 +9,7 @@ import GeneralOverall from '../../../general/overall'
 import LayoutsPages from '../../../layouts/pages'
 import GlobalUITag from '../../../components/global/UI/tag'
 import Link from '../../../components/global/link'
+import EndPagesProgramsProvider from './provider'
 
 const TagList = ({ directions, categories, guide }) => {
 	return (
@@ -16,19 +17,13 @@ const TagList = ({ directions, categories, guide }) => {
 			{directions.map(({ id, path, name }) => (
 				<GlobalUITag key={id} to={`/${path}`} text={name} />
 			))}
-			{categories.map((category) => (
-				<GlobalUITag
-					key={category.id}
-					to={`/catalogue/filters/tours/all/${category.path}/all/all`}
-					text={category.name}
-				/>
+			{categories.map(({ id, name, path }) => (
+				<GlobalUITag key={id} to={`/catalogue/filters/tours/all/${path}/all/all`} text={name} />
 			))}
 			<GlobalUITag to={`/catalogue/filters/tours/all/all/${guide.path}/all`} text={guide.name} />
 		</div>
 	)
 }
-
-export const TourInfo = createContext(false)
 
 const ToursPage = (props) => {
 	const data = props.data.strapiTours
@@ -37,18 +32,16 @@ const ToursPage = (props) => {
 		return [...res, ...prices]
 	}, [])
 
-	const tourInfoContext = {
-		prices: pricesArray,
-		days: data.days,
-		towns: data.towns,
-		priceType: data.priceType,
-		groupCount: data.groupCount,
-	}
-
 	const locationState = props.location.state
 
 	return (
-		<TourInfo.Provider value={tourInfoContext}>
+		<EndPagesProgramsProvider
+			days={data.days}
+			towns={data.towns}
+			prices={pricesArray}
+			priceType={data.priceType}
+			groupCount={data.groupCount}
+		>
 			<LayoutsPages>
 				<div className="programm__img">
 					<img
@@ -57,11 +50,7 @@ const ToursPage = (props) => {
 					/>
 				</div>
 				<div>
-					<Link
-						to={
-							locationState && locationState.back ? locationState.back : `/${data.direction.path}`
-						}
-					>
+					<Link to={(locationState && locationState.back) || `/${data.directions[0].path}`}>
 						Back
 					</Link>
 				</div>
@@ -81,9 +70,9 @@ const ToursPage = (props) => {
 				{/*	<div className="programm__menu-item">Цена и условия</div>*/}
 				{/*	<div className="programm__menu-item">Дополнительная информация</div>*/}
 				{/*</div>*/}
-				{data.days.length > 0 && <GeneralDays days={data.days} />}
+				<GeneralDays days={data.days} />
 				<div className="otstup" />
-				{data.prices.length ? <GeneralPrices prices={data.prices} /> : <h3>По запросу</h3>}
+				<GeneralPrices prices={data.prices} />
 				<div className="otstup" />
 				<h2>Включено в тур</h2>
 				<ul>
@@ -102,7 +91,7 @@ const ToursPage = (props) => {
 					<li>Ничего</li>
 				</ul>
 			</LayoutsPages>
-		</TourInfo.Provider>
+		</EndPagesProgramsProvider>
 	)
 }
 

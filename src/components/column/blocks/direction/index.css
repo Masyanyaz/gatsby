@@ -1,25 +1,29 @@
-.direction>p{
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
+.direction {
+  margin-bottom: 100px;
 }
 
-.direction__element{
-    display: flex;
-    align-items: center;
-    margin: 20px;
+.direction > p {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
 }
 
-.direction__element-icon{
-    width: 100px;
-    min-width: 100px;
-    height: 100px;
-    background: #bababa;
-    margin-right: 20px;
+.direction__element {
+  display: flex;
+  align-items: center;
+  margin: 20px;
 }
 
-.direction__element p{
-    font-size: 20px;
-    font-weight: bold;
+.direction__element-icon {
+  width: 100px;
+  min-width: 100px;
+  height: 100px;
+  background: #bababa;
+  margin-right: 20px;
+}
+
+.direction__element p {
+  font-size: 20px;
+  font-weight: bold;
 }

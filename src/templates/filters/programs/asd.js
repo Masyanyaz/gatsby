@@ -1,44 +1,28 @@
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
 
 import PreviewTours from '../../../components/preview/tours'
+import { useAllTours } from '../../../fragments/programs'
 
-const Combine = ({ towns, directionPath, backPath, categoryPath }) => {
-	const tours = useStaticQuery(graphql`
-		{
-			allStrapiTours {
-				edges {
-					node {
-						...toursMain
-						...toursPrices
-						...toursDays
-						...toursDirections
-						...toursCategories
-						...toursTowns
-						preview_text
-					}
-				}
-			}
-		}
-	`)
-	const arrayTowns = towns.map((town) => town.id)
+const Combine = ({ directionPath, backPath, categoryPath, guidePath }) => {
+	const tours = useAllTours()
 
-	const filterTours = tours.allStrapiTours.edges.filter((tour) => {
-		const tourTowns = tour.node.towns.map((town) => town.id)
-		return (
-			arrayTowns.every((item) => tourTowns.includes(item)) &&
-			tour.node.direction.path !== directionPath &&
-			tour.node.category.path === categoryPath
-		)
+	const filteredTours = tours.filter(({ node: { directions, categories, guide } }) => {
+		const [, ...secondary] = directions.map(({ path }) => path)
+		const pathCategories = categories.map(({ path }) => path)
+
+		const categoryIncludes = categoryPath ? pathCategories.includes(categoryPath) : true
+		const guideIncludes = guidePath ? guide.path === guidePath : true
+
+		return secondary.includes(directionPath) && categoryIncludes && guideIncludes
 	})
 
 	return (
 		<>
-			{filterTours.length && directionPath ? (
+			{filteredTours.length && directionPath ? (
 				<div>
 					<h2>Другие туры</h2>
 					<div className="preview__grid">
-						{filterTours.map(({ node }) => (
+						{filteredTours.map(({ node }) => (
 							<PreviewTours key={node.id} node={node} backPath={backPath} />
 						))}
 					</div>

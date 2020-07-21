@@ -15,23 +15,29 @@ const PricesExcursion = ({ prices }) => {
 
 	return (
 		<>
-			<div>
-				{/*eslint-disable-next-line jsx-a11y/no-onchange*/}
-				<select onChange={handleSelect} defaultValue={countSelected}>
-					{counts.map((count) => (
-						<option key={count} value={count}>
-							{count} человека
-						</option>
-					))}
-				</select>
-			</div>
+			{prices.length ? (
+				<>
+					<div>
+						{/*eslint-disable-next-line jsx-a11y/no-onchange*/}{' '}
+						<select onChange={handleSelect} defaultValue={countSelected}>
+							{counts.map((count) => (
+								<option key={count} value={count}>
+									{count} человека
+								</option>
+							))}
+						</select>
+					</div>
 
-			<div className="exPriceTable">
-				<div>Prix par personne:</div>
-				{filteredPrices.map(({ id, value }) => (
-					<div key={id}>{value} euro</div>
-				))}
-			</div>
+					<div className="exPriceTable">
+						<div>Prix par personne:</div>
+						{filteredPrices.map(({ id, value }) => (
+							<div key={id}>{value} euro</div>
+						))}
+					</div>
+				</>
+			) : (
+				<h3>По запросу</h3>
+			)}
 		</>
 	)
 }

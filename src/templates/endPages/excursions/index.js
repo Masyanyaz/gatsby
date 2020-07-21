@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 
 import './index.css'
@@ -6,8 +6,7 @@ import './index.css'
 import LayoutsPages from '../../../layouts/pages'
 import PricesExcursion from '../../../general/prices/excursions'
 import Link from '../../../components/global/link'
-
-export const ExcursionInfo = createContext(false)
+import EndPagesExcursionsProvider from './provider'
 
 const ExcursionsPage = (props) => {
 	const data = props.data.strapiExcursions
@@ -15,14 +14,12 @@ const ExcursionsPage = (props) => {
 
 	const locationState = props.location.state
 
-	const excursionInfoContext = {
-		prices: pricesArray,
-		hours: data.hours,
-		transports: data.transports,
-	}
-
 	return (
-		<ExcursionInfo.Provider value={excursionInfoContext}>
+		<EndPagesExcursionsProvider
+			prices={pricesArray}
+			transports={data.transports}
+			hours={data.hours}
+		>
 			<LayoutsPages>
 				<div className="programm__img">
 					<img
@@ -32,14 +29,9 @@ const ExcursionsPage = (props) => {
 				</div>
 				<div>
 					<Link
-						to={
-							locationState && locationState.back
-								? locationState.back
-								: `/catalogue/filters/excursion/all/all`
-						}
+						to={(locationState && locationState.back) || `/catalogue/filters/excursion/all/all`}
 					>
-						{' '}
-						Back{' '}
+						Back
 					</Link>
 				</div>
 				<h1>{data.name}</h1>
@@ -85,9 +77,9 @@ const ExcursionsPage = (props) => {
 				</p>
 				<div className="otstup" />
 				<h2>Tarifs</h2>
-				{data.prices.length ? <PricesExcursion prices={data.prices} /> : <h3>По запросу</h3>}
+				<PricesExcursion prices={data.prices} />
 			</LayoutsPages>
-		</ExcursionInfo.Provider>
+		</EndPagesExcursionsProvider>
 	)
 }
 

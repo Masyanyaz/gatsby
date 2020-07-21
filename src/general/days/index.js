@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Carousel from 'nuka-carousel'
+import Img from 'gatsby-image'
 
 import './index.css'
 
@@ -27,59 +28,63 @@ const GeneralDays = ({ days }) => {
 	}
 
 	return (
-		<div>
-			<Carousel
-				className="days-carousel"
-				enableKeyboardControls
-				initialSlideHeight={500}
-				slidesToShow={1}
-				slideIndex={currentSlide}
-				afterSlide={updateCurrentSlide}
-				renderAnnounceSlideMessage={({ currentSlide, slideCount }) =>
-					`Slide ${currentSlide + 1} of ${slideCount}`
-				}
-				withoutControls
-			>
-				{days.map(({ id, name, text, image }, i) => (
-					<div key={id} className="programm__days">
-						<div className="programm__days-left">
-							<div
-								style={{
-									display: 'flex',
-									justifyContent: 'space-between',
-									width: '50%',
-									margin: '0 auto',
-								}}
-								className="programm__days-left-count"
-							>
-								<button disabled={!currentSlide} onClick={prev}>
-									-
-								</button>
-								<span>День {i + 1}</span> из {days.length}
-								<button disabled={isLastDay} onClick={next}>
-									+
-								</button>
+		<>
+			{daysLength > 0 && (
+				<div>
+					<Carousel
+						className="days-carousel"
+						enableKeyboardControls
+						initialSlideHeight={500}
+						slidesToShow={1}
+						slideIndex={currentSlide}
+						afterSlide={updateCurrentSlide}
+						renderAnnounceSlideMessage={({ currentSlide, slideCount }) =>
+							`Slide ${currentSlide + 1} of ${slideCount}`
+						}
+						withoutControls
+					>
+						{days.map(({ id, name, text, image }, i) => (
+							<div key={id} className="programm__days">
+								<div className="programm__days-left">
+									<div
+										style={{
+											display: 'flex',
+											justifyContent: 'space-between',
+											width: '50%',
+											margin: '0 auto',
+										}}
+										className="programm__days-left-count"
+									>
+										<button disabled={!currentSlide} onClick={prev}>
+											-
+										</button>
+										<span>День {i + 1}</span> из {days.length}
+										<button disabled={isLastDay} onClick={next}>
+											+
+										</button>
+									</div>
+									<div className="programm__days-left-name">{name}</div>
+									<div className="programm__days-left-description">{text}</div>
+								</div>
+								<div className="programm__days-right">
+									<Img fluid={image.childImageSharp.fluid} />
+								</div>
 							</div>
-							<div className="programm__days-left-name">{name}</div>
-							<div className="programm__days-left-description">{text}</div>
-						</div>
-						<div className="programm__days-right">
-							<img src={image.publicURL} alt="" />
-						</div>
-					</div>
-				))}
-			</Carousel>
+						))}
+					</Carousel>
 
-			<GeneralDaysDots
-				days={days}
-				updateCurrentSlide={updateCurrentSlide}
-				currentSlide={currentSlide}
-				isLastDay={isLastDay}
-				next={next}
-				prev={prev}
-				countHiddenSlides={countHiddenSlides}
-			/>
-		</div>
+					<GeneralDaysDots
+						days={days}
+						updateCurrentSlide={updateCurrentSlide}
+						currentSlide={currentSlide}
+						isLastDay={isLastDay}
+						next={next}
+						prev={prev}
+						countHiddenSlides={countHiddenSlides}
+					/>
+				</div>
+			)}
+		</>
 	)
 }
 

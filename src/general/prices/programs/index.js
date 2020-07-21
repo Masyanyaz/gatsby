@@ -21,22 +21,26 @@ const GeneralPrices = ({ prices }) => {
 
 	return (
 		<>
-			<div className="priceTable">
-				<div className="priceTable__line">
-					<div className="priceTable__line-item" />
-					{types}
-				</div>
-				{count.map((item, i) => (
-					<div key={i} className="priceTable__line">
-						<div className="priceTable__line-item">{item}</div>
-						{prices.map(({ id, count }) => (
-							<div key={id} className="priceTable__line-item">
-								{count.find(({ count }) => count === item).value}
-							</div>
-						))}
+			{prices.length ? (
+				<div className="priceTable">
+					<div className="priceTable__line">
+						<div className="priceTable__line-item" />
+						{types}
 					</div>
-				))}
-			</div>
+					{count.map((item, i) => (
+						<div key={i} className="priceTable__line">
+							<div className="priceTable__line-item">{item}</div>
+							{prices.map(({ id, count }) => (
+								<div key={id} className="priceTable__line-item">
+									{count.find(({ count }) => count === item).value}
+								</div>
+							))}
+						</div>
+					))}
+				</div>
+			) : (
+				<h3>По запросу</h3>
+			)}
 		</>
 	)
 }

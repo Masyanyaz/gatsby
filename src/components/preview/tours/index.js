@@ -54,7 +54,7 @@ const PreviewTours = ({ node, backPath }) => {
 						<PreviewToursIcons
 							priceTypeId={node.priceType.id}
 							seasonId={node.season.id}
-							categoryId={node.categories[0].icon}
+							iconId={node.categories[0].icon}
 						/>
 					</div>
 				</div>

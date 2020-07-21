@@ -1,12 +1,11 @@
-import React, { createContext } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 
 import './index.css'
 
 import LayoutsFilters from '../../../layouts/filters'
 import PreviewExcursions from '../../../components/preview/excursions'
-
-export const ExcursionFilterInfo = createContext(false)
+import FiltersExcursionsProvider from './provider'
 
 const FiltersPage = (props) => {
 	const { strapiDirections, allStrapiExcursions } = props.data
@@ -14,13 +13,8 @@ const FiltersPage = (props) => {
 	const backPath = props.path
 	const directionPath = context.directionPath
 
-	const excursionFilterInfoContext = {
-		direction: strapiDirections,
-		directionPath: directionPath,
-	}
-
 	return (
-		<ExcursionFilterInfo.Provider value={excursionFilterInfoContext}>
+		<FiltersExcursionsProvider direction={strapiDirections} directionPath={directionPath}>
 			<LayoutsFilters>
 				<h1>{strapiDirections.name}</h1>
 				<div>Описание</div>
@@ -33,7 +27,7 @@ const FiltersPage = (props) => {
 						: 'Экскурсий не найдено'}
 				</div>
 			</LayoutsFilters>
-		</ExcursionFilterInfo.Provider>
+		</FiltersExcursionsProvider>
 	)
 }
 

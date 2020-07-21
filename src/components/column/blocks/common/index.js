@@ -4,10 +4,20 @@ import './index.css'
 
 import GlobalUISpoiler from '../../../global/UI/spoiler'
 
-const ColumnBlocksCommon = () => {
+const ColumnBlocksCommon = ({ tourFilterInfoContext, excursionFilterInfoContext }) => {
+	const title =
+		(tourFilterInfoContext &&
+			tourFilterInfoContext.direction.excursions.length > 0 &&
+			tourFilterInfoContext.directionPath) ||
+		(excursionFilterInfoContext &&
+			excursionFilterInfoContext.direction.tours.length > 0 &&
+			excursionFilterInfoContext.directionPath)
+			? 'autres services'
+			: 'nos services'
+
 	return (
 		<div className="common">
-			<p>autres services</p>
+			<p>{title}</p>
 			<div className="common__element">
 				<div className="common__element-icon" />
 				<p>Planification de voyage</p>

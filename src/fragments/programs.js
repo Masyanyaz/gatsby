@@ -1,4 +1,29 @@
-import { graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
+
+export const useAllTours = () => {
+	const { allStrapiTours } = useStaticQuery(graphql`
+		{
+			allStrapiTours {
+				edges {
+					node {
+						...toursMain
+						...toursDirections
+						...toursPrices
+						...toursDays
+						...toursCategories
+						...toursTowns
+						...toursPriceType
+						...toursSeason
+						...toursGuide
+						preview_text
+					}
+				}
+			}
+		}
+	`)
+
+	return allStrapiTours.edges
+}
 
 export const toursMain = graphql`
 	fragment toursMain on StrapiTours {
@@ -15,7 +40,11 @@ export const toursDays = graphql`
 			name
 			text
 			image {
-				publicURL
+				childImageSharp {
+					fluid(maxWidth: 500) {
+						...GatsbyImageSharpFluid
+					}
+				}
 			}
 		}
 	}
@@ -104,7 +133,11 @@ export const toursIcons = graphql`
 			id
 			name
 			image {
-				publicURL
+				childImageSharp {
+					fixed(width: 64) {
+						...GatsbyImageSharpFixed
+					}
+				}
 			}
 		}
 	}
