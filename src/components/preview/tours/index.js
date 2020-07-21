@@ -37,7 +37,7 @@ const PreviewTours = ({ node, backPath }) => {
 					<div className="preview__block-center-row-element">{node.days.length} дней</div>
 					<GlobalUIHover
 						text={`${node.towns.length} городов`}
-						className={'preview__block-center-row-element towns'}
+						className="preview__block-center-row-element towns"
 					>
 						<TownsList towns={node.towns} />
 					</GlobalUIHover>
