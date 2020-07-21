@@ -6,6 +6,7 @@ import './index.css'
 import PreviewImage from './image'
 import Link from '../../global/link'
 import PreviewToursIcons from './icons'
+import GlobalUIHover from '../../global/UI/hover'
 
 const TownsList = ({ towns }) => {
 	return (
@@ -20,12 +21,6 @@ const TownsList = ({ towns }) => {
 }
 
 const PreviewTours = ({ node, backPath }) => {
-	const [hover, setHover] = useState(false)
-
-	const openTowns = () => {
-		setHover((hover) => !hover)
-	}
-
 	return (
 		<div className="preview__block">
 			<PreviewImage
@@ -40,16 +35,12 @@ const PreviewTours = ({ node, backPath }) => {
 				<div className="preview__block-name">{node.name}</div>
 				<div className="preview__block-center-row">
 					<div className="preview__block-center-row-element">{node.days.length} дней</div>
-					<div
-						role="button"
-						tabIndex="0"
-						className="preview__block-center-row-element towns"
-						onMouseEnter={openTowns}
-						onMouseLeave={openTowns}
+					<GlobalUIHover
+						text={`${node.towns.length} городов`}
+						className={'preview__block-center-row-element towns'}
 					>
-						{node.towns.length} город
-						{hover && <TownsList towns={node.towns} />}
-					</div>
+						<TownsList towns={node.towns} />
+					</GlobalUIHover>
 					<div className="preview__block-center-row-element">
 						<PreviewToursIcons
 							priceTypeId={node.priceType.id}
