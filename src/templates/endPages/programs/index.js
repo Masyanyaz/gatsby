@@ -71,18 +71,21 @@ const ToursPage = (props) => {
 				{/*	<div className="programm__menu-item">Дополнительная информация</div>*/}
 				{/*</div>*/}
 				<GeneralDays days={data.days} />
-				<a name="priceTable"></a>
 				<div className="otstup" />
-				<GeneralPrices prices={data.prices} />
+				<GeneralPrices id="priceTable" prices={data.prices} />
 				<div className="otstup" />
-				<h2>Включено в тур</h2>
-				// TODO: убрать условие, когда заполнятся туры
-				{props.data.strapiTours.include && (
-					<GeneralListFromText text={props.data.strapiTours.include} />
+				{/*TODO: убрать условие, когда заполнятся туры*/}
+				{data.include && (
+					<div>
+						<h2>Включено в тур</h2>
+						<GeneralListFromText text={data.include} />
+					</div>
 				)}
-				<h2>Не ключено в тур</h2>
-				{props.data.strapiTours.noinclude && (
-					<GeneralListFromText text={props.data.strapiTours.noinclude} />
+				{data.noinclude && (
+					<div>
+						<h2>Не ключено в тур</h2>
+						<GeneralListFromText text={data.noinclude} />
+					</div>
 				)}
 			</LayoutsPages>
 		</EndPagesProgramsProvider>

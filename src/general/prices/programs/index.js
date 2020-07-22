@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import './index.css'
 
-const GeneralPrices = ({ prices }) => {
+const GeneralPrices = ({ prices, id }) => {
 	// Формируем шапку из типов
 	const types = prices.map(({ id, name }) => (
 		<div key={id} className="priceTable__line-item">
@@ -22,7 +22,7 @@ const GeneralPrices = ({ prices }) => {
 	return (
 		<>
 			{prices.length ? (
-				<div className="priceTable">
+				<div className="priceTable" id={id}>
 					<div className="priceTable__line priceTable__head">
 						<div className="priceTable__line-item" />
 						{types}
