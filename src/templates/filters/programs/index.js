@@ -27,9 +27,11 @@ const FiltersPage = ({ data, pageContext, path }) => {
 				<hr />
 				<div className="preview__grid">
 					{allStrapiTours.edges.length
-						? allStrapiTours.edges.map(({ node }) => (
-								<PreviewTours key={node.id} node={node} backPath={backPath} />
-						  ))
+						? allStrapiTours.edges
+								.filter(({ node }) =>
+									directionPath ? node.directions[0].path === directionPath : true,
+								)
+								.map(({ node }) => <PreviewTours key={node.id} node={node} backPath={backPath} />)
 						: 'Туров с данными фильтрами не найдено'}
 				</div>
 				<Combine
