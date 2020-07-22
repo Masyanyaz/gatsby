@@ -9,7 +9,7 @@ const ColumnBlocksDirectionPrograms = ({ direction, directionPath }) => {
 		<div>
 			{direction.excursions.length > 0 && directionPath && (
 				<div className="direction">
-					<p>aussi à ${direction.name}</p>
+					<p>aussi à {direction.name}</p>
 					<div className="direction__element">
 						<div className="direction__element-icon" />
 						<p>

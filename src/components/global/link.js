@@ -1,5 +1,15 @@
 import React from 'react'
 import { Link as GatsbyLink } from 'gatsby'
+
+// Добавление плавной прокрутки для ссылок с хешами
+if (typeof window !== 'undefined') {
+	// eslint-disable-next-line global-require
+	require('smooth-scroll')('a[href*="#"]', {
+		speed: 800,
+		offset: 100,
+	})
+}
+
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
