@@ -23,7 +23,7 @@ const GeneralPrices = ({ prices }) => {
 		<>
 			{prices.length ? (
 				<div className="priceTable">
-					<div className="priceTable__line">
+					<div className="priceTable__line priceTable__head">
 						<div className="priceTable__line-item" />
 						{types}
 					</div>

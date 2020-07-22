@@ -9,33 +9,12 @@
   flex-grow: 1;
   flex-basis: 1px;
   color: #fff;
-  border-right: 2px solid #fff;
-  border-left: 2px solid #fff;
-}
 
-.tabs .tabs__item.focus {
-  background: #464646;
-  border-left: 2px solid red;
-  border-right: 2px solid red;
-  border-top: 2px solid red;
-  z-index: 2;
-}
-
-.tabs:after {
-  content: '';
-  position: absolute;
-  border: 1px solid red;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
 }
 
 .priceTable {
   display: flex;
   flex-direction: column;
-  border-left: 2px solid red;
-  border-right: 2px solid red;
 }
 
 .priceTable__line {
@@ -52,6 +31,14 @@
   border-right: 2px solid #ababab;
   /*border-left: 1px solid #fff;*/
   box-sizing: border-box;
+}
+
+.priceTable__head{
+  background: antiquewhite;
+}
+
+.priceTable__line-item:first-child {
+  background: antiquewhite;
 }
 
 .priceTable__line-item:last-child {
