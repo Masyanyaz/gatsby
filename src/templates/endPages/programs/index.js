@@ -10,6 +10,7 @@ import LayoutsPages from '../../../layouts/pages'
 import GlobalUITag from '../../../components/global/UI/tag'
 import Link from '../../../components/global/link'
 import EndPagesProgramsProvider from './provider'
+import GeneralListFromText from '../../../general/listFromText'
 
 const TagList = ({ directions, categories, guide }) => {
 	return (
@@ -64,32 +65,25 @@ const ToursPage = (props) => {
 					<div className="otstup" />
 					<GeneralOverall icons={data.icons} />
 				</div>
-
 				{/*<div className="programm__menu">*/}
 				{/*	<div className="programm__menu-item">Программа</div>*/}
 				{/*	<div className="programm__menu-item">Цена и условия</div>*/}
 				{/*	<div className="programm__menu-item">Дополнительная информация</div>*/}
 				{/*</div>*/}
 				<GeneralDays days={data.days} />
+				<a name="priceTable"></a>
 				<div className="otstup" />
 				<GeneralPrices prices={data.prices} />
 				<div className="otstup" />
 				<h2>Включено в тур</h2>
-				<ul>
-					<li>Всё</li>
-					<li>Всё</li>
-					<li>Всё</li>
-					<li>Всё</li>
-					<li>Всё</li>
-				</ul>
+				// TODO: убрать условие, когда заполнятся туры
+				{props.data.strapiTours.include && (
+					<GeneralListFromText text={props.data.strapiTours.include} />
+				)}
 				<h2>Не ключено в тур</h2>
-				<ul>
-					<li>Ничего</li>
-					<li>Ничего</li>
-					<li>Ничего</li>
-					<li>Ничего</li>
-					<li>Ничего</li>
-				</ul>
+				{props.data.strapiTours.noinclude && (
+					<GeneralListFromText text={props.data.strapiTours.noinclude} />
+				)}
 			</LayoutsPages>
 		</EndPagesProgramsProvider>
 	)
@@ -109,6 +103,8 @@ export const query = graphql`
 			...toursPriceType
 			...toursIcons
 			groupCount
+			include
+			noinclude
 		}
 	}
 `

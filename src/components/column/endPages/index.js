@@ -12,6 +12,7 @@ const ColumnEndPages = () => {
 		<div className="right-column-container">
 			<div className={`right-column sticky`}>
 				<ColumnBlocksInfo />
+				<a href="#priceTable">К цене</a>
 				<FormsPopupButton text="Слыш, купи" className="right-column-button" />
 				<ColumnBlocksReview />
 			</div>
