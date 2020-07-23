@@ -7,6 +7,7 @@ import './default.css'
 import Header from '../components/header'
 import Footer from '../components/footer/footer'
 import FormsPopup from '../components/forms/popup'
+import GeneralArrowUp from '../general/arrowUp'
 
 const LayoutsDefault = ({ children }) => {
 	return (
@@ -16,9 +17,10 @@ const LayoutsDefault = ({ children }) => {
 				<div className="main-content">
 					<main>{children}</main>
 				</div>
-				<FormsPopup />
 			</div>
 			<Footer />
+			<FormsPopup />
+			<GeneralArrowUp />
 		</>
 	)
 }

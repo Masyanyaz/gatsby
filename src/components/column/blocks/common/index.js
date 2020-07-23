@@ -6,12 +6,10 @@ import GlobalUISpoiler from '../../../global/UI/spoiler'
 
 const ColumnBlocksCommon = ({ tourFilterInfoContext, excursionFilterInfoContext }) => {
 	const title =
-		(tourFilterInfoContext &&
-			tourFilterInfoContext.direction.excursions.length > 0 &&
-			tourFilterInfoContext.directionPath) ||
-		(excursionFilterInfoContext &&
-			excursionFilterInfoContext.direction.tours.length > 0 &&
-			excursionFilterInfoContext.directionPath)
+		(tourFilterInfoContext?.direction?.excursions.length > 0 &&
+			tourFilterInfoContext?.directionPath) ||
+		(excursionFilterInfoContext?.direction?.tours.length > 0 &&
+			excursionFilterInfoContext?.directionPath)
 			? 'autres services'
 			: 'nos services'
 

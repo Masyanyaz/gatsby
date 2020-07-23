@@ -72,7 +72,7 @@ const ToursPage = (props) => {
 				{/*</div>*/}
 				<GeneralDays days={data.days} />
 				<div className="otstup" />
-				<GeneralPrices id="priceTable" prices={data.prices} />
+				<GeneralPrices prices={data.prices} />
 				<div className="otstup" />
 				{/*TODO: убрать условие, когда заполнятся туры*/}
 				{data.include && (

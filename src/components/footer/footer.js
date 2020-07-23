@@ -1,24 +1,27 @@
 import React from 'react'
+
 import './footer.css'
+
+import Link from '../global/link'
 
 const Footer = () => (
 	<footer>
 		<div className="footer__conteiner">
 			<div className="footer__content">
 				<div className="footer__column">
-					<a href="#">Destinations</a>
-					<a href="#">Inspirations</a>
-					<a href="#">Services</a>
+					<Link to="#">Destinations</Link>
+					<Link to="#">Inspirations</Link>
+					<Link to="#">Services</Link>
 				</div>
 				<div className="footer__column">
-					<a href="#">Conditions générales</a>
-					<a href="#">Mentions légales</a>
-					<a href="#">Politique de confidentialité</a>
+					<Link to="#">Conditions générales</Link>
+					<Link to="#">Mentions légales</Link>
+					<Link to="#">Politique de confidentialité</Link>
 				</div>
 				<div className="footer__column">
-					<a href="#">Qui sommes-nous</a>
-					<a href="#">Avis</a>
-					<a href="#">Contacts</a>
+					<Link to="#">Qui sommes-nous</Link>
+					<Link to="#">Avis</Link>
+					<Link to="#">Contacts</Link>
 				</div>
 			</div>
 			<span className="copy">cuisinedevoyage.com © {new Date().getFullYear()}</span>

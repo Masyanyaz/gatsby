@@ -1,17 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import './index.css'
 
 import ColumnBlocksInfoExcursions from './excursions'
 import ColumnBlocksInfoPrograms from './programs'
 
-import { TourInfo } from '../../../../templates/endPages/programs/provider'
-import { ExcursionInfo } from '../../../../templates/endPages/excursions/provider'
-
-const ColumnBlocksInfo = () => {
-	const tourInfoContext = useContext(TourInfo)
-	const excursionInfoContext = useContext(ExcursionInfo)
-
+const ColumnBlocksInfo = ({ tourInfoContext, excursionInfoContext }) => {
 	return (
 		<div className="excursionInfo__block">
 			{tourInfoContext && <ColumnBlocksInfoPrograms {...tourInfoContext} />}

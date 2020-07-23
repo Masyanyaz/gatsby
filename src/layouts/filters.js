@@ -8,6 +8,7 @@ import Header from '../components/header'
 import ColumnFilters from '../components/column/filters'
 import Footer from '../components/footer/footer'
 import FormsPopup from '../components/forms/popup'
+import GeneralArrowUp from '../general/arrowUp'
 
 const LayoutsFilters = ({ children }) => {
 	return (
@@ -18,9 +19,10 @@ const LayoutsFilters = ({ children }) => {
 					<main>{children}</main>
 				</div>
 				<ColumnFilters />
-				<FormsPopup />
 			</div>
 			<Footer />
+			<FormsPopup />
+			<GeneralArrowUp />
 		</>
 	)
 }
