@@ -3,17 +3,20 @@ import React, { useState } from 'react'
 import PreviewTours from '../../../components/preview/tours'
 
 import { useAllTours } from '../../../fragments/programs'
-/*TODO: строница скролится вместе с добавлением элементов, надо что-то придумать
+/*TODO: страница скролится вместе с добавлением элементов, надо что-то придумать (решил через добавление переменной isVisible и скрытием кнопки после нажатия на 200мс)
  *  вынести в отдельный компонент, попробовать переписать через чанки вместе slice*/
 
 const ChunkOutput = ({ array, backPath }) => {
 	const CHUNK_SIZE = 5
 	const [chunkIndex, setChunkIndex] = useState(1)
+	const [isVisible, setIsVisible] = useState(true)
 	const hasHiddenElements = chunkIndex * CHUNK_SIZE < array.length - 1
 
 	const handleClick = () => {
 		if (hasHiddenElements) {
+			setIsVisible(false)
 			setChunkIndex((chunkIndex) => chunkIndex + 1)
+			setTimeout(() => setIsVisible(true), 50)
 		}
 	}
 
@@ -24,7 +27,7 @@ const ChunkOutput = ({ array, backPath }) => {
 					<PreviewTours key={node.id} node={node} backPath={backPath} />
 				))}
 			</div>
-			{hasHiddenElements && <button onClick={handleClick}>ЕЩЕ!</button>}
+			{isVisible && hasHiddenElements && <button onClick={handleClick}>ЕЩЕ!</button>}
 		</>
 	)
 }

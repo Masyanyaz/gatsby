@@ -22,7 +22,7 @@ const ColumnEndPages = () => {
 					tourInfoContext={tourInfoContext}
 					excursionInfoContext={excursionInfoContext}
 				/>
-				{(tourInfoContext?.prices.length > 0 || excursionInfoContext?.prices?.length > 0) && (
+				{(tourInfoContext?.prices?.length > 0 || excursionInfoContext?.prices?.length > 0) && (
 					<Link to="#priceTable">К цене</Link>
 				)}
 				<FormsPopupButton text="Слыш, купи" className="right-column-button" />
