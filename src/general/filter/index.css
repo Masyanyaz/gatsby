@@ -2,12 +2,12 @@
   color: red
 }
 
-.filters a {
-  margin-right: 10px;
-}
-
 .filters {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+
+.filters div:not(:last-child) {
+  margin-right: 10px;
 }

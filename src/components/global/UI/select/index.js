@@ -20,8 +20,8 @@ const GlobalUISelect = ({ array, className, link, onChange, ...other }) => {
 	useOnClickOutside(ref, () => setIsOpen(false))
 
 	const changeSelected = (event) => {
-		const { value } = event.target.dataset
-		const selected = array.find((item) => item.value.toString() === value)
+		const { id } = event.target.dataset
+		const selected = array.find((item) => item.id.toString() === id)
 		setSelected(selected)
 		setIsOpen(false)
 		onChange(selected.id)
@@ -40,7 +40,7 @@ const GlobalUISelect = ({ array, className, link, onChange, ...other }) => {
 
 							const propsData = {
 								key: item.id,
-								'data-value': item.value,
+								'data-id': item.id,
 								className: `${className} ${styles.select__item}`,
 								onClick: changeSelected,
 							}
