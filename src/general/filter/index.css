@@ -5,3 +5,9 @@
 .filters a {
   margin-right: 10px;
 }
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}

@@ -36,6 +36,7 @@ const PreviewTours = ({ node, backPath }) => {
 				<div className="preview__block-center-row">
 					<div className="preview__block-center-row-element">{node.days.length} дней</div>
 					<GlobalUIHover
+						style={{ backgroundColor: '#bababa' }}
 						text={`${node.towns.length} городов`}
 						className="preview__block-center-row-element towns"
 					>

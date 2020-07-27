@@ -1,32 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Link from '../../components/global/link'
+import GlobalUISelect from '../../components/global/UI/select'
 
-const GeneralFilterCategories = ({ directionPath, categories, guidePath, directionIncludes }) => {
+const GeneralFilterCategories = ({
+	directionPath,
+	categories,
+	guidePath,
+	directionIncludes,
+	categoryPath,
+}) => {
 	const linkAllCategory =
 		guidePath === 'all' && directionIncludes
 			? `/${directionPath}`
 			: `/catalogue/filters/tours/${directionPath}/all/${guidePath}/all`
 
-	return (
-		<div>
-			<Link partiallyActive to={linkAllCategory} activeClassName={'active'}>
-				Все
-			</Link>
-			{categories.map(({ node: { id, name, path, disabled } }) => (
-				<Link
-					// style={{ opacity: disabled ? 0.5 : 1 }}
-					partiallyActive
-					key={id}
-					to={`/catalogue/filters/tours/${directionPath}/${path}/${guidePath}/all`}
-					activeClassName={'active'}
-				>
-					{name}
-				</Link>
-			))}
-		</div>
-	)
+	const items = [
+		{
+			id: 'all',
+			text: 'Все',
+			value: linkAllCategory,
+			active: categoryPath === 'all',
+		},
+	]
+	categories.forEach(({ node: { id, name, path } }) => {
+		items.push({
+			id,
+			text: name,
+			value: `/catalogue/filters/tours/${directionPath}/${path}/${guidePath}/all`,
+			active: categoryPath === path,
+		})
+	})
+
+	return <GlobalUISelect array={items} link />
 }
 
 GeneralFilterCategories.defaultProps = {

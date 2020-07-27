@@ -1,32 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Link from '../../components/global/link'
+import GlobalUISelect from '../../components/global/UI/select'
 
-const GeneralFilterDirections = ({ directions, categoryPath, guidePath, directionIncludes }) => {
-	return (
-		<div>
-			<Link
-				partiallyActive
-				to={`/catalogue/filters/tours/all/${categoryPath}/${guidePath}/all`}
-				activeClassName={'active'}
-			>
-				Все
-			</Link>
-			{directions.map(({ node: { id, name, path } }) => {
-				const linkDirection =
-					(!directionIncludes && categoryPath === 'all' && guidePath === 'all') ||
-					(directionIncludes && categoryPath === 'all' && guidePath === 'all')
-						? `/${path}`
-						: `/catalogue/filters/tours/${path}/${categoryPath}/${guidePath}/all`
-				return (
-					<Link partiallyActive key={id} to={linkDirection} activeClassName={'active'}>
-						{name}
-					</Link>
-				)
-			})}
-		</div>
-	)
+const GeneralFilterDirections = ({
+	directions,
+	categoryPath,
+	guidePath,
+	directionIncludes,
+	directionPath,
+}) => {
+	const items = [
+		{
+			id: 'all',
+			text: 'Все',
+			value: `/catalogue/filters/tours/all/${categoryPath}/${guidePath}/all`,
+			active: directionPath === 'all',
+		},
+	]
+	directions.forEach(({ node: { id, name, path } }) => {
+		const linkDirection =
+			(!directionIncludes && categoryPath === 'all' && guidePath === 'all') ||
+			(directionIncludes && categoryPath === 'all' && guidePath === 'all')
+				? `/${path}`
+				: `/catalogue/filters/tours/${path}/${categoryPath}/${guidePath}/all`
+
+		items.push({
+			id,
+			text: name,
+			value: linkDirection,
+			active: directionPath === path,
+		})
+	})
+
+	return <GlobalUISelect array={items} link />
 }
 
 GeneralFilterDirections.defaultProps = {

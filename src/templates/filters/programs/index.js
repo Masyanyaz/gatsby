@@ -7,10 +7,10 @@ import LayoutsFilters from '../../../layouts/filters'
 import PreviewTours from '../../../components/preview/tours'
 import GeneralFilter from '../../../general/filter'
 import FiltersProgramsProvider from './provider'
-// TODO: Переименовать!
-import Combine from './asd'
+import PreviewToursSubDirections from '../../../components/preview/tours/filters/subDirections'
+import PreviewToursThisDirection from '../../../components/preview/tours/filters/thisDirection'
 
-const FiltersPage = ({ data, pageContext, path }) => {
+const FiltersPage = ({ data, pageContext, path, ...other }) => {
 	const { strapiDirections, allStrapiTours } = data
 	const context = pageContext
 	const backPath = path
@@ -26,15 +26,18 @@ const FiltersPage = ({ data, pageContext, path }) => {
 				<GeneralFilter {...context} />
 				<hr />
 				<div className="preview__grid">
-					{allStrapiTours.edges.length
-						? allStrapiTours.edges
-								.filter(({ node }) =>
-									directionPath ? node.directions[0].path === directionPath : true,
-								)
-								.map(({ node }) => <PreviewTours key={node.id} node={node} backPath={backPath} />)
-						: 'Туров с данными фильтрами не найдено'}
+					{allStrapiTours.edges.length ? (
+						allStrapiTours.edges
+							.filter(({ node }) =>
+								directionPath ? node.directions[0].path === directionPath : true,
+							)
+							.map(({ node }) => <PreviewTours key={node.id} node={node} backPath={backPath} />)
+					) : (
+						<PreviewToursThisDirection directionPath={directionPath} backPath={backPath} />
+					)}
 				</div>
-				<Combine
+
+				<PreviewToursSubDirections
 					directionPath={directionPath}
 					categoryPath={context.categoryPath}
 					guidePath={context.guidePath}

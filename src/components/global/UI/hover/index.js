@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const GlobalUIHover = ({ children, text, className, ...other }) => {
+import styles from './index.module.css'
+
+import GlobalUIButton from '../button'
+
+const GlobalUIHover = ({ children, text, className, style, ...other }) => {
 	const [hover, setHover] = useState(false)
 
 	const showHover = () => {
@@ -9,27 +13,28 @@ const GlobalUIHover = ({ children, text, className, ...other }) => {
 	}
 
 	return (
-		<div
-			role="button"
-			tabIndex="0"
-			className={className}
-			onMouseEnter={showHover}
-			onMouseLeave={showHover}
-		>
-			{text}
-			{hover && children}
-		</div>
+		<GlobalUIButton className={className} onMouseEnter={showHover} onMouseLeave={showHover}>
+			<span>{text}</span>
+			{hover && (
+				<div style={style} className={styles.hover}>
+					{children}
+				</div>
+			)}
+		</GlobalUIButton>
 	)
 }
 
 GlobalUIHover.defaultProps = {
 	className: '',
+	text: '',
+	style: {},
 }
 
 GlobalUIHover.propTypes = {
 	children: PropTypes.node.isRequired,
-	text: PropTypes.string.isRequired,
+	text: PropTypes.string,
 	className: PropTypes.string,
+	style: PropTypes.object,
 }
 
 export default GlobalUIHover

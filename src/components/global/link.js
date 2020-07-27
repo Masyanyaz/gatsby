@@ -7,6 +7,7 @@ if (typeof window !== 'undefined') {
 	require('smooth-scroll')('a[href*="#"]', {
 		speed: 800,
 		offset: 100,
+		// speedAsDuration: true,
 	})
 }
 

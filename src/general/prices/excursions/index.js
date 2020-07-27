@@ -2,37 +2,34 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import './index.css'
+import GlobalUISelect from '../../../components/global/UI/select'
 
 const PricesExcursion = ({ prices }) => {
-	const counts = [...new Set(prices.map((price) => price.count))]
-	const [countSelected, setCountSelected] = useState(counts[0])
+	const [countSelected, setCountSelected] = useState(prices[0])
 
-	const handleSelect = (e) => {
-		setCountSelected(+e.target.value)
+	const handleSelect = (id) => {
+		const price = prices.find((price) => price.id.toString() === id.toString())
+		setCountSelected(price)
 	}
 
-	const filteredPrices = prices.filter((price) => price.count === countSelected)
+	const items = prices.map(({ count, value, id }, i) => ({
+		id,
+		text: count,
+		value,
+		active: i === 0,
+	}))
 
 	return (
 		<>
 			{prices.length ? (
 				<>
 					<div>
-						{/*eslint-disable-next-line jsx-a11y/no-onchange*/}{' '}
-						<select onChange={handleSelect} defaultValue={countSelected}>
-							{counts.map((count) => (
-								<option key={count} value={count}>
-									{count} человека
-								</option>
-							))}
-						</select>
+						<GlobalUISelect array={items} onChange={handleSelect} />
 					</div>
 
 					<div className="exPriceTable">
 						<div>Prix par personne:</div>
-						{filteredPrices.map(({ id, value }) => (
-							<div key={id}>{value} euro</div>
-						))}
+						<div>{countSelected.value} euro</div>
 					</div>
 				</>
 			) : (
