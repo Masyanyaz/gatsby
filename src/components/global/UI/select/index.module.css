@@ -1,7 +1,7 @@
 .select {
   width: 100%;
   position: relative;
-  max-width: 300px;
+  min-width: 200px;
 }
 
 .select__input {
@@ -47,6 +47,7 @@
 
 .select__dropdown button {
   width: 100%;
+  text-align: start;
 }
 
 .selected {

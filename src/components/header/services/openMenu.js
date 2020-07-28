@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Link from '../../global/link'
 import withOpenMenu from '../withOpenMenu'
 
-const HeaderDestinationsOpenMenu = ({ items }) => {
+const HeaderServicesOpenMenu = ({ items }) => {
 	return (
 		<div className="hover__menu">
 			{items.map(({ node: { id, name, path } }) => (
@@ -17,8 +17,8 @@ const HeaderDestinationsOpenMenu = ({ items }) => {
 	)
 }
 
-HeaderDestinationsOpenMenu.propTypes = {
+HeaderServicesOpenMenu.propTypes = {
 	items: PropTypes.array.isRequired,
 }
 
-export default withOpenMenu(HeaderDestinationsOpenMenu, 'Destinations')
+export default withOpenMenu(HeaderServicesOpenMenu, 'Services')
