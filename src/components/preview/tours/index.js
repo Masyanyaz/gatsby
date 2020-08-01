@@ -21,15 +21,11 @@ const TownsList = ({ towns }) => {
 }
 
 const PreviewTours = ({ node, backPath }) => {
+	const linkUrl = `/catalogue/programs/${node.directions[0].path}/tours/${node.categories[0].path}/${node.path}/`
+
 	return (
 		<div className="preview__block">
-			<PreviewImage
-				directionPath={node.directions[0].path}
-				path={node.path}
-				category={node.categories[0]}
-				prices={node.prices}
-				backPath={backPath}
-			/>
+			<PreviewImage prices={node.prices} backPath={backPath} linkUrl={linkUrl} />
 
 			<div className="preview__block-center">
 				<div className="preview__block-name">{node.name}</div>
@@ -52,11 +48,7 @@ const PreviewTours = ({ node, backPath }) => {
 				</div>
 			</div>
 
-			<Link
-				to={`/catalogue/programs/${node.directions[0].path}/tours/${node.categories[0].path}/${node.path}/`}
-				className="preview__block-button"
-				state={{ back: backPath }}
-			>
+			<Link to={linkUrl} className="preview__block-button" state={{ back: backPath }}>
 				ПОДРОБНЕЕ
 			</Link>
 		</div>

@@ -1,5 +1,5 @@
 module.exports = async (args) => {
-	const { graphql, createPage, reporter, components } = args
+	const { graphql, createPage, reporter, components, service } = args
 
 	const result = await graphql(
 		`
@@ -27,7 +27,8 @@ module.exports = async (args) => {
 
 	allStrapiInspirations.edges.forEach((inspiration) => {
 		const context = {
-			inspirationsPath: inspiration.node.path,
+			service: service.tours,
+			inspirationPath: inspiration.node.path,
 		}
 
 		createPage({

@@ -9,8 +9,8 @@ import GeneralOverall from '../../../general/overall'
 import LayoutsPages from '../../../layouts/pages'
 import GlobalUITag from '../../../components/global/UI/tag'
 import Link from '../../../components/global/link'
-import EndPagesProgramsProvider from './provider'
-import GeneralListFromText from '../../../general/listFromText'
+import GlobalListFromText from '../../../components/global/listFromText'
+import ColumnBlocksInfoPrograms from '../../../components/column/blocks/info/programs'
 
 const TagList = ({ directions, categories, guide }) => {
 	return (
@@ -35,60 +35,71 @@ const ToursPage = (props) => {
 
 	const locationState = props.location.state
 
-	return (
-		<EndPagesProgramsProvider
+	const columnBlocksInfo = () => (
+		<ColumnBlocksInfoPrograms
 			days={data.days}
 			towns={data.towns}
 			prices={pricesArray}
 			priceType={data.priceType}
 			groupCount={data.groupCount}
-		>
-			<LayoutsPages>
-				<div className="programm__img">
-					<img
-						src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg"
-						alt=""
-					/>
+		/>
+	)
+
+	return (
+		<LayoutsPages columnBlocksInfo={columnBlocksInfo}>
+			<div className="programm__img">
+				<img
+					src="https://21foto.ru/wp-content/uploads/2015/11/20120519-IMGP0657-06-Panorama-scaled.jpg"
+					alt=""
+				/>
+			</div>
+
+			<Link to={locationState?.back || `/${data.directions[0].path}`}>Back</Link>
+
+			<h2>{data.name}</h2>
+			<div className="programm__info">
+				<TagList directions={data.directions} categories={data.categories} guide={data.guide} />
+				<div className="programm__info-description">
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque
+					provident quis excepturi sunt enim dolore debitis molestiae!
 				</div>
+				<div className="otstup" />
+				<GeneralOverall icons={data.icons} />
+			</div>
+
+			{/*<div className="programm__menu">*/}
+			{/*	<div className="programm__menu-item">Программа</div>*/}
+			{/*	<div className="programm__menu-item">Цена и условия</div>*/}
+			{/*	<div className="programm__menu-item">Дополнительная информация</div>*/}
+			{/*</div>*/}
+
+			<GeneralDays days={data.days} />
+			<div className="otstup" />
+
+			<GeneralPrices prices={data.prices} />
+			<div className="otstup" />
+
+			<IncludedBlock included={data.included} notIncluded={data.notIncluded} />
+		</LayoutsPages>
+	)
+}
+
+const IncludedBlock = ({ included, notIncluded }) => {
+	return (
+		<>
+			{included && (
 				<div>
-					<Link to={(locationState && locationState.back) || `/${data.directions[0].path}`}>
-						Back
-					</Link>
+					<h2>Включено в тур</h2>
+					<GlobalListFromText text={included} />
 				</div>
-				<h2>{data.name}</h2>
-				<div className="programm__info">
-					<TagList directions={data.directions} categories={data.categories} guide={data.guide} />
-					<div className="programm__info-description">
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque aut repudiandae eaque
-						provident quis excepturi sunt enim dolore debitis molestiae!
-					</div>
-					<div className="otstup" />
-					<GeneralOverall icons={data.icons} />
+			)}
+			{notIncluded && (
+				<div>
+					<h2>Не ключено в тур</h2>
+					<GlobalListFromText text={notIncluded} />
 				</div>
-				{/*<div className="programm__menu">*/}
-				{/*	<div className="programm__menu-item">Программа</div>*/}
-				{/*	<div className="programm__menu-item">Цена и условия</div>*/}
-				{/*	<div className="programm__menu-item">Дополнительная информация</div>*/}
-				{/*</div>*/}
-				<GeneralDays days={data.days} />
-				<div className="otstup" />
-				<GeneralPrices prices={data.prices} />
-				<div className="otstup" />
-				{/*TODO: убрать условие, когда заполнятся туры*/}
-				{data.include && (
-					<div>
-						<h2>Включено в тур</h2>
-						<GeneralListFromText text={data.include} />
-					</div>
-				)}
-				{data.noinclude && (
-					<div>
-						<h2>Не ключено в тур</h2>
-						<GeneralListFromText text={data.noinclude} />
-					</div>
-				)}
-			</LayoutsPages>
-		</EndPagesProgramsProvider>
+			)}
+		</>
 	)
 }
 
@@ -106,8 +117,8 @@ export const query = graphql`
 			...toursPriceType
 			...toursIcons
 			groupCount
-			include
-			noinclude
+			included
+			notIncluded
 		}
 	}
 `

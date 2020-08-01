@@ -6,45 +6,46 @@ import './index.css'
 import LayoutsFilters from '../../../layouts/filters'
 import PreviewTours from '../../../components/preview/tours'
 import GeneralFilter from '../../../general/filter'
-import FiltersProgramsProvider from './provider'
 import PreviewToursSubDirections from '../../../components/preview/tours/filters/subDirections'
 import PreviewToursThisDirection from '../../../components/preview/tours/filters/thisDirection'
 
-const FiltersPage = ({ data, pageContext, path, ...other }) => {
+const FiltersPage = ({ data, pageContext, path }) => {
 	const { strapiDirections, allStrapiTours } = data
-	const context = pageContext
-	const backPath = path
-	const directionPath = context.directionPath
+	const { directionPath, service } = pageContext
+
+	const columnContext = {
+		direction: strapiDirections,
+		directionPath,
+		service,
+	}
 
 	return (
-		<FiltersProgramsProvider direction={strapiDirections} directionPath={directionPath}>
-			<LayoutsFilters>
-				<h1>{directionPath ? strapiDirections.name : 'Все направления'}</h1>
-				<div>Описание</div>
-				<hr />
-				<h2>Фильтры:</h2>
-				<GeneralFilter {...context} />
-				<hr />
-				<div className="preview__grid">
-					{allStrapiTours.edges.length ? (
-						allStrapiTours.edges
-							.filter(({ node }) =>
-								directionPath ? node.directions[0].path === directionPath : true,
-							)
-							.map(({ node }) => <PreviewTours key={node.id} node={node} backPath={backPath} />)
-					) : (
-						<PreviewToursThisDirection directionPath={directionPath} backPath={backPath} />
-					)}
-				</div>
+		<LayoutsFilters columnContext={columnContext}>
+			<h1>{directionPath ? strapiDirections.name : 'Все направления'}</h1>
+			<div>Описание</div>
+			<hr />
+			<h2>Фильтры:</h2>
+			<GeneralFilter {...pageContext} />
+			<hr />
+			<div className="preview__grid">
+				{allStrapiTours.edges.length ? (
+					allStrapiTours.edges
+						.filter(({ node }) =>
+							directionPath ? node.directions[0].path === directionPath : true,
+						)
+						.map(({ node }) => <PreviewTours key={node.id} node={node} backPath={path} />)
+				) : (
+					<PreviewToursThisDirection directionPath={directionPath} backPath={path} />
+				)}
+			</div>
 
-				<PreviewToursSubDirections
-					directionPath={directionPath}
-					categoryPath={context.categoryPath}
-					guidePath={context.guidePath}
-					backPath={backPath}
-				/>
-			</LayoutsFilters>
-		</FiltersProgramsProvider>
+			<PreviewToursSubDirections
+				directionPath={directionPath}
+				categoryPath={pageContext.categoryPath}
+				guidePath={pageContext.guidePath}
+				backPath={path}
+			/>
+		</LayoutsFilters>
 	)
 }
 

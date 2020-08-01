@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './index.css'
 
@@ -7,7 +8,7 @@ import Link from '../../../global/link'
 const ColumnBlocksDirectionPrograms = ({ direction, directionPath }) => {
 	return (
 		<div>
-			{direction.excursions.length > 0 && directionPath && (
+			{direction?.excursions.length > 0 && directionPath && (
 				<div className="direction">
 					<p>aussi à {direction.name}</p>
 					<div className="direction__element">
@@ -26,6 +27,16 @@ const ColumnBlocksDirectionPrograms = ({ direction, directionPath }) => {
 			)}
 		</div>
 	)
+}
+
+ColumnBlocksDirectionPrograms.defaulProps = {
+	direction: null,
+	directionPath: null,
+}
+
+ColumnBlocksDirectionPrograms.propTypes = {
+	direction: PropTypes.object,
+	directionPath: PropTypes.string,
 }
 
 export default ColumnBlocksDirectionPrograms

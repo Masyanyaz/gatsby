@@ -5,7 +5,7 @@ import styles from './index.module.css'
 
 import GlobalUIButton from '../button'
 
-const GlobalUIHover = ({ children, text, className, style, ...other }) => {
+const GlobalUIHover = ({ children, text, className, style }) => {
 	const [hover, setHover] = useState(false)
 
 	const showHover = () => {

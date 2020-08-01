@@ -2,9 +2,11 @@ const createCategories = require('./categories')
 const createGuides = require('./guides')
 
 module.exports = async (args) => {
-	const { createPage, components, path, data } = args
+	const { createPage, components, path, data, service } = args
 
-	const context = data
+	const context = {
+		service: service.tours,
+	}
 
 	const extendedArgs = {
 		...args,

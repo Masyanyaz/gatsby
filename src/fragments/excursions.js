@@ -24,7 +24,11 @@ export const excursionTransports = graphql`
 			id
 			name
 			image {
-				publicURL
+				childImageSharp {
+					fixed(width: 50) {
+						...GatsbyImageSharpFixed
+					}
+				}
 			}
 		}
 	}

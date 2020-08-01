@@ -6,18 +6,22 @@ import './index.css'
 import LayoutsFilters from '../../../layouts/filters'
 import PreviewTours from '../../../components/preview/tours'
 
-const FiltersPage = (props) => {
-	const { strapiInspirations, allStrapiTours } = props.data
-	const backPath = props.path
+const FiltersPage = ({ data, pageContext, path }) => {
+	const { strapiInspirations, allStrapiTours } = data
+	const { service } = pageContext
+
+	const columnContext = {
+		service,
+	}
 
 	return (
-		<LayoutsFilters>
+		<LayoutsFilters columnContext={columnContext}>
 			<h1>{strapiInspirations.name}</h1>
 			<div>Описание</div>
 			<hr />
 			<div className="preview__grid">
 				{allStrapiTours.edges.map(({ node }) => (
-					<PreviewTours key={node.id} node={node} backPath={backPath} />
+					<PreviewTours key={node.id} node={node} backPath={path} />
 				))}
 			</div>
 		</LayoutsFilters>
@@ -25,13 +29,11 @@ const FiltersPage = (props) => {
 }
 
 export const query = graphql`
-	query($inspirationsPath: String) {
-		strapiInspirations(path: { eq: $inspirationsPath }) {
-			id
-			name
-			path
+	query($inspirationPath: String) {
+		strapiInspirations(path: { eq: $inspirationPath }) {
+			...inspirationMain
 		}
-		allStrapiTours(filter: { inspirations: { elemMatch: { path: { eq: $inspirationsPath } } } }) {
+		allStrapiTours(filter: { inspirations: { elemMatch: { path: { eq: $inspirationPath } } } }) {
 			edges {
 				node {
 					...toursMain

@@ -6,14 +6,14 @@ import { openPopupForm } from '../../../store/form/actions'
 
 import GlobalUIButton from '../../global/UI/button'
 
-const FormsPopupButton = ({ text, className, ...other }) => {
+const FormsPopupButton = ({ children, className, ...other }) => {
 	const dispatch = useDispatch()
 
 	const openForm = () => dispatch(openPopupForm())
 
 	return (
 		<GlobalUIButton className={className} onClick={openForm} {...other}>
-			{text}
+			{children}
 		</GlobalUIButton>
 	)
 }
@@ -23,7 +23,7 @@ FormsPopupButton.defaultProps = {
 }
 
 FormsPopupButton.propTypes = {
-	text: PropTypes.string.isRequired,
+	children: PropTypes.node.isRequired,
 	className: PropTypes.string,
 }
 

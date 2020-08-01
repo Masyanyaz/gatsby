@@ -21,8 +21,9 @@ const GeneralPrices = ({ prices }) => {
 
 	return (
 		<>
+			<h2 id="priceTable">Tarifs</h2>
 			{prices.length ? (
-				<div className="priceTable" id="priceTable">
+				<div className="priceTable">
 					<div className="priceTable__line priceTable__head">
 						<div className="priceTable__line-item" />
 						{types}

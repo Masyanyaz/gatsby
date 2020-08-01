@@ -1,15 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './index.css'
 
 import GlobalUISpoiler from '../../../global/UI/spoiler'
 
-const ColumnBlocksCommon = ({ tourFilterInfoContext, excursionFilterInfoContext }) => {
+const ColumnBlocksCommon = ({ direction, directionPath, service }) => {
 	const title =
-		(tourFilterInfoContext?.direction?.excursions.length > 0 &&
-			tourFilterInfoContext?.directionPath) ||
-		(excursionFilterInfoContext?.direction?.tours.length > 0 &&
-			excursionFilterInfoContext?.directionPath)
+		((service === 'TOURS' && direction?.excursions.length > 0) ||
+			(service === 'EXCURSIONS' && direction?.tours.length > 0)) &&
+		directionPath
 			? 'autres services'
 			: 'nos services'
 
@@ -36,6 +36,17 @@ const ColumnBlocksCommon = ({ tourFilterInfoContext, excursionFilterInfoContext 
 			</GlobalUISpoiler>
 		</div>
 	)
+}
+
+ColumnBlocksCommon.defaulProps = {
+	direction: null,
+	directionPath: null,
+}
+
+ColumnBlocksCommon.propTypes = {
+	direction: PropTypes.object,
+	directionPath: PropTypes.string,
+	service: PropTypes.oneOf(['TOURS', 'EXCURSIONS']).isRequired,
 }
 
 export default ColumnBlocksCommon

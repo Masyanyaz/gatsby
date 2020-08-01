@@ -1,11 +1,10 @@
 const createCategories = require('./categories')
 const createGuides = require('./guides')
 const createAllFilters = require('./allFilters')
-
-const { setDisabledNullItems } = require('../functions')
+const createInspirations = require('./inspirations')
 
 module.exports = async (args) => {
-	const { graphql, createPage, reporter, components } = args
+	const { graphql, createPage, reporter, components, service } = args
 	const result = await graphql(
 		`
 			{
@@ -58,10 +57,8 @@ module.exports = async (args) => {
 	await Promise.all(
 		allStrapiDirections.edges.map(async (direction) => {
 			const context = {
+				service: service.tours,
 				directionPath: direction.node.path,
-				...data,
-				// categories: setDisabledNullItems(allStrapiCategories, direction.node.strapiId),
-				// guides: setDisabledNullItems(allStrapiGuides, direction.node.strapiId),
 			}
 
 			const extendedArgs = {
@@ -84,4 +81,7 @@ module.exports = async (args) => {
 	)
 
 	await createAllFilters({ ...args, data })
+
+	// Создание страниц впечатлений
+	await createInspirations(args)
 }

@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 
 import styles from './index.module.css'
 
-import Link from '../../components/global/link'
-import useScrollPosition from '../../hooks/scrollPosition'
+import Link from '../link'
+import useScrollPosition from '../../../hooks/scrollPosition'
 
-const GeneralArrowUp = () => {
+const GlobalArrowUp = () => {
 	const [arrowUpVisible, setArrowUpVisible] = useState(false)
 
 	useScrollPosition(
@@ -20,4 +20,4 @@ const GeneralArrowUp = () => {
 	return <>{arrowUpVisible && <Link to="#top" className={styles.arrowUp} />}</>
 }
 
-export default GeneralArrowUp
+export default GlobalArrowUp

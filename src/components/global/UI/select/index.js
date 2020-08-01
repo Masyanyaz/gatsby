@@ -7,7 +7,7 @@ import styles from './index.module.css'
 import useOnClickOutside from '../../../../hooks/onClickOutside'
 import GlobalUIButton from '../button'
 
-const GlobalUISelect = ({ array, className, link, onChange, width, ...other }) => {
+const GlobalUISelect = ({ array, className, link, onChange, width }) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [selected, setSelected] = useState(array.find(({ active }) => active))
 
@@ -41,23 +41,21 @@ const GlobalUISelect = ({ array, className, link, onChange, width, ...other }) =
 			<GlobalUIButton className={styles.select__input} onClick={openSelect}>
 				{selected.text}
 			</GlobalUIButton>
-			{array.length > 0 && (
-				<div className={styles.select__dropdown}>
-					<div className={styles.select__list}>
-						{array.map(({ id, value, text }) => (
-							<GlobalUIButton
-								key={id}
-								data-id={id}
-								data-value={value}
-								onClick={changeSelected}
-								className={`${selected.id === id ? styles.selected : ''} ${styles.select__item}`}
-							>
-								{text}
-							</GlobalUIButton>
-						))}
-					</div>
+			<div className={styles.select__dropdown}>
+				<div className={styles.select__list}>
+					{array.map(({ id, value, text }) => (
+						<GlobalUIButton
+							key={id}
+							data-id={id}
+							data-value={value}
+							onClick={changeSelected}
+							className={`${selected.id === id ? styles.selected : ''} ${styles.select__item}`}
+						>
+							{text}
+						</GlobalUIButton>
+					))}
 				</div>
-			)}
+			</div>
 		</div>
 	)
 }

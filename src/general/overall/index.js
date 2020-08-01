@@ -1,5 +1,6 @@
 import React from 'react'
 import Img from 'gatsby-image'
+import PropTypes from 'prop-types'
 
 const GeneralOverall = ({ icons }) => {
 	return (
@@ -15,6 +16,10 @@ const GeneralOverall = ({ icons }) => {
 			</div>
 		</>
 	)
+}
+
+GeneralOverall.propTypes = {
+	icons: PropTypes.array.isRequired,
 }
 
 export default GeneralOverall

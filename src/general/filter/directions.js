@@ -2,14 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import GlobalUISelect from '../../components/global/UI/select'
+import { useAllDirections } from '../../fragments/directions'
 
-const GeneralFilterDirections = ({
-	directions,
-	categoryPath,
-	guidePath,
-	directionIncludes,
-	directionPath,
-}) => {
+const GeneralFilterDirections = ({ categoryPath, guidePath, directionPath }) => {
+	const directions = useAllDirections()
+
 	const items = [
 		{
 			id: 'all',
@@ -18,19 +15,20 @@ const GeneralFilterDirections = ({
 			active: directionPath === 'all',
 		},
 	]
-	directions.forEach(({ node: { id, name, path } }) => {
-		const linkDirection =
-			(!directionIncludes && categoryPath === 'all' && guidePath === 'all') ||
-			(directionIncludes && categoryPath === 'all' && guidePath === 'all')
-				? `/${path}`
-				: `/catalogue/filters/tours/${path}/${categoryPath}/${guidePath}/all`
+	directions.forEach(({ node: { id, name, path, tours } }) => {
+		if (tours.length) {
+			const linkDirection =
+				categoryPath === 'all' && guidePath === 'all'
+					? `/${path}`
+					: `/catalogue/filters/tours/${path}/${categoryPath}/${guidePath}/all`
 
-		items.push({
-			id,
-			text: name,
-			value: linkDirection,
-			active: directionPath === path,
-		})
+			items.push({
+				id,
+				text: name,
+				value: linkDirection,
+				active: directionPath === path,
+			})
+		}
 	})
 
 	return <GlobalUISelect array={items} link />
@@ -44,8 +42,6 @@ GeneralFilterDirections.defaultProps = {
 GeneralFilterDirections.propTypes = {
 	categoryPath: PropTypes.string,
 	guidePath: PropTypes.string,
-	directions: PropTypes.array.isRequired,
-	directionIncludes: PropTypes.bool.isRequired,
 }
 
 export default GeneralFilterDirections

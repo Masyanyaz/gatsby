@@ -1,19 +1,22 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './index.css'
 
 import ColumnBlocksDirectionPrograms from './programs'
 import ColumnBlocksDirectionExcursions from './excursions'
 
-const ColumnBlocksDirection = ({ tourFilterInfoContext, excursionFilterInfoContext }) => {
+const ColumnBlocksDirection = ({ service, ...other }) => {
 	return (
 		<>
-			{tourFilterInfoContext && <ColumnBlocksDirectionPrograms {...tourFilterInfoContext} />}
-			{excursionFilterInfoContext && (
-				<ColumnBlocksDirectionExcursions {...excursionFilterInfoContext} />
-			)}
+			{service === 'TOURS' && <ColumnBlocksDirectionPrograms {...other} />}
+			{service === 'EXCURSIONS' && <ColumnBlocksDirectionExcursions {...other} />}
 		</>
 	)
+}
+
+ColumnBlocksDirection.propTypes = {
+	service: PropTypes.oneOf(['TOURS', 'EXCURSIONS']).isRequired,
 }
 
 export default ColumnBlocksDirection

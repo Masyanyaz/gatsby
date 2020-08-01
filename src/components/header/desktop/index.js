@@ -28,7 +28,7 @@ const HeaderDesktop = () => {
 	const isScrolling = scrollTop > 0
 
 	return (
-		<div style={{ paddingTop: isScrolling ? '165px' : 0 }}>
+		<div style={{ paddingTop: isScrolling ? '125px' : 0 }}>
 			<header className={isScrolling ? 'scrolled' : ''}>
 				<div className="header__menu">
 					<HeaderDesktopMenu />
@@ -47,10 +47,9 @@ const HeaderDesktop = () => {
 								<img className="phone" src="https://cuisinedevoyage.com/img/phone.svg" alt="" />
 							</Link>
 							<div className="header__button">
-								<FormsPopupButton
-									text="envoyer une demande"
-									className="header__menu-right-side-top-button"
-								/>
+								<FormsPopupButton className="header__menu-right-side-top-button">
+									envoyer une demande
+								</FormsPopupButton>
 							</div>
 						</div>
 						<div className="header__menu-right-side-bottom">

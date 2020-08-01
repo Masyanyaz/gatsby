@@ -8,9 +8,9 @@ import Header from '../components/header'
 import Footer from '../components/footer/footer'
 import FormsPopup from '../components/forms/popup'
 import ColumnEndPages from '../components/column/endPages'
-import GeneralArrowUp from '../general/arrowUp'
+import GlobalArrowUp from '../components/global/arrowUp'
 
-const LayoutsPages = ({ children }) => {
+const LayoutsPages = ({ children, columnBlocksInfo }) => {
 	return (
 		<div className="page">
 			<Header />
@@ -18,11 +18,11 @@ const LayoutsPages = ({ children }) => {
 				<div className="main-content">
 					<main>{children}</main>
 				</div>
-				<ColumnEndPages />
+				<ColumnEndPages columnBlocksInfo={columnBlocksInfo} />
 			</div>
 			<Footer />
 			<FormsPopup />
-			<GeneralArrowUp />
+			<GlobalArrowUp />
 		</div>
 	)
 }

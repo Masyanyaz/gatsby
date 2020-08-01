@@ -7,14 +7,11 @@ import PreviewImage from './image'
 import Link from '../../global/link'
 
 const PreviewExcursions = ({ node, backPath }) => {
+	const linkUrl = `/catalogue/programs/${node.direction.path}/excursion/all/${node.path}`
+
 	return (
 		<div className="expreview__block">
-			<PreviewImage
-				directionPath={node.direction.path}
-				path={node.path}
-				prices={node.prices}
-				backPath={backPath}
-			/>
+			<PreviewImage prices={node.prices} backPath={backPath} linkUrl={linkUrl} />
 			<div className="expreview__block-center">
 				<div className="expreview__block-center-row name">{node.name}</div>
 				<div className="expreview__block-center-row">
@@ -26,11 +23,7 @@ const PreviewExcursions = ({ node, backPath }) => {
 					</div>
 				</div>
 			</div>
-			<Link
-				to={`/catalogue/programs/${node.direction.path}/excursion/all/${node.path}`}
-				className="preview__block-button"
-				state={{ back: backPath }}
-			>
+			<Link to={linkUrl} className="preview__block-button" state={{ back: backPath }}>
 				ПОДРОБНЕЕ
 			</Link>
 		</div>

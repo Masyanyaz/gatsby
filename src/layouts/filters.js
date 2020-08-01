@@ -5,12 +5,12 @@ import './global.css'
 import './default.css'
 
 import Header from '../components/header'
-import ColumnFilters from '../components/column/filters'
 import Footer from '../components/footer/footer'
 import FormsPopup from '../components/forms/popup'
-import GeneralArrowUp from '../general/arrowUp'
+import ColumnFilters from '../components/column/filters'
+import GlobalArrowUp from '../components/global/arrowUp'
 
-const LayoutsFilters = ({ children }) => {
+const LayoutsFilters = ({ children, columnContext }) => {
 	return (
 		<>
 			<Header />
@@ -18,17 +18,18 @@ const LayoutsFilters = ({ children }) => {
 				<div className="main-content">
 					<main>{children}</main>
 				</div>
-				<ColumnFilters />
+				<ColumnFilters columnContext={columnContext} />
 			</div>
 			<Footer />
 			<FormsPopup />
-			<GeneralArrowUp />
+			<GlobalArrowUp />
 		</>
 	)
 }
 
 LayoutsFilters.propTypes = {
 	children: PropTypes.node.isRequired,
+	columnContext: PropTypes.object,
 }
 
 export default LayoutsFilters

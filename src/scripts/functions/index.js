@@ -1,3 +1,1 @@
-import chunk from './chunk'
-
-export { chunk }
+export { default as chunk } from './chunk'

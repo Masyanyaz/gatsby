@@ -5,29 +5,30 @@ import './index.css'
 
 import LayoutsFilters from '../../../layouts/filters'
 import PreviewExcursions from '../../../components/preview/excursions'
-import FiltersExcursionsProvider from './provider'
 
-const FiltersPage = (props) => {
-	const { strapiDirections, allStrapiExcursions } = props.data
-	const context = props.pageContext
-	const backPath = props.path
-	const directionPath = context.directionPath
+const FiltersPage = ({ data, pageContext, path }) => {
+	const { strapiDirections, allStrapiExcursions } = data
+	const { directionPath, service } = pageContext
+
+	const columnContext = {
+		direction: strapiDirections,
+		directionPath,
+		service,
+	}
 
 	return (
-		<FiltersExcursionsProvider direction={strapiDirections} directionPath={directionPath}>
-			<LayoutsFilters>
-				<h1>{strapiDirections.name}</h1>
-				<div>Описание</div>
-				<hr />
-				<div className="preview__grid">
-					{allStrapiExcursions.edges.length
-						? allStrapiExcursions.edges.map(({ node }) => (
-								<PreviewExcursions key={node.id} node={node} backPath={backPath} />
-						  ))
-						: 'Экскурсий не найдено'}
-				</div>
-			</LayoutsFilters>
-		</FiltersExcursionsProvider>
+		<LayoutsFilters columnContext={columnContext}>
+			<h1>{strapiDirections.name}</h1>
+			<div>Описание</div>
+			<hr />
+			<div className="preview__grid">
+				{allStrapiExcursions.edges.length
+					? allStrapiExcursions.edges.map(({ node }) => (
+							<PreviewExcursions key={node.id} node={node} backPath={path} />
+					  ))
+					: 'Экскурсий не найдено'}
+			</div>
+		</LayoutsFilters>
 	)
 }
 

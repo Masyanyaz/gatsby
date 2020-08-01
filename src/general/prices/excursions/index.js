@@ -6,10 +6,9 @@ import GlobalUISelect from '../../../components/global/UI/select'
 
 const PricesExcursion = ({ prices }) => {
 	const [countSelected, setCountSelected] = useState(prices[0])
-	console.log(prices)
+
 	const handleSelect = (id) => {
 		const price = prices.find((price) => price.id.toString() === id.toString())
-		console.log(price, id)
 		setCountSelected(price)
 	}
 
@@ -19,10 +18,10 @@ const PricesExcursion = ({ prices }) => {
 		value,
 		active: i === 0,
 	}))
-	console.log(items)
 
 	return (
 		<>
+			<h2 id="priceTable">Tarifs</h2>
 			{prices.length ? (
 				<>
 					<div>

@@ -1,4 +1,27 @@
-import { graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
+
+export const useAllDirections = () => {
+	const { allStrapiDirections } = useStaticQuery(graphql`
+		{
+			...allDirections
+		}
+	`)
+
+	return allStrapiDirections.edges
+}
+
+export const allDirections = graphql`
+	fragment allDirections on Query {
+		allStrapiDirections {
+			edges {
+				node {
+					...directionMain
+					...directionTours
+				}
+			}
+		}
+	}
+`
 
 export const directionMain = graphql`
 	fragment directionMain on StrapiDirections {

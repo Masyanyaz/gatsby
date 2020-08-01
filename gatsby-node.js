@@ -1,6 +1,10 @@
 const createPrograms = require('./src/scripts/createPage/programs')
 const createExcursions = require('./src/scripts/createPage/excursions')
-const createInspirations = require('./src/scripts/createPage/inspirations')
+
+const service = {
+	tours: 'TOURS',
+	excursions: 'EXCURSIONS',
+}
 
 const path = {
 	filterPage: 'catalogue/filters',
@@ -26,6 +30,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 		reporter,
 		components,
 		path,
+		service,
 	}
 
 	// Создание страниц туров
@@ -33,9 +38,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 	// Создание страниц экскурсий
 	await createExcursions(args)
-
-	// Создание страниц впечатлений
-	await createInspirations(args)
 }
 
 exports.onCreateWebpackConfig = ({ getConfig, stage }) => {

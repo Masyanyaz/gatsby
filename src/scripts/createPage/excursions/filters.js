@@ -1,7 +1,7 @@
 const createAllFilters = require('./allFilters')
 
 module.exports = async (args) => {
-	const { graphql, createPage, reporter, components, path } = args
+	const { graphql, createPage, reporter, components, path, service } = args
 
 	const result = await graphql(
 		`
@@ -28,6 +28,7 @@ module.exports = async (args) => {
 
 	allStrapiDirections.edges.forEach((direction) => {
 		const context = {
+			service: service.excursions,
 			directionPath: direction.node.path,
 		}
 
