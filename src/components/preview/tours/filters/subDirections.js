@@ -24,7 +24,7 @@ const PreviewToursSubDirections = ({ directionPath, backPath, categoryPath, guid
 			{filteredTours.length > 0 && directionPath && (
 				<section>
 					<h2>Другие туры</h2>
-					<PreviewChunkOutput array={filteredTours} backPath={backPath} Component={PreviewTours} />
+					<PreviewChunkOutput array={filteredTours} backPath={backPath} component={PreviewTours} />
 				</section>
 			)}
 		</>

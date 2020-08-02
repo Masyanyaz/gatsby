@@ -20,7 +20,7 @@ const PreviewToursThisDirection = ({ directionPath, backPath }) => {
 			{filteredTours.length > 0 && directionPath ? (
 				<section>
 					<h2>Извиняйте, гляньте другие туры по НАПРАВЛЕНИЮ</h2>
-					<PreviewChunkOutput array={filteredTours} backPath={backPath} Component={PreviewTours} />
+					<PreviewChunkOutput array={filteredTours} backPath={backPath} component={PreviewTours} />
 				</section>
 			) : (
 				'Туров с данными фильтрами не найдено'

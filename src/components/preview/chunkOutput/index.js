@@ -5,10 +5,17 @@ import styles from './index.module.css'
 
 import GlobalUIButton from '../../global/UI/button'
 
-const PreviewChunkOutput = ({ array, backPath, Component, CHUNK_SIZE, buttonText, ...other }) => {
+const PreviewChunkOutput = ({
+	array,
+	backPath,
+	component: Component,
+	chunkSize,
+	buttonText,
+	...other
+}) => {
 	const [chunkIndex, setChunkIndex] = useState(1)
 	const [isVisible, setIsVisible] = useState(true)
-	const visibleElements = chunkIndex * CHUNK_SIZE
+	const visibleElements = chunkIndex * chunkSize
 	const hasHiddenElements = visibleElements <= array.length - 1
 
 	const handleClick = () => {
@@ -39,7 +46,7 @@ const PreviewChunkOutput = ({ array, backPath, Component, CHUNK_SIZE, buttonText
 }
 
 PreviewChunkOutput.defaultProps = {
-	CHUNK_SIZE: 5,
+	chunkSize: 5,
 	buttonText: 'Показать еще',
 }
 
@@ -47,8 +54,8 @@ PreviewChunkOutput.propTypes = {
 	array: PropTypes.array.isRequired,
 	backPath: PropTypes.string.isRequired,
 	buttonText: PropTypes.string,
-	Component: PropTypes.func.isRequired,
-	CHUNK_SIZE: PropTypes.number,
+	component: PropTypes.func.isRequired,
+	chunkSize: PropTypes.number,
 }
 
 export default PreviewChunkOutput
