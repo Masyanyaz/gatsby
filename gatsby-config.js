@@ -1,5 +1,6 @@
 module.exports = {
 	siteMetadata: {
+		siteUrl: `https://t1.cuisinedevoyage.com`,
 		title: `Gatsby Default Starter`,
 		description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
 		author: `@gatsbyjs`,
@@ -26,6 +27,7 @@ module.exports = {
 			},
 		},
 		`gatsby-plugin-react-helmet`,
+		`gatsby-plugin-sitemap`,
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
